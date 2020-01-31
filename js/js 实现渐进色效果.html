@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>JS 实现颜色渐变问题</title>
+	</head>
+	<style type="text/css">
+		
+		html ,body{
+			margin: 0;
+			padding: 0;
+		}
+		
+		#block {
+			width: 400px;
+			height: 400px;
+		}
+	
+	</style>
+	<script type="text/javascript">
+		window.onload = function() {
+			document.getElementById("block").style.backgroundColor = "#fffff";
+			setTimeout("colorFlash(255,255,255)",300);
+		}
+		
+		function colorFlash(newColor) {
+			var hexVal = newColor.toString(16);
+			
+			// 确保长度为 2
+			if (hexVal.length < 2) {
+				hexVal = "0" + hexVal;
+			}
+			
+			var colorString = "#ffff" + hexVal;
+			var blockDiv = document.getElementById("block");
+			blockDiv.style.backgroundColor = colorString;
+			if (newColor > 0) {
+				newColor -=5;
+				setTimeout("colorFlash(" + newColor + ")",50);
+			}
+		}
+	</script>
+	<body>
+		<div id="block">
+			<h1 align="center">Hello World</h1>
+		</div>
+	</body>
+</html>

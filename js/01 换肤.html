@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>网页换肤</title>
+    <style>
+        body {
+            margin: 20px;
+            padding: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+        <div class="btn-group"> 
+            <button  type="button" onclick="changecolor('red')">我要变红</button> 
+            <button  type="button" onclick="changecolor('green')">我要变绿</button> 
+            <button  type="button" onclick="changecolor('lightblue')">我要变蓝</button> 
+            <button  type="button" onclick="changecolor('purple')">我要变紫</button> 
+        </div>
+
+    <script>
+        function changecolor(res) {
+            // console.log(res);
+            document.bgColor = res;
+        }
+    </script>
+</body>
+</html>
