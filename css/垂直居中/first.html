@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>垂直居中</title>
+		<style type="text/css">
+			/* 优点：老版本的游览器兼容性好
+				缺点：具有继承性
+			 */
+			.parent{
+				width: 200px;
+				height: 600px;
+				background: #e2e2e2;
+				display: table-cell;
+				/* table：设置当前元素为<table>
+					table-cell：设置当前元素为 td（单元格）
+				 */
+				vertical-align: middle;
+				/* vertical-align：用于设置文本的布局
+					top：顶部对齐
+					middle：居中对齐
+					bottom：底部对齐
+				 */
+			}
+			.child{
+				width: 200px;
+				height: 200px;
+				background: #f3f;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="parent">
+			哈哈
+			<div class="child">
+				dada
+			</div>
+		</div>
+	</body>
+</html>
