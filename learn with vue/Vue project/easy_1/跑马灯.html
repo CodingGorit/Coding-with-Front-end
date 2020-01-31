@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Vue 实现 跑马灯效果</title>
+		 <!-- v-cloak 是卸载 css 中的，这样是防止 js 加载的过程中，显示出 Vue 源码的情况 -->
+		<style type="text/css">
+			[v-cloak]{
+				display: none;
+			}
+		</style>
+	<script type="text/javascript" src="../../vue.min.js"> <!-- 引入  Vue.js 插件 --></script>
+	</head>
+	<body>
+		<div id="div1">
+			<input type="button" name="跑起来" id="btn1"  value="start" @click="lang" />
+			<input type="button" name="stop" id="btn2" value="stop" @click="stop"/>
+			<br/>
+			<h4>{{msg}}</h4> <!-- Vue 中独特的语法，可以直接将 data 中的数据渲染到前台-->
+		</div>
+
+		<script type="text/javascript">
+			
+			//创建 Vue 对象
+			var wm = new Vue({
+				el:"#div1",
+				data:{
+					msg:"Hello From The World",
+					intervalId:null,
+				},
+				methods:{
+					//实现跑马灯的开始逻辑函数
+					lang() {
+						if(this.intervalId != null)
+							return;
+							// setInterval 会按周期不断的执行函数
+						this.intervalId = setInterval(() => { //箭头函数,ES6 语法
+							var start = this.msg.substring(0,1); //从第一个字符开始,每次截取一个字符
+							var end = this.msg.substring(1);//
+							this.msg = end + start;
+						},400)
+					},
+					stop(){
+						clearInterval(this.intervalId); // 清楚定时器中的数据
+						this.intervalId = null;
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

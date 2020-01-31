@@ -22,6 +22,15 @@ Gorit 的前端学习记录
 
 
 ### 三、vue 部分
+#### 3.1 vue project 
+#### easy_0 
+1. 声明和渲染 
+2. 条件与循环 
+3. 消息反转 
+
+#### easy_1
+1. 跑马灯
+2. vue 实现简易计算器
 
 
 updated on 2020/2/1 by Gorit
