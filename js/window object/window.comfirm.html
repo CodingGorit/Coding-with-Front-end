@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>confirm</title>
+		<script type="text/javascript">
+			function rec() {
+				var mymessage = confirm("你的是女性嘛");
+				if(mymessage == true) {
+					document.write("你是女士!");
+				} else {
+					document.write("你是男士!");
+				}
+			}
+		</script>
+	</head>
+
+	<body>
+		<form action="" method="post">
+
+			<input name="button" type="button" onClick="rec()" value="点击我，弹出确认对话框" />
+		</form>
+
+	</body>
+
+</html>

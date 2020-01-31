@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>prompt 消息对话框</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			function rec() {
+				var myname;
+				myname = prompt("请输入你的姓名:","我是 Gorit");
+				if(myname != "") {
+					alert("你好:" + myname);
+				} else {
+					alert("你好"+"my frined");
+				}
+			}
+		</script>
+	</body>
+	<form action="" method="post">
+		<input name="button" type="button" value="点击我，有惊喜" onclick="rec()" />
+	</form>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>取消计时器</title>
+    <script type="text/javascript">
+        let i = setInterval(clock,100);
+        function clock(){
+            var time = new Date();
+            document.getElementById("clock").value = time.getHours()+":"+ time.getMinutes() + ":" + time.getSeconds();
+        }
+    </script>
+</head>
+<body>
+    <form action="">
+        <input type="text" id="clock" size = "30"/>
+        <input type="button" value="Stop" onclick="clearInterval(i)"/>
+    </form>
+    
+</body>
+</html>

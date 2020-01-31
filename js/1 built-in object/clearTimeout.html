@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript">
+        // 1 setTimeout("alert('Hello World')",3000);//延时3秒
+        
+        /* 点击事件延时功能
+        function info(){
+            var t = setTimeout("alert('Hello World')",5050); //通过点击事件触发
+        }
+        */
+
+        // ----------------------   取消计时器 ---------------
+        let num = 0;
+        let t = 0;
+        //计数器实现
+        function count(){
+            document.getElementById("txt").value = num;
+            num=num + 1;
+            t = setTimeout(count,1000);//递归调用自己,实现循环功能
+        }
+
+        function stopCount(){
+            // 获取 setTimeout 的返回值，然后将返回值传给 clearTimeout 即可
+            clearTimeout(t);
+        }
+    </script>
+    <title>clearTimeout</title>
+</head>
+<body>
+    <!--setTimeout(代码,延迟时间)-->
+    <form action="">
+        <input type="text" id="txt">
+        <input type="button" value="Start" onclick="count()">
+        <input type="button" value="Stop" onclick="stopCount()">
+    </form>
+</body>
+</html>
