@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>组件参数校验 与 非 props 特性</title>
+		<script src="../vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="root">
+			<child content="Hello World"></child>
+			<child></child>
+			<child></child>
+		</div>
+		
+		<script type="text/javascript">
+			// 父组件传递 content，子组件接收 content
+			Vue.component('child', {
+				// props:['content'],
+				props:{
+					//content:String ,// 指定传递的类型，从而完成了数据校验
+					//content: [Number, String]  // 传递的数据可以使 数值也可以是字符串
+					
+					// 更复杂的数据校验
+					content: {
+						type:String,// 传递的数据必须是 String 的
+						required:true, // 代表数据必须传输
+						default: 'default value' // 如果没有传值，子组件就会显示 defaukt value 的值
+						// 检测长度
+						validator: function(value) {
+							return (value.length > 5);
+						}
+					}			
+				},
+				template:"<div>{{content}}</div>"
+			})
+			
+			var vm = new Vue({
+				el:"#root",
+			})
+		</script>
+	</body>
+</html>

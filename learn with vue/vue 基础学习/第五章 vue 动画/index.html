@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title> vue 动画原理</title>
+		<script src="../vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<style type="text/css">
+		/*  动画的样式以我们起的名字开头，如果不加名字 vue 默认的名字为 v */
+		/* vue 中的动画是给标签中加样式实现的 */
+	
+		.fade-enter,		/* 显示动画 */
+		.fade-leave-to { 	/* 隐藏动画 */
+			opacity: 0;
+		}
+		
+		.fade-enter-active,
+		.fade-leave-active{
+			transition: opacity 3s;
+		}
+		
+
+	</style>
+	<body>
+		
+		<!-- 实现一个渐变的效果 -->
+		<div id="root">
+			
+			<transition name="fade">
+				<!-- 在这里面使用 v-show 和 v-if 都可以的 -->
+				<div v-if="show">hello world</div>
+			</transition>
+	
+			<button type="button" @click="handleClick">切换</button>
+		</div>
+		
+		<script type="text/javascript">
+			var vm = new Vue({
+				el: "#root",
+				data: {
+					show:true
+				},methods:{
+					handleClick : function() {
+						this.show = !this.show
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

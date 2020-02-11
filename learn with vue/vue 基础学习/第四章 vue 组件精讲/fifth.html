@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>非父子组件传值（Bus、总线、发布订阅模式、观察者）</title>
+	</head>
+	<script src="../vue.js" type="text/javascript" charset="utf-8"></script>
+	<body>
+		<!-- 使用总线完成非父子组件传值的问题  -->
+		<div id="app">
+			<!-- 当我们点击第一个组件，第二个组件有相对应的变化，反之， -->
+			<child content = "Smit"></child>
+			<child content = "Gorit"></child>
+		</div>
+		<script type="text/javascript">
+			// 通过 bus 完成 两个 非父子组件的传值
+			Vue.prototype.bus = new Vue();
+			
+			Vue.component('child', {
+				data: function() {
+					return {
+						selfContent: this.content
+					}
+				},
+				props:{
+					content: { // 数据校验
+						type:String
+					}
+				},
+				template:"<div @click='handleClick'>{{selfContent}}</div>",
+				methods:{
+					handleClick: function() {
+						this.bus.$emit('change',this.selfContent);// 触发事件
+					}
+				},
+				mounted: function() {
+					var that = this;
+					this.bus.$on('change', function(msg) { // 进来 this 的作用域 发生了变化，所以要在前面保存
+					that.selfContent = msg;
+						
+					})
+				}
+			})
+			var vm = new Vue({
+				el:"#app",
+			})
+		</script>
+	</body>
+</html>

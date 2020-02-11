@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>TodoList</title>
+		<script type="text/javascript" src="../vue.js"></script>
+	</head>
+	<body>
+		
+		<!-- 組件化 -->
+		
+		<div id="app">
+				<input type="text" name="" id="" value="" v-model="inputValue"/> 
+				<button type="button" v-on:click="handleBtnClick">提交</button> 
+				<ul>
+					<!-- <li v-for="item in list">{{item}}</li> -->
+					<!-- <TodoItem v-for="item in list"></TodoItem> -->
+					<!-- <todo-item  v-for="item in list"></todo-item> --> <!-- 这样只能得到固定的值 todo item -->
+					<todo-item v-bind:content="item" 
+							   v-for="item in list">
+						
+					</todo-item> <!-- 把for 循环的 item 值 绑定到 content 上 -->
+				</ul>
+		</div>
+		<script type="text/javascript">
+			//1. 全局组件定义 
+			// Vue.component("TodoItem", {//Vue 提供的一个创建全局创建的方法
+			// 	props:['content'], // 通过 content 变量来接收 for 循环传过来的值
+			// 	template:"<li>{{content}}</li>"
+			// })  
+			
+			//2. 局部组件定义, 然后再 Vue 示例中 注册
+			var TodoItem = { // 名字大小写一定要注意
+				props:['content'],
+				template:"<li>{{content}}</li>"
+			}
+			
+			var app = new Vue({
+				el: '#app',
+				
+				// 局部组件注册
+				components:{
+					TodoItem:TodoItem
+				},
+				
+				data: { 
+					list: [],
+					inputValue: ''
+				},
+				methods:{
+					handleBtnClick:function() {
+						this.list.push(this.inputValue) 
+						this.inputValue = '' 
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

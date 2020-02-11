@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>计算属性， 方法， 侦听器</title>
+		<script src="../vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<!-- 输入组合的姓名，避免冗余 -->
+			{{fullName}}
+<!-- 		定义函数也能实现数据显示	{{fullName()}} -->
+			{{age}}
+		</div>
+		
+		<script type="text/javascript">
+			var app = new Vue({
+				el:"#app",
+				data:{
+					firstName: "Smith",
+					lastName:"Gorit",
+					fullName:"Smith Gorit", // fullName 显示三
+					age:28
+				},
+				
+				// 方法三 使用监听器
+				watch:{
+					firstName: function() {
+						console.log("计算了一次");
+						this.fullName = this.firstName + " " + this.lastName;
+					},
+					
+					lastName: function() {
+						console.log("计算了一次");
+						this.fullName = this.firstName + " " + this.lastName;
+					}
+				}
+				
+				// fullName 显示 一	
+				// methods:{
+				//  //内部没有缓存的机制
+				// 	fullName: function() {
+				// 		return this.firstName + " " +this.lastName;
+				// 	}
+				// }
+				
+				
+				// fullName 显示 二
+				// 计算属性 (减少数据冗余，作用：内置缓存的一个机制)
+				// computed:{	
+				// 	fullName: function() {
+				// 		console.log("计算了一次");
+				// 		return this.firstName + " " +this.lastName;
+				// 		// firstName 和 lastName 都已经加入依赖，当依赖发生改变后，就会重新计算
+				// 	}
+				// }
+			})
+		</script>
+	</body>
+</html>
