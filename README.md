@@ -13,7 +13,7 @@ Gorit 的前端学习记录
 9. 双飞翼布局 
 10. 水平居中布局 
 11. css 其他项目特别整理  
-12、 position 布局整理
+12. position 布局整理
 
 ### 二、js 部分 
 1. built-in object （内置对象） 
