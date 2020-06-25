@@ -3,8 +3,28 @@
 	<head>
 		<!-- 07  45min -->
 		<meta charset="utf-8">
-		<title></title>
+		<link href="style.css" rel="stylesheet"/>
+		<title>食谱查询器</title>
 	</head>
 	<body>
+		<div class="container">
+			<h1>食谱查询器</h1>
+			<div class="flex">
+				<form class="flex" id="submit">
+					<input type="text" name="" placeholder="Please enter the recipe name or keyword" id="search" />
+					<button type="submit" class="search-bar">
+						搜索
+					</button>
+				</form>
+				<button class="random-btn" id="random" type="button">
+					来一个
+				</button>
+			</div>
+
+			<div id="result-heading"></div>
+			<div id="meals" class="meals"></div>
+			<div id="single-meal"></div>
+		</div>
+		<script src="script.js"></script>
 	</body>
 </html>
