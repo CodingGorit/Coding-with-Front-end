@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>模态登录页面</title>
+	</head>
+	<link rel="stylesheet" type="text/css" href="style.css" />
+	<link rel="stylesheet" href="https://www.jq22.com/jquery/font-awesome.4.6.0.css">
+	<body>
+		<nav>
+			<div class="logo">
+				<img src="img/logo.jpg">
+			</div>
+			<ul>
+				<li><a href="#">主页</a></li>
+				<li><a href="#">关于我们</a></li>
+				<li><a href="#">课程介绍</a></li>
+				<li><a href="#">联系我们</a></li>
+			</ul>
+		</nav>
+		<header>
+			<button type="button" id="toggle" class="toggle">
+				<i class="fa fa-bars fa-2x"></i>
+			</button>
+
+			<h1>欢迎来学习</h1>
+			<p>Love Study </p>
+			<button type="button" class="cta-btn" id="open">登录</button>
+
+		</header>
+		<div class="container">
+			<h2>为什么选择我们？</h2>
+			<p>adawdwdawdwad</p>
+
+			<h2>我们的优势</h2>
+			<ul>
+				<li>简单</li>
+				<li>易学</li>
+				<li>嘻嘻</li>
+			</ul>
+
+			<p>XXX</p>
+		</div>
+
+
+		<!-- model -->
+		<div class="modal-container" id="modal">
+			<div class="modal">
+				<button type="button" class="close-btn" id="close">
+					<i class="fa fa-times"></i>
+				</button>
+				<div class="modal-header">
+					<h3>登录</h3>
+				</div>
+
+				<div class="modal-content">
+					<!-- <p>登录了解更多</p> -->
+					<form class="modal-form">
+						<div>
+							<label for="name">姓名</label>
+							<input type="text" name="" id="name" value="" placeholder="请输入姓名" class="form-input" />
+						</div>
+
+						<div>
+							<label for="email">邮箱</label>
+							<input type="email" name="" id="email" value="" placeholder="请输入邮箱" class="form-input" />
+						</div>
+
+						<div>
+							<label for="password">密码</label>
+							<input type="password" name="" id="password" value="" placeholder="请输入密码" class="form-input" />
+
+						</div>
+
+						<div>
+							<label for="password2">确认密码</label>
+							<input type="password" name="" id="password2" value="" placeholder="请输入密码" class="form-input" />
+						</div>
+
+						<div>
+							<input type="submit" value="提交" class="submit-btn" />
+						</div>
+
+					</form>
+				</div>
+			</div>
+		</div>
+		<script src="script.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>
