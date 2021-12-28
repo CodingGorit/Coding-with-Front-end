@@ -24,7 +24,21 @@
 > 使用 svg 实现图像会话，监听键盘按下事件，显示单词的正确与否  
 
 8. 食谱查询   
-> 使用网上的开放 API 完成，食谱查询的操作
+> 使用网上的开放 API 完成，食谱查询的操作  
+
+### 二、CSS projects in 15 days
+> 一共15个项目，每天一个 CSS 小练习
+
+### X、Vue2 项目实战
+1. 完成了在线项目去哪网   
+[vue 2.5 完成模仿去哪网界面 ](http://www.gorit.cn/project/#/)   
+
+学习代码已经上传至码云：需要的可以自行 clone
+> git clone git@gitee.com:gorit/Travel.git 
+
+
+2. 完成了电商后台管理系统的开发   
+[Vue 2.6 开发电商后台管理系统](http://gorit.cn:3030)
 
 
 

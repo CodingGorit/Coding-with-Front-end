@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 提前设置一些颜色变量 */
+        :root {
+            --color-gray-light: #d8dcd6;
+            --color-gray: #D3D7D0;
+            --color-gray-dark: #767B78;
+            --color-orange: #e38c63;
+            --color-mint: #84C2B3;
+            --color-mint-light: #9bc5bb;
+            --color-purple: #bdbdcb;
+        }
+
+        body {
+            display: flex;
+            width: 100vw;
+            height: 100vh;
+            background: var(--color-gray-light);
+            /* 让内部子元素水平垂直都居中 */
+            justify-content: center;
+            align-items: center;
+        }
+
+        .clock {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            padding: 20px;
+            border: 20px solid var(--color-gray);
+            border-radius: 50%;
+            background: var(--color-gray-light);
+            /* 利用边框阴影，设置立体效果 */
+            box-shadow: 5px -5px 6px rgba(255, 255, 255, 0.5),
+                -5px 5px 8px rgba(50, 50, 50, 0.1),
+                inset -3px 3px 5px rgba(50, 50, 50, 0.1),
+                inset 2px -2px 1px rgba(50, 50, 50, 0.05);
+        }
+
+        /* outer 宽度高度和父级一样，内部会有一些定位的表的刻度 */
+        .outer {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+        }
+
+        /* 利用伪元素制作两组表刻度 */
+        .outer::before,
+        .outer::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 6px;
+            height: 100%;
+            /* 让元素居中 */
+            margin-left: -3px;
+            background: var(--color-mint);
+        }
+
+        .outer::after {
+            transform: rotate(90deg);
+        }
+
+        /* 其他的刻度 */
+        .marking {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            /* 让元素居中 */
+            margin-left: -2px;
+            background: var(--color-mint-light);
+        }
+
+        /* 让刻度分别旋转到对应的位置 */
+        .marking:nth-child(1) {
+            transform: rotate(30deg);
+        }
+
+        .marking:nth-child(2) {
+            transform: rotate(60deg);
+        }
+
+        .marking:nth-child(3) {
+            transform: rotate(120deg);
+        }
+
+        .marking:nth-child(4) {
+            transform: rotate(150deg);
+        }
+
+        /* 内部的表针部分，给整体的盒子一个颜色，盖住前面刻度多余的区域 */
+        .inner {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 270px;
+            height: 270px;
+            border-radius: 50%;
+            margin-left: -135px;
+            margin-top: -135px;
+            background: var(--color-gray-light);
+        }
+
+        /* 三个指针有公共样式 */
+        .hand {
+            position: absolute;
+            left: 50%;
+            bottom: 50%;
+            border-radius: 3px;
+            background: var(--color-orange);
+            /* 设置变换的原点水平居中垂直居底部 */
+            transform-origin: 50% 100%;
+        }
+
+        /* 不同的样式 */
+        .hand_hour {
+            width: 6px;
+            height: 30%;
+            margin-left: -3px;
+        }
+
+        .hand_minute {
+            width: 4px;
+            height: 40%;
+            margin-left: -2px;
+        }
+
+        .hand_second {
+            width: 2px;
+            height: 45%;
+            margin-left: -1px;
+            background: var(--color-gray-dark);
+        }
+
+        /* 添加 inner 的伪元素制作中心的小圆，压盖前面的指针 */
+        .inner::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 16px;
+            height: 16px;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            background-color: var(--color-orange);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="clock">
+        <!-- 外部表的刻度部分 -->
+        <div class="outer">
+            <div class="marking"></div>
+            <div class="marking"></div>
+            <div class="marking"></div>
+            <div class="marking"></div>
+        </div>
+        <!-- 表针的部分 -->
+        <div class="inner">
+            <div class="hand hand_hour"></div>
+            <div class="hand hand_minute"></div>
+            <div class="hand hand_second"></div>
+        </div>
+    </div>
+    <script src="../jquery-1.11.1.min.js"></script>
+    <script>
+        // 获取元素
+        const $handHour = $('.hand_hour');
+        const $handMinute = $('.hand_minute');
+        const $handSecond = $('.hand_second');
+
+        // 直接执行一次函数，进行时间的初始化
+        getTime();
+
+        function getTime() {
+            // 获取当前的时间，然后分辨出时、分、秒
+            const now = new Date()
+            // console.log(now)
+            // 存储时分秒
+            const hour = now.getHours()
+            const minute = now.getMinutes()
+            const second = now.getSeconds()
+            // console.log(hour, minute, second)
+            // 利用当前的时分秒的时间计算在表盘中指针旋转的角度
+            const secondDegree = (second / 60) * 360
+            const minuteDegree = ((minute + second / 60) / 60) * 360
+            const hourDegree = ((hour + (minute + second / 60) / 60) / 12) * 360
+            // 给对应的元素设置样式
+            $handHour.css('transform', 'rotate(' + hourDegree + 'deg)')
+            $handMinute.css('transform', 'rotate(' + minuteDegree + 'deg)')
+            $handSecond.css('transform', 'rotate(' + secondDegree + 'deg)')
+        }
+        // 执行一个定时器，每隔1秒执行一次函数
+        // 第一次执行时是在1s之后
+        setInterval(getTime, 1000)
+    </script>
+</body>
+
+</html>

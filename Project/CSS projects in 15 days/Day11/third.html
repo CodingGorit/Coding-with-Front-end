@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js 轮播图</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 大盒子居中 */
+        .carousel {
+            position: relative;
+            width: 800px;
+            height: 500px;
+            border: 1px solid #000;
+            margin: 100px auto;
+            overflow: hidden;
+        }
+
+        /* 所有的图片，水平排列 */
+        .pic {
+            position: absolute;
+            /* 考虑到子元素有可能增加，为了避免有的子元素掉下去 */
+            width: 5000px;
+            height: 500px;
+            top: 0;
+            left: 0;
+            /* 过渡动画 */
+            transition: all 2s ease;
+        }
+
+        .pic img {
+            float: left;
+        }
+
+        /* 按钮样式 */
+        .btn {
+            position: absolute;
+            left: 100px;
+            bottom: 50px;
+        }
+
+        .btn span {
+            float: left;
+            width: 20px;
+            height: 20px;
+            margin-right: 20px;
+            background-color: #fff;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="carousel">
+        <div class="pic">
+            <img src="images/01.jpg" alt="">
+            <img src="images/02.jpg" alt="">
+            <img src="images/03.jpg" alt="">
+        </div>
+        <!-- 添加一些绑定表单的元素 -->
+        <div class="btn">
+
+        </div>
+        <script src="../jquery-1.11.1.min.js"></script>
+        <script>
+            // 获取元素    
+            var $pic = $('.pic');
+            var $images = $('.pic img');
+            var long = $('.carousel').length;
+            var len = $images.length;
+            // 动态添加 按钮span 
+            for (var i = 0; i < len; i++) {
+                $('.btn').append('<span></span>')
+            }
+            var $spans = $('.btn span');
+            $spans.each(function (i) {
+                // i 表示遍历的每个元素的下标
+                $(this).click(function () {
+                    $pic.css({
+                        'left': -800 * i + 'px'
+                    })
+                })
+            })
+        </script>
+</body>
+
+</html>

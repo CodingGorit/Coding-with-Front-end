@@ -1,0 +1,129 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --gradient: linear-gradient(to left, purple, red, orange, yellow, green, cyan, blue, purple,  purple,blue,cyan,red, orange, yellow, green);
+    --gradientX: linear-gradient(to right, purple, red, orange, yellow, green, cyan, blue, purple, red, orange, yellow, green, cyan, blue, purple);
+    --gradientY: linear-gradient(to bottom, purple, red, orange, yellow, green, cyan, blue, purple, red, orange, yellow, green, cyan, blue, purple);
+}
+
+.title {
+    background: var(--gradient);
+    background-size: 200% 200%;
+    background-position: 0 0;
+    background-clip: text;
+    -webkit-background-clip: text;
+    font-family: "Arial Black";
+    font-size: 80px;
+    color: transparent;
+}
+
+.container {
+    width: 1440px;
+    margin: 0 auto;
+}
+
+.wrapper-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrapper-item {
+    /* background: #39a8a8; */
+    margin: 20px;
+    height: 300px;
+    width: 800px;
+}
+
+.wrapper-item-content {
+    width: 600px;
+    height: 200px;
+    margin: 10px auto;
+    /* background: #4672aa; */
+}
+
+.wrapper-item h3 {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.text1 {
+    /** 使用背景颜色做渐变*/
+    background: var(--gradientX);
+    background-size: 200%;
+    /* 背景图默认重复进行加载的 */
+    /* 背景图运动改的是背景位置 */
+    /* background-position: 50% 0; */
+    /* 剪裁背景，只显示文字区域 */
+    background-clip: text;
+    -webkit-background-clip: text;
+    font-family: "Arial Black";
+    font-size: 80px;
+    /* 让文字颜色透明，不要压盖背景 */
+    color: transparent;
+}
+
+.text2 {
+    background: var(--gradientY);
+    background-size: 200% 200%;
+    background-position: 0 0;
+    background-clip: text;
+    -webkit-background-clip: text;
+    font-family: "Arial Black";
+    font-size: 80px;
+    /* 让文字颜色透明，不要压盖背景 */
+    color: transparent;
+}
+
+/* 表单被选中后，兄弟 p运动 */
+.btn1:checked ~ .text1 {
+    animation: positionXChange 2s linear infinite;
+}
+
+.btn2:checked ~ .text2 {
+    animation: positionYChange 2s linear infinite;
+}
+
+/* .box {
+    position: relative;
+    left: 0; 
+    width: 100px;
+    height: 100px;
+    border: 10px dashed #f00;
+    background-clip: padding-box;
+    background-image: linear-gradient(to right,red, orange 40%, pink);
+    animation: move 2s ease infinite;
+  } */
+
+  /* 定义动画规则 */
+  /* @keyframes move {
+    from {
+        left: 0;
+    }
+    to {
+        left: 500px;
+    }
+  } */
+
+  @keyframes positionXChange {
+      0% {
+          background-position-x: 0%;
+      }
+      100% {
+          background-position-x: 100%;
+      }
+  }
+
+
+  @keyframes positionYChange {
+    0% {
+        background-position-y: 0%;
+    }
+    100% {
+        background-position-y: 100%;
+    }
+}

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css 动画轮播图</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .carousel {
+            position: relative;
+            width: 800px;
+            height: 500px;
+            margin: 50px auto;
+            border: 1px solid #000;
+            overflow: hidden;
+        }
+
+        .carousel .pic {
+            position: absolute;
+            left: 0;
+            width: 5000px;
+            height: 500px;
+            transition: 2s ease;
+            -webkit-animation: move 10s ease infinite;
+        }
+
+        .carousel .pic img {
+            float: left;
+            width: 800px;
+            height: 500px;
+        }
+
+        @keyframes move {
+            0% {
+                left: 0;
+            }
+
+            25% {
+                left: -800px;
+            }
+
+            50% {
+                left: -1600px;
+            }
+
+            75% {
+                left: -2400px;
+            }
+
+            100% {
+                left: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="carousel">
+        <div class="pic">
+            <img src="images/01.jpg" alt="">
+            <img src="images/02.jpg" alt="">
+            <img src="images/03.jpg" alt="">
+            <img src="images/01.jpg" alt="">
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,185 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --body-color: #FCC5DA;
+    --body-shadow-color: #F98B99;
+    --right-hand-color: #ffb1c6;
+    --cheek-color: #F988BE;
+    --mouth-one-color: #7B2123;
+    --mouth-two-color: #F6605C;
+    --foot-color: #E7547D;
+    --blue-color: #326BF7;
+    --white-color: #fff;
+    --black-color: #000;
+}
+
+body {
+    height: 100vh;
+    background: #fbffab;
+}
+
+/* 元素固定定位后，它可以内部的标准中的子元素自动撑宽撑高  */
+
+.kirby {
+    position: fixed;
+    left: 50%;
+    top: 20vh;
+    transform: translateX(-50%);
+}
+
+.head {
+    width: 400px;
+    height: 370px;
+    border-radius: 50%;
+    background-color: var(--body-color);
+}
+
+/* 手部的公共样式 */
+
+.hand {
+    position: absolute;
+    width: 150px;
+    height: 270px;
+    background-color: var(--body-color);
+    border-radius: 100%;
+    box-shadow: inset 1px -35px 60px var(--body-shadow-color), 40px 20px 60px rgba(0, 0, 0, 0.2);
+    z-index: -1;
+}
+
+.hand_l {
+    left: 50px;
+    top: -92px;
+    transform: rotate(-16deg);
+    box-shadow: inset 1px -35px 60px var(--body-shadow-color), 40px 20px 60px rgba(0, 0, 0, 0.2);
+}
+
+.hand_r {
+    right: -10px;
+    top: 60px;
+    background: var(--right-hand-color);
+    transform: rotate(70deg);
+    box-shadow: 0px -20px 60px rgba(0, 0, 0, 0.2);
+}
+
+/* 眼睛部分 */
+
+.eye {
+    position: absolute;
+    width: 35px;
+    height: 92px;
+    border-radius: 50px/90px;
+    background: var(--black-color);
+    transform: rotate(20deg);
+}
+
+.eye_l {
+    left: 200px;
+    top: 70px;
+}
+
+.eye_r {
+    left: 270px;
+    top: 94px;
+}
+
+/* 用伪元素做眼睛内部的内容 */
+
+.eye::before {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 6px;
+    width: 23px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--white-color);
+}
+
+.eye::after {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    left: 5px;
+    width: 25px;
+    height: 54px;
+    border-radius: 30px/50px;
+    box-shadow: inset 0px -17px 4px 1px var(--blue-color);
+}
+
+/* 脸颊部分 */
+
+.cheek {
+    position: absolute;
+    width: 60px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--cheek-color);
+    box-shadow: 0px 0px 4px var(--cheek-color);
+}
+
+.cheek_l {
+    left: 107px;
+    top: 126px;
+    transform: rotate(16deg);
+}
+
+.cheek_r {
+    left: 300px;
+    top: 192px;
+    transform: rotate(18deg);
+}
+
+/* 嘴巴 */
+
+.mouth {
+    position: absolute;
+    left: 189px;
+    top: 191px;
+    transform: rotate(17deg);
+    width: 70px;
+    height: 50px;
+    background-color: var(--mouth-one-color);
+    border-radius: 15px 15px 55px 55px;
+}
+
+.mouth::before {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 12px;
+    width: 55px;
+    height: 35px;
+    background-color: var(--mouth-two-color);
+    border-radius: 10px 10px 45px 45px;
+    box-shadow: inset 1px 2px 13px 1px var(--mouth-one-color);
+}
+
+/* 脚部 */
+
+.foot {
+    position: absolute;
+    width: 150px;
+    height: 230px;
+    background: var(--foot-color);
+}
+
+.foot_l {
+    left: 30px;
+    top: 243px;
+    border-radius: 50% 50% 60% 60%/40% 40% 80% 80%;
+    z-index: -1;
+    transform: rotate(-6deg);
+    box-shadow: inset -15px -5px 50px 4px var(--mouth-one-color);
+}
+
+.foot_r {
+    height: 200px;
+    right: 17px;
+    bottom: -51px;
+    border-radius: 60% 60% 50% 50% /80% 80% 40% 40%;
+    transform: rotate(50deg);
+    box-shadow: inset 5px -10px 30px 4px rgba(255, 255, 255, 0.2), inset -5px 10px 30px 4px rgba(255, 255, 255, 0.2), 20px 0px 20px -4px rgba(0, 0, 0, .4);
+}

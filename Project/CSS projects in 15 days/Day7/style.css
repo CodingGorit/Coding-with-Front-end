@@ -1,0 +1,185 @@
+* {
+    margin: 0;
+    padding: 0;
+  }
+
+  .fabrics {
+    display: grid;
+    width: 620px;
+    margin: 50px auto;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 310px 310px;
+  }
+  .swatch {
+    width: 300px;
+    height: 300px;
+    background-color: skyblue;
+  }
+  
+  /* 太极形状的背景 */
+  .yinyang {
+    background: 
+    radial-gradient(circle at 50% 40%,
+    #d2caab 3%,
+    #374f28 4%,
+    #374f28 11%,
+    rgba(0,0,0,0) 12%,
+    rgba(0,0,0,0) 100%
+    ) 50px 0,
+    radial-gradient(circle at 50% 58%,
+    #374f28 3%,
+    #d2caab 4%,
+    #d2caab 11%,
+    rgba(0,0,0,0) 12%,
+    rgba(0,0,0,0) 100%
+    ) 50px 0,
+    radial-gradient(circle at 50% 40%,
+    #d2caab 3%,
+    #374f28 4%,
+    #374f28 11%,
+    rgba(0,0,0,0) 12%,
+    rgba(0,0,0,0) 100%
+    ) 0 50px,
+    radial-gradient(circle at 50% 58%,
+    #374f28 3%,
+    #d2caab 4%,
+    #d2caab 11%,
+    rgba(0,0,0,0) 12%,
+    rgba(0,0,0,0) 100%
+    ) 0 50px,
+    radial-gradient(circle at 100% 49%,
+    #d2caab 16%,
+    rgba(0,0,0,0) 17%
+    ),
+    radial-gradient(circle at 0% 49%,
+    #374f28 16%,
+    rgba(0,0,0,0) 17%
+    ),
+    radial-gradient(circle at 100% 49%,
+    #d2caab 16%,
+    rgba(0,0,0,0) 17%
+    ) -50px 50px,
+    radial-gradient(circle at 0% 49%,
+    #374f28 16%,
+    rgba(0,0,0,0) 17%
+    ) 50px 50px;
+    /* 制作的基础形状的大小是 100px 100px */
+    background-size: 100px 100px;
+    background-color: #63773f;
+    /* background-repeat: no-repeat; */
+  }
+
+  /* 环装的背景 */
+  .circle {
+    background: 
+    radial-gradient(closest-side,
+      transparent 75%,
+      #b6cc66 76%,
+      #b6cc66 85%,
+      #edffdb 86%,
+      #edffdb 94%,
+      #ffffff 95%,
+      #ffffff 103%,
+      #d9e6a7 104%,
+      #d9e6a7 112%,
+      #798b3c 113%,
+      #798b3c 121%,
+      #ffffff 122%,
+      #ffffff 130%,
+      #e0ead7 131%,
+      #e0ead7 145%
+    ),
+    radial-gradient(closest-side,
+      transparent 75%,
+      #b6cc66 76%,
+      #b6cc66 85%,
+      #edffdb 86%,
+      #edffdb 94%,
+      #ffffff 95%,
+      #ffffff 103%,
+      #d9e6a7 104%,
+      #d9e6a7 112%,
+      #798b3c 113%,
+      #798b3c 121%,
+      #ffffff 122%,
+      #ffffff 130%,
+      #e0ead7 131%,
+      #e0ead7 145%
+    ) 55px 55px;
+    background-size: 110px 110px;
+    background-color: #585481;
+  }
+
+  /* 蜂巢背景 */
+  .honeycomb {
+    background:
+    radial-gradient(circle at 0% 93%,
+      #fb1 7%,
+      transparent 0
+    ) 21px 0,
+    radial-gradient(circle at 0% 92%,
+      #b71 7%,
+      transparent 0
+    ) 19px 0,
+    radial-gradient(circle at 0% 7%,
+      #fb1 7%,
+      transparent 0
+    ) 21px 0,
+    radial-gradient(circle at 0% 8%,
+      #b71 7%,
+      transparent 0
+    ) 19px 0, 
+    linear-gradient(
+      #fb1 15%,
+      transparent 0,
+      transparent 85%,
+      #fb1 0
+    ),
+    linear-gradient(150deg,
+      #fb1 24%,
+      #b71 0,
+      #b71 26%,        
+      transparent 0,
+      transparent 74%,
+      #b71 0,
+      #b71 76%,
+      #fb1 0,
+      #fb1 100%
+    ),
+    linear-gradient(30deg,
+      #fb1 24%,
+      #b71 0,
+      #b71 26%,        
+      transparent 0,
+      transparent 74%,
+      #b71 0,
+      #b71 76%,
+      #fb1 0,
+      #fb1 100%
+    ),
+    linear-gradient(to right,
+      #b71 2%,
+      #fb1 2%,
+      #fb1 98%,
+      #b71 98%
+    );
+    background-size: 40px 60px;
+    /* background-repeat: no-repeat; */
+  }
+
+  .stars {
+    background: linear-gradient(324deg, #232927 4%, transparent 4%) 30px 42px,
+      linear-gradient(36deg, #232927 4%, transparent 4%) 30px 42px,
+      linear-gradient(72deg, #e3d7bf 8.5%, transparent 8.5%) 30px 42px,
+      linear-gradient(288deg, #e3d7bf 8.5%, transparent 8.5%) 30px 42px,
+      linear-gradient(216deg, #e3d7bf 7.5%, transparent 7.5%) 30px 23px,
+      linear-gradient(144deg, #e3d7bf 7.5%, transparent 7.5%) 30px 23px,
+      linear-gradient(324deg, #232927 4%, transparent 4%) 80px 92px,
+      linear-gradient(36deg, #232927 4%, transparent 4%) 80px 92px,
+      linear-gradient(72deg, #e3d7bf 8.5%, transparent 8.5%) 80px 92px,
+      linear-gradient(288deg, #e3d7bf 8.5%, transparent 8.5%) 80px 92px,
+      linear-gradient(216deg, #e3d7bf 7.5%, transparent 7.5%) 80px 73px,
+      linear-gradient(144deg, #e3d7bf 7.5%, transparent 7.5%) 80px 73px;
+    background-color: #232927;
+    background-size: 100px 100px;
+  }

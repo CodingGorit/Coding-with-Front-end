@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="sky">
+        <div class="stars">
+
+        </div>
+    </div>
+    <script src="../jquery-1.11.1.min.js"></script>
+    <script>
+        // 定义一下需要的星星的数量
+        var len = 500;
+        // 通过循环进行添加
+        for (var i = 0; i < 500; i++) {
+            // 在内存中创建一个星星
+            var $star = $(`<div class="star">
+        <div class="counter">
+          <div class="slide">
+            <div class="light"></div>
+            <div class="light"></div>
+            <div class="light"></div>
+          </div>
+        </div>
+      </div>`);
+            // 动态的添加每个星星的位置变化
+            // 随机产生一些位置
+            // Math.random() 每次出现都是随机的得到一个 [0,1) 的随机小数
+            var x = Math.random() * 1200 - 600 + 'px',
+                y = Math.random() * 600 - 300 + 'px',
+                z = Math.random() * 1000 - 1000 + 'px'
+            $star.css({
+                'transform': 'translate3d(' + x + ',' + y + ',' + z + ')'
+            })
+            // 设置 slide 不同的延时时间
+            $star.find('.slide').css({
+
+                'animation-delay': -50 * Math.random() + "s"
+            })
+            // 把生成的星星添加到HTML结构中
+            $('.stars').append($star);
+        }
+    </script>
+</body>
+
+</html>

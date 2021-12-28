@@ -1,0 +1,38 @@
+@font-face {
+    font-family: 'Meta';
+    src: url("https://www.axis-praxis.org/fonts/webfonts/MetaVariableDemo-Set.woff2");
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: space-evenly;
+    align-items: center;
+    background: #8357eb;
+}
+
+.wrapper {
+    font-size: 30px;
+    font-family: "Meta";
+    font-size: 15rem;
+    color: transparent;
+    /* 文字描边属性 */
+    -webkit-text-stroke: 4px #fff;
+    /* 可变字体，自定义进行设置 */
+    font-variation-settings: 'wght' 900, 'ital' 2;
+    /* 文字阴影，设置多层叠加效果 */
+    text-shadow: 10px 10px 0px #07bccc, 15px 15px 0px #e601c0, 20px 20px 0px #e9019a, 25px 25px 0px #f40468, 45px 45px 10px #482896;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.wrapper:hover {
+    font-variation-settings: 'wght' 100, 'ital' 0;
+    text-shadow: none;
+}

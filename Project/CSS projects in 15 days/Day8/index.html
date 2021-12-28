@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      width: 100vw;
+      height: 100vh;
+      background: radial-gradient(darkcyan,darkblue);
+    }
+
+    .center {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%,-50%) rotateX(45deg);      
+      border: 1px solid aqua;
+      border-radius: 50%;
+      animation: waveMove 5s infinite -3s;
+      opacity: 0.5;
+    }
+
+    /* 设置波纹的运动规则 */
+    @keyframes waveMove {
+      10% {
+        top: calc(50% + 5px);
+      }
+      20% {
+        top: calc(50% - 5px);
+      }
+      30% {
+        top: 50%;
+      }
+    }
+   
+    .drip {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      width: 2px;
+      height: 20px;
+      border-radius: 50%;
+      background: aqua;
+      transform: translate(-50%);
+      animation: drip 5s infinite -10.3s;
+    }
+
+    /* 水滴的运动规则 */
+    @keyframes drip {
+      0% {
+        opacity: 1;
+        top: 0;
+      }
+      10% {
+        opacity: 0.2;
+        top: 50%
+      }
+      20% {
+        opacity: 0;
+        top: 50%;
+      }
+      100% {
+        opacity: 0;
+        top: 50%;
+      }
+    }
+    
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    
+  </div>
+  <div class="drip"></div>
+  <!-- 通过 jQuery 批量添加元素 -->
+  <script src="../jquery-1.11.1.min.js"></script>
+  <script>
+    // 定义一个变量，决定添加的波纹的个数
+    var len = 30;
+    // 通过循环批量添加
+    for (var i = 0; i < 30 ; i++) {
+      // 创建新元素
+      var $wave = $('<div class="center"></div>')
+      // 设置元素的css样式
+      $wave.css({
+        'width': 20 * (i + 1) + 'px',
+        'height': 10 * (i + 1) + 'px',
+        'top': 'calc(50% + ' + i + 'px)',
+        'animation-delay': -10 + 0.2 * i + 's'
+      })
+      // 把它添加到指定容器中
+      $('.wrap').append($wave)
+    }
+  </script>
+</body>
+
+</html>

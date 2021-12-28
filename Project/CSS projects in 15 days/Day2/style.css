@@ -1,0 +1,120 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: radial-gradient(#404749, #404749 85%, #313636);
+    height: 100vh;
+}
+
+.shirt {
+    /* 衣服的盒子整体在浏览器中居中 */
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    width: 400px;
+    /* 让元素向自己左侧上侧走自身的一半宽度和高度 */
+    transform: translate(-50%, -50%);
+}
+
+.shirt-base {
+    display: block;
+    /* 更改图片的尺寸与父盒子一样宽，并且自动撑高父级 */
+    width: 400px;
+}
+
+.shirt-overlay {
+    /* 一定要跟上面的图片在相同位置 */
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.shirt-overlay-pattern {
+    width: 100%;
+    height: 100%;
+    /* 添加背景图，使用 js 动态添加 */
+    /* background: url(images/swatch1-preview.jpg); */
+    /* 添加背景的遮罩，只会让图片中的黑色区域显示，透明区域不显示 */
+    mask-image: url(images/shirt-mask.png);
+    /* 有兼容问题，需要加前缀 */
+    -webkit-mask-image: url(images/shirt-mask.png);
+    /* 设置遮盖图片跟衣服一样大 */
+    mask-size: contain;
+    -webkit-mask-size: contain;
+  }
+
+  .shirt-overlay-shape {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    /* 本层图片和下层父级的内容混合的模式 */
+    /* 正片叠底的混合效果 */
+    mix-blend-mode: multiply;
+  } 
+  /* 设置按钮组 */
+  .textiles {
+    position: fixed;      
+  }
+  .textiles-1 {
+    left: 100px;
+    top: 100px;
+  }
+  .textiles-2 {
+    right: 100px;
+    bottom: 100px;
+  }
+  .textiles-button {
+    position: absolute;      
+    width: 50px;
+    height: 50px;
+    border: 3px solid #fff;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .textiles-1 .textiles-button {
+    left: 0;
+    top: 0;
+    /* 更改旋转的圆心位置 */
+    transform-origin: 100px 100px;
+  }
+  .textiles-1 .textiles-button:nth-child(1) {
+    transform: rotate(-80deg);
+  }
+  .textiles-1 .textiles-button:nth-child(2) {
+    transform: rotate(-40deg);
+  }
+  .textiles-1 .textiles-button:nth-child(3) {
+    transform: rotate(0deg);
+  }
+  .textiles-1 .textiles-button:nth-child(4) {
+    transform: rotate(40deg);
+  }
+  .textiles-2 .textiles-button {
+    right: 0;
+    bottom: 0;
+    transform-origin: -50px -50px;
+  }
+  .textiles-2 .textiles-button:nth-child(1) {
+    transform: rotate(-80deg);
+  }
+  .textiles-2 .textiles-button:nth-child(2) {
+    transform: rotate(-40deg);
+  }
+  .textiles-2 .textiles-button:nth-child(3) {
+    transform: rotate(0deg);
+  }
+  .textiles-2 .textiles-button:nth-child(4) {
+    transform: rotate(40deg);
+  }
+  /* 设置鼠标移上按钮，或者选中按钮，边框颜色为红色 */
+  .textiles-button:hover,
+  .textiles-button.active {
+    border-color: #f00;
+  }

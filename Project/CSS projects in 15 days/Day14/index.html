@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            background: #ade5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .sun {
+            position: relative;
+        }
+
+        .sun_face {
+            position: absolute;
+            left: calc(50% - 85px);
+            top: calc(50% - 85px);
+            width: 170px;
+            height: 170px;
+            border-radius: 50%;
+            background: linear-gradient(145deg,
+                    #fcc952,
+                    #fcc952 60%,
+                    #eca731 100%);
+            /* 盒子阴影效果 */
+            box-shadow: 6px 6px 18px rgba(209, 129, 31, 0.4),
+                -6px -6px 18px rgba(209, 157, 35, 0.4);
+        }
+
+        /* 眼睛部分 */
+        .eyes {
+            position: absolute;
+            left: calc(50% - 40px);
+            top: calc(50% - 10px);
+            width: 80px;
+            height: 20px;
+        }
+
+        .eye:nth-child(2) {
+            right: 0;
+        }
+
+        /* 使用伪元素添加眼珠 */
+        .eye::before {
+            content: '';
+            position: absolute;
+            right: 3px;
+            top: 3px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: #fff;
+            /* 眼珠的运动 */
+            animation: eyeMove 4s ease-in-out alternate infinite;
+        }
+
+        .eye::after {
+            content: '';
+            position: absolute;
+            left: 3px;
+            top: 3px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: #fff;
+            /* 眼珠的运动 */
+            animation: eyeMove 4s ease-in-out alternate infinite;
+        }
+
+        /* 定义眼珠的运动 */
+        @keyframes eyeMove {
+
+            0%,
+            35% {
+                right: 3px;
+            }
+
+            65%,
+            100% {
+                right: 11px;
+            }
+        }
+
+        /* 嘴巴 */
+        .mouth {
+            position: absolute;
+            left: calc(50% - 9px);
+            top: calc(50% + 10px);
+            width: 18px;
+            height: 18px;
+            border-radius: 0 0 9px 9px;
+            background: #000;
+            overflow: hidden;
+            /* 让嘴巴运动 */
+            animation: mouthMove 2s linear infinite;
+        }
+
+        .tongue {
+            position: absolute;
+            top: 40%;
+            width: 18px;
+            height: 16px;
+            border-radius: 50%;
+            background: #f54b2e;
+        }
+
+        /* 嘴巴的运动 */
+        @keyframes mouthMove {
+            0% {
+                height: 18px;
+            }
+
+            100% {
+                height: 24px;
+            }
+        }
+
+        /* 太阳的光线 */
+        .sun_light {
+            position: absolute;
+            left: calc(50% - 85px);
+            top: calc(50% - 85px);
+            width: 170px;
+            height: 170px;
+            z-index: -1;
+            /* 整体旋转 */
+            animation: lightRotate 20s linear infinite;
+        }
+
+        .light {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: #f7a036;
+        }
+
+        /* 旋转光线 */
+        .light:nth-child(2) {
+            transform: rotate(60deg);
+        }
+
+        .light:nth-child(3) {
+            transform: rotate(120deg);
+        }
+
+        /* 光线旋转的运动 */
+        @keyframes lightRotate {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* 所有的白云，基础形状是一样的，可以进行缩放 */
+        .cloud_wrap {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .cloud {
+            position: absolute;
+            width: 350px;
+            height: 120px;
+            border-radius: 60px;
+            background-color: #fff;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+            opacity: 0.8;
+        }
+
+        .cloud::before,
+        .cloud::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            background-color: #fff;
+        }
+
+        .cloud::before {
+            width: 180px;
+            height: 180px;
+            top: -90px;
+            right: 50px;
+        }
+
+        .cloud::after {
+            width: 100px;
+            height: 100px;
+            top: -50px;
+            left: 50px;
+        }
+
+        /* 设置每朵云不同的样式部分 */
+        .cloud-1 {
+            top: 10vh;
+            transform: scale(0.65);
+            animation: cloudMove1 32s linear infinite;
+        }
+
+        .cloud-2 {
+            top: 25vh;
+            transform: scale(0.45);
+            animation: cloudMove2 45s linear infinite;
+        }
+
+        .cloud-3 {
+            top: 35vh;
+            transform: scale(0.55);
+            animation: cloudMove3 35s linear infinite;
+        }
+
+        .cloud-4 {
+            top: 40vh;
+            transform: scale(0.5);
+            animation: cloudMove4 55s linear infinite;
+        }
+
+        .cloud-5 {
+            bottom: 45vh;
+            transform: scale(0.4);
+            animation: cloudMove5 50s linear infinite;
+        }
+
+        .cloud-6 {
+            bottom: 25vh;
+            transform: scale(0.45);
+            animation: cloudMove6 60s linear infinite;
+        }
+
+        .cloud-7 {
+            bottom: 10vh;
+            transform: scale(0.55);
+            animation: cloudMove7 54s linear infinite;
+        }
+
+        /* 让云元素进行运动，设置动画规则 */
+        @keyframes cloudMove1 {
+            0% {
+                left: -15%;
+            }
+
+            100% {
+                left: 100%;
+            }
+        }
+
+        @keyframes cloudMove2 {
+            0% {
+                left: 45%;
+            }
+
+            55% {
+                left: 100%;
+            }
+
+            55.01% {
+                left: -10%;
+            }
+
+            100% {
+                left: 45%;
+            }
+        }
+
+        @keyframes cloudMove3 {
+            0% {
+                left: 25%;
+            }
+
+            75% {
+                left: 100%;
+            }
+
+            75.01% {
+                left: -10%;
+            }
+
+            100% {
+                left: 25%;
+            }
+        }
+
+        @keyframes cloudMove4 {
+            0% {
+                left: 65%;
+            }
+
+            35% {
+                left: 100%;
+            }
+
+            35.01% {
+                left: -10%;
+            }
+
+            100% {
+                left: 65%;
+            }
+        }
+
+        @keyframes cloudMove5 {
+            0% {
+                left: 15%;
+            }
+
+            85% {
+                left: 100%;
+            }
+
+            85.01% {
+                left: -10%;
+            }
+
+            100% {
+                left: 15%;
+            }
+        }
+
+        @keyframes cloudMove6 {
+            0% {
+                left: 30%;
+            }
+
+            70% {
+                left: 100%;
+            }
+
+            70.01% {
+                left: -10%;
+            }
+
+            100% {
+                left: 30%;
+            }
+        }
+
+        @keyframes cloudMove7 {
+            0% {
+                left: 5%;
+            }
+
+            95% {
+                left: 100%;
+            }
+
+            95.01% {
+                left: -10%;
+            }
+
+            100% {
+                left: 5%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sun">
+        <!-- 太阳的脸蛋 -->
+        <div class="sun_face">
+            <div class="eyes">
+                <div class="eye"></div>
+                <div class="eye"></div>
+            </div>
+            <div class="mouth">
+                <div class="tongue"></div>
+            </div>
+        </div>
+        <!-- 太阳的光线 -->
+        <div class="sun_light">
+            <div class="light"></div>
+            <div class="light"></div>
+            <div class="light"></div>
+        </div>
+    </div>
+    <!-- 白云 -->
+    <div class="cloud_wrap">
+        <div class="cloud cloud-1"></div>
+        <div class="cloud cloud-2"></div>
+        <div class="cloud cloud-3"></div>
+        <div class="cloud cloud-4"></div>
+        <div class="cloud cloud-5"></div>
+        <div class="cloud cloud-6"></div>
+        <div class="cloud cloud-7"></div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,337 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --color1: #ce7253;
+    --color2: #a04e3a;
+    --hair: #90503a;
+    --beard: #673929;
+}
+
+/* 网格布局 Grid 可以自适应 */
+.wrapper {
+    display: grid;
+    width: 100%;
+    /* 100vh 自动撑开 */
+    height: 100vh;
+    background-color: #ffbe08;
+    /* auto 自动分配三列，宽度都是自动的，垂直 -rows */
+    grid-template-columns: auto auto auto;
+}
+
+.head {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    width: 220px;
+    height: 310px;
+    background-color: var(--color1);
+    border-radius: 110px;
+    box-shadow: inset 0 60px var(--hair),
+        inset 0 -40px var(--beard);
+}
+
+/* 伪元素绘制脸部轮廓，以及底下投影 */
+.head::before {
+    /* 必须添加一个 content 属性 */
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50px;
+    width: 220px;
+    height: 220px;
+    background-color: var(--color1);
+    /* 左上角，右上角，右下角，左下角 */
+    border-radius: 60px 60px 110px 110px;
+    z-index: 2;
+    transition: all 0.3s ease-in;
+}
+
+/* 伪元素生成 下面的圆盘*/
+.head::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -100px;
+    width: 140px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: orange;
+}
+
+/* 耳朵定位在脸的后面 */
+.ear {
+    position: absolute;
+    top: 127px;
+    width: 55px;
+    height: 55px;
+    background-color: var(--color1);
+    border-radius: 50%;
+    transition: all 0.3s ease-in;
+}
+
+.ear_l {
+    left: -28px;
+}
+
+.ear_r {
+    right: -28px;
+}
+/* 内轮廓 */
+.ear::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    top: 12px;
+    background-color: var(--color2);
+}
+
+.ear::after {
+    content: '';
+    position: absolute;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    bottom: 6px;
+    background-color: #ffffff;
+}
+
+.ear_l::after {
+    left: 20px;
+}
+
+.ear_r::after {
+    right: 13px;
+}
+
+/* 设置脸部的五官区域 */
+.face {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 110px;
+    top: 105px;
+    height: 165px;
+    /* background: #fff; */
+    z-index: 3;
+    transition: all 0.3s ease-in;
+}
+
+/* 绘制眼睛中眉毛*/
+.eye {
+    position: absolute;
+    top: 4px;
+    width: 38px;
+    height: 8px;
+    background-color: #000;
+    border-radius: 4px;
+}
+
+.eye_l {
+    transform: rotate(5deg);
+    left: 0;
+}
+
+.eye_r {
+    transform: rotate(-5deg);
+    right: 0;
+}
+
+/* 伪元素做眼珠 */
+.eye::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 18px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: #000;
+    transition: all 0.3s ease-in;
+}
+
+.eye::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 18px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: #000;
+}
+
+
+/* 鼻子  */
+.nose {
+    position: absolute;
+    left: 50%;
+    top: 50px;
+    transform: translateX(-50%);
+    width: 64px;
+    height: 24px;
+    border-radius: 11px;
+    background-color: var(--color2);
+    z-index: 5;
+}
+
+.nose::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -10px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background-color: var(--color2);
+}
+
+.beard {
+    position: absolute;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90px;
+    height: 120px;
+    border-radius: 45px;
+    background-color: #000;
+    transition: all 0.3s ease-in;
+}
+
+.beard::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -9px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background-color: var(--color1);
+}
+
+/* 下巴 */
+.chin {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 74px;
+    height: 65px;
+    border-radius: 32px;
+    background-color: var(--color1);
+}
+
+.chin::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 13px;
+    width: 48px;
+    height: 20px;
+    border-radius: 0 0 50% 50%;
+    background-color: #fff;
+}
+
+.chin::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 40px;
+    width: 24px;
+    height: 10px;
+    border-radius: 4px;
+    background-color: #000;
+}
+
+/* 坐标上四个方向的类名设置 hover 伪类状态，让元素自己组合 */
+
+.move.top:hover ~ .head::before {
+    top: 45px
+}
+
+.move.top:hover ~ .head .face {
+    top: 90px
+}
+
+.move.top:hover ~ .head .face .eye::before {
+    top: 8px
+}
+
+.move.top:hover ~ .head .face .beard {
+    top: 74px
+}
+
+.move.top:hover ~ .head .ear {
+    top: 132px
+}
+
+/*  */
+.move.bottom:hover ~ .head::before {
+    top: 60px
+}
+
+.move.bottom:hover ~ .head .face {
+    top: 115px
+}
+
+.move.bottom:hover ~ .head .face .eye::before {
+    top: 28px
+}
+
+.move.bottom:hover ~ .head .face .beard {
+    top: 86px
+}
+
+.move.bottom:hover ~ .head .ear {
+    top: 122px
+}
+
+/* 左右 */
+
+.move.left:hover ~ .head .face {
+    left:45%;
+}
+
+.move.left:hover ~ .head .face .eye::before {
+    left: 40%;
+}
+
+.move.left:hover ~ .head .ear_l {
+    left: -23px
+}
+
+.move.left:hover ~ .head .ear_r {
+    right: -33px
+}
+
+/* right */
+.move.right:hover ~ .head .face {
+    left:55%;
+}
+
+.move.right:hover ~ .head .face .eye::before {
+    right: 60%;
+}
+
+.move.right:hover ~ .head .ear_l {
+    right: -33px
+}
+
+.move.right:hover ~ .head .ear_r {
+    right: -23px
+}

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            width: 100vw;
+            height: 100vh;
+            background: #e3e4e8;
+        }
+
+        /* 容器的大小和位置 */
+        .wrap {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            /* 设置透视属性，让 z 轴出现 */
+            perspective: 800px;
+        }
+
+        /* 数字罐 */
+        .can {
+            position: absolute;
+            left: calc(50% - 175px);
+            top: 30%;
+            width: 350px;
+            height: 200px;
+            /* 旋转90度采取过渡运动的方法 */
+            transition: all 0.3s linear;
+        }
+
+        .can_wrap {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 350px;
+            height: 200px;
+            /* 保留子级的3D坐标轴 */
+            transform-style: preserve-3d;
+            /* 整体进行旋转 */
+            animation: rotate 15s linear infinite;
+        }
+
+        .can_sector {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            height: 100px;
+            font: bold 100px/100px 'Arial Rounded MT Bold';
+            /* 制作文字渐变颜色，需要利用背景图制作 */
+            background: linear-gradient(rgb(2, 58, 50), rgb(174, 248, 237));
+            background-clip: text;
+            -webkit-background-clip: text;
+            /* 背景会被内容颜色覆盖，需要让文字颜色透明，才能透出来背景 */
+            color: transparent;
+            /* 更改旋转的原点 */
+            transform-origin: center bottom;
+        }
+
+        /* 旋转动画的规则 */
+        @keyframes rotate {
+            from {
+                transform: rotateX(360deg);
+            }
+
+            to {
+                transform: rotateX(0deg);
+            }
+        }
+
+        /* 表单部分 */
+        form {
+            position: absolute;
+            left: calc(50% - 175px);
+            bottom: 40px;
+            width: 350px;
+            text-align: center;
+        }
+
+        digits {
+            width: 65px;
+            height: 25px;
+            padding: 8px 12px;
+            border: 1px solid #666;
+            margin-right: 10px;
+            border-radius: 4px;
+            font-size: 16px;
+            line-height: 25px;
+            color: #333;
+            vertical-align: middle;
+        }
+
+        .option input {
+            width: 16px;
+            height: 16px;
+            vertical-align: middle;
+        }
+
+        .option span {
+            display: inline-block;
+            height: 25px;
+            line-height: 25px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="can">
+            <div class="can_wrap">
+                <div class="can_sector">10000</div>
+                <div class="can_sector">10000</div>
+                <div class="can_sector">10000</div>
+                <div class="can_sector">10000</div>
+                <div class="can_sector">10000</div>
+                <div class="can_sector">10000</div>
+                <div class="can_sector">10000</div>
+                <div class="can_sector">10000</div>
+                <div class="can_sector">10000</div>
+                <div class="can_sector">10000</div>
+                <div class="can_sector">10000</div>
+                <div class="can_sector">10000</div>
+                <div class="can_sector">10000</div>
+                <div class="can_sector">10000</div>
+                <div class="can_sector">10000</div>
+            </div>
+        </div>
+        <form>
+            <input type="number" value="10000" min="0" max="99999" class="digits">
+            <label class="option">
+                <input type="checkbox">
+                <span>Vertical</span>
+            </label>
+        </form>
+    </div>
+    <script src="../jquery-1.11.1.min.js"></script>
+    <script>
+        // 获取所有的文字所在的元素
+        const $canSector = $('.can_sector');
+        const $can = $('.can')
+        const len = $canSector.length;
+        const min = $('.digits').attr('min');
+        const max = $('.digits').attr('max');
+        // 计算旋转的间隔度数
+        const degree = 360 / len;
+        // 批量给每个元素添加旋转
+        $canSector.each(function (i) {
+            $(this).css({
+                'transform': `translate(-50%) rotateX(${degree * i}deg)`
+            })
+        })
+
+        // 给 label 添加点击事件
+        $('.option').click(function () {
+            // 判断内部的复选框是否是被选中的状态
+            if ($('.option input').is(':checked')) {
+                $can.css({
+                    'transform': 'rotate(-90deg)'
+                })
+            } else {
+                $can.css({
+                    'transform': 'rotate(0deg)'
+                })
+            }
+        })
+
+        // 点击数字表单，要更改数字罐上的文字
+        // 表单的value一旦发生变化，就会触发change事件
+        $('.digits').change(function () {
+            // 就需要获取当前的表单的value值，设置给文字部分
+            var value = $(this).val();
+            // console.log(value)
+            if (value > max) {
+                value = max
+            } else if (value < min) {
+                value = min
+            }
+            // 设置给元素内容
+            $canSector.html(value)
+        })
+    </script>
+</body>
+
+</html>

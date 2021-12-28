@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* body 有黑色背景 */
+        body {
+            width: 100vw;
+            height: 100vh;
+            background-color: #000;
+        }
+
+        .carousel {
+            position: relative;
+            width: 130px;
+            height: 195px;
+            margin: 300px auto;
+            /* 透视，让 3D 坐标轴 Z 轴出现 */
+            perspective: 1000px;
+            /* 保持子级有自己的 3D 坐标轴 */
+            transform-style: preserve-3d;
+            /* X 轴旋转，变成俯视 的效果 */
+            transform: rotateX(15deg);
+        }
+
+        .carousel .pic {
+            transform-style: preserve-3d;
+            /* animation: picScroll 30s linear infinite; */
+        }
+
+        /* 设置图片公共的样式 */
+        .carousel .pic img {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 130px;
+            box-shadow: 0 0 10px 1px #fff;
+            /* 制作元素的倒影，有兼容问题 */
+            -webkit-box-reflect: below 15px linear-gradient(transparent, transparent, rgba(255, 255, 255, 0.7));
+            /* 过渡属性，让有属性变化时，都是动画方式改变 */
+            transition: all 1s;
+        }
+
+        .carousel .pic img:hover {
+            box-shadow: 0 0 15px 3px #fff;
+        }
+
+        /* 设置 pic 父亲的整体旋转 */
+        @keyframes picScroll {
+            0% {
+                transform: rotateY(0deg);
+            }
+
+            100% {
+                transform: rotateY(-360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="carousel">
+        <div class="pic">
+            <img src="images/01.jpg" alt="">
+            <img src="images/02.jpg" alt="">
+            <img src="images/03.jpg" alt="">
+            <img src="images/04.jpg" alt="">
+            <img src="images/05.jpg" alt="">
+            <img src="images/06.jpg" alt="">
+            <img src="images/07.jpg" alt="">
+            <img src="images/08.jpg" alt="">
+        </div>
+    </div>
+    <script src="../jquery-1.11.1.min.js"></script>
+    <script>
+        // 选中所有的图片
+        var $imgs = $('.carousel .pic img');
+        var radius = 360 / $imgs.length;
+        var range = 250;
+        var delayTime = 0.2;
+        // console.log(radius)
+
+        // 使用一个延时器，在一定时间之后，在让元素运动
+        setTimeout(init, 1000)
+
+
+        // 定义初始化函数
+        function init() {
+            // 批量给所有的图片，改变位置
+            $imgs.each(function (i) {
+                // $(this) 表示的是每次遍历的元素，
+                // i 表示的是每次遍历的元素在数组的下标
+                $(this).css({
+                    // 'transform': `rotateY(${radius * i}deg) translateZ(${range}px)`,
+                    'transform': 'rotateY(' + radius * i + 'deg) translateZ(' + range + 'px)',
+                    // 让元素最后一个先运动，延时时间不一样
+                    'transition-delay': ($imgs.length - i - 1) * delayTime + 's'
+                })
+            })
+            // 让 pic 自己运动
+            $('.pic').css({
+                'animation': 'picScroll 30s linear infinite'
+            })
+        }
+    </script>
+</body>
+
+</html>

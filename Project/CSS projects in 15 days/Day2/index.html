@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+    <title>毛衣更换</title>
+</head>
+
+<body>
+    <div class="shirt">
+        <!-- 带着衣架的图片 -->
+        <img src="images/t-shirt.png" class="shirt-base" alt="">
+        <div class="shirt-overlay">
+            <!-- 用来制作添加的图案，只能有衣服的范围 -->
+            <div class="shirt-overlay-pattern"></div>
+            <!-- 保留衣服纹理的半透明图片 -->
+            <img src="images/t-shirt-overlay-70c.png" class="shirt-overlay-shape" alt="">
+        </div>
+    </div>
+    <!-- 两组按钮 -->
+    <div class="textiles textiles-1">
+        <button class="textiles-button active"></button>
+        <button class="textiles-button">
+            <img src="images/swatch1-preview.jpg" alt="">
+        </button>
+        <button class="textiles-button">
+            <img src="images/swatch2-preview.jpg" alt="">
+        </button>
+        <button class="textiles-button">
+            <img src="images/swatch3-preview.jpg" alt="">
+        </button>
+    </div>
+    <div class="textiles textiles-2">
+        <button class="textiles-button">
+            <img src="images/swatch4-preview.jpg" alt="">
+        </button>
+        <button class="textiles-button">
+            <img src="images/swatch5-preview.jpg" alt="">
+        </button>
+        <button class="textiles-button">
+            <img src="images/swatch6-preview.jpg" alt="">
+        </button>
+        <button class="textiles-button">
+            <img src="images/swatch7-preview.jpg" alt="">
+        </button>
+    </div>
+    <script src="./jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="./index.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(darkcyan,darkblue);
+}
+
+.center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%) rotateX(45deg);      
+  border: 1px solid aqua;
+  border-radius: 50%;
+  animation: waveMove 5s infinite -3s;
+  opacity: 0.5;
+}
+
+/* 设置波纹的运动规则 */
+@keyframes waveMove {
+  10% {
+    top: calc(50% + 5px);
+  }
+  20% {
+    top: calc(50% - 5px);
+  }
+  30% {
+    top: 50%;
+  }
+}
+
+.drip {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 2px;
+  height: 20px;
+  border-radius: 50%;
+  background: aqua;
+  transform: translate(-50%);
+  animation: drip 5s infinite -10.3s;
+}
+
+/* 水滴的运动规则 */
+@keyframes drip {
+  0% {
+    opacity: 1;
+    top: 0;
+  }
+  10% {
+    opacity: 0.2;
+    top: 50%
+  }
+  20% {
+    opacity: 0;
+    top: 50%;
+  }
+  100% {
+    opacity: 0;
+    top: 50%;
+  }
+}

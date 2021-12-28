@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            display: flex;
+            width: 100vw;
+            height: 100vh;
+            background-color: #000;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .scene {
+            position: relative;
+            /* 透视属性，数值越大，元素变换后越接近原始尺寸 */
+            perspective: 15px;
+        }
+
+        .wrap {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 1000px;
+            height: 1000px;
+            margin-left: -500px;
+            margin-top: -500px;
+            /* 要让子级保留自己的 3D 坐标轴 */
+            transform-style: preserve-3d;
+            /* 设置运动 */
+            animation: move 12s linear infinite;
+        }
+
+        /* 第二个演员延迟运动，保证每个时间点都有图像 */
+        .wrap:nth-child(2) {
+            animation-delay: -6s;
+        }
+
+        /* 搭建墙 */
+        .wall {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: url(images/silver2.jpg);
+            background-size: cover;
+            animation: fade 12s linear infinite;
+        }
+
+        /* 第二组墙必须保持同样的延迟 */
+        .wrap:nth-child(2) .wall {
+            animation-delay: -6s;
+        }
+
+        .wall-left {
+            transform: rotateY(90deg) translateZ(-500px);
+        }
+
+        .wall-right {
+            transform: rotateY(-90deg) translateZ(-500px);
+        }
+
+        .wall-top {
+            transform: rotateX(-90deg) translateZ(-500px);
+        }
+
+        .wall-bottom {
+            transform: rotateX(90deg) translateZ(-500px);
+        }
+
+        .wall-back {
+            transform: translateZ(-500px);
+        }
+
+        /* 运动的规则 */
+        @keyframes move {
+            0% {
+                transform: translateZ(-300px);
+            }
+
+            100% {
+                transform: translateZ(300px);
+            }
+        }
+
+        /* 让墙的透明度设置一个运动 */
+        @keyframes fade {
+            0% {
+                opacity: 0;
+            }
+
+            25% {
+                opacity: 1;
+            }
+
+            75% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="scene">
+        <div class="wrap">
+            <div class="wall wall-left"></div>
+            <div class="wall wall-right"></div>
+            <div class="wall wall-top"></div>
+            <div class="wall wall-bottom"></div>
+            <div class="wall wall-back"></div>
+        </div>
+        <div class="wrap">
+            <div class="wall wall-left"></div>
+            <div class="wall wall-right"></div>
+            <div class="wall wall-top"></div>
+            <div class="wall wall-bottom"></div>
+            <div class="wall wall-back"></div>
+        </div>
+    </div>
+</body>
+
+</html>
