@@ -28,15 +28,17 @@ Gorit 的前端学习记录
 
 ### Project 部分 
 #### 3.1 HTML + CSS + JS
-> 基础学习中，每段代码的注释都非常详细
+> 50个原生编程案例应用
 
-#### 3.2 project 
-
+#### 3.2 CSS projects in 15 days
+> 一天一个案例学 CSS
 
 
 updated on 2020/2/1 by Gorit  
 
 ### 更新记录  
+2022/1/6 拉出 Project 分支，重新梳理 HTML + CSS + JS 案例
+
 2021/12/28 重新梳理项目结构，并划分分支
 
 2020/6/25 更新了一个实战项目，Vue 开发电商后台管理系统  
