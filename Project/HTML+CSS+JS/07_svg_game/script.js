@@ -12,8 +12,6 @@ const words = ["application","programming","interface","wonder","code"];
 let selectedWords = words[Math.floor(Math.random() * words.length)];
 // console.log(selectedWords);
 
-
-
 // 存储用户输入的正确的字母
 const correctLetters = [];
 const wrongLetters = [];
@@ -96,13 +94,13 @@ window.addEventListener("keydown", e=> {
 
 // 再玩一次的事件监听
 playAgainBtn.addEventListener('click', ()=> {
-	document.location.reload();
 	// 清空数组
+	document.location.reload();
 	// correctLetters.splice(0);
 	// wrongLetters.splice(0);
 	
 	// // 重新生成一个新的单词
-	// selectedWords =words[Math.floor(Math.random() * words.length)];
+	// selectedWords = words[Math.floor(Math.random() * words.length)];
 	
 	// displayWord();
 	
