@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>打字游戏</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <button id="settings-btn" class="settings-btn">
+        <i class="fas fa-cog"></i>
+    </button>
+    <div id="settings" class="settings">
+        <form id="settings-form">
+            <div>
+                <label for="difficulty">难度设置</label>
+                <select name="" id="difficulty">
+                    <option value="easy">简单</option>
+                    <option value="medium">中等</option>
+                    <option value="hard">较难</option>
+                </select>
+            </div>
+        </form>
+    </div>
+
+    <div class="container">
+        <h2>😍打字游戏😍</h2>
+        <small>本局字母为：</small>
+        <h1 id="word"></h1>
+        <input type="text" id="text" autocomplete="off" placeholder="请输入单词..." />
+        <p class="time-container">剩余时间：<span id="time">10s</span></p>
+        <p class="score-container">游戏得分：<span id="score">0</span></p>
+        <div id="end-game-container" class="end-game-container">
+
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

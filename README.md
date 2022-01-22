@@ -37,6 +37,8 @@ Gorit 的前端学习记录
 updated on 2020/2/1 by Gorit  
 
 ### 更新记录  
+2022/1/22 更新 HTML + CSS + JS 项目案例 —— 打字游戏
+
 2022/1/6 拉出 Project 分支，重新梳理 HTML + CSS + JS 案例
 
 2021/12/28 重新梳理项目结构，并划分分支
