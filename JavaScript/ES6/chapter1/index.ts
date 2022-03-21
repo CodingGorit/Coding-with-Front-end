@@ -1,9 +1,14 @@
 /**
- * Author：Gorit
- * Date：2022年3月21日
- * Refer：《深入理解ES6》
+ * Author：Gorit  
+ * Date：2022年3月21日  
+ * Refer：《深入理解ES6》 
  */
-
+enum TAG {
+    VAR = "var",
+    LET = "let",
+    DUPLICATE = "dup",
+    CONST = "const"
+}
 
 /**
  * var declare
@@ -49,4 +54,21 @@
     }
 
     // getLetValue(false);
+}
+
+// 禁止重复声明
+{
+    // var value = 30;  // error
+    
+    let value = 20;
+
+    // ====================    
+    let condition: boolean;
+    var cnt = 40;
+
+    if (condition) {
+        let cnt = 50;   // ok 会覆盖全局作用域中的 cnt
+
+    }
+    console.log(TAG.DUPLICATE,"cnt is =>", cnt);    // 40
 }
