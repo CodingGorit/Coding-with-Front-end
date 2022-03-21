@@ -36,8 +36,13 @@ Gorit 的前端学习记录
 
 updated on 2020/2/1 by Gorit  
 
+### 三、ES6
+参考书籍《深入理解ES6》
+1. chapter —— 块级作用域
 ### 更新记录  
-2022/1/22 更新 HTML + CSS + JS 项目案例 —— 打字游戏
+2022/3/22 更新 ES6 内容，chapter1
+
+2022/1/22 更新 HTML + CSS + JS 项目案例 —— 打字游戏  
 
 2022/1/6 拉出 Project 分支，重新梳理 HTML + CSS + JS 案例
 
