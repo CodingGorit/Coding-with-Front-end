@@ -72,3 +72,67 @@ enum TAG {
     }
     console.log(TAG.DUPLICATE,"cnt is =>", cnt);    // 40
 }
+
+// const
+{
+    let condition = true;
+
+    const items = 5;
+
+    // const notIntial;    // ts 1155 必须初始化
+
+    // items = 6;  // ts 2588 常数
+
+    if (condition) {
+        const max = 11; // 通 let 也是块级作用域
+
+    }
+    // console.log(max);   // 出了 if， 就被销毁了，所以访问不到
+
+    // var msg = "hahaha";    // 和 let 一样，不能声明同名标识符
+    // let stars = 5;
+
+    // const msg = "Hello";
+    // const stars = 6;
+}
+
+// use const declare Object
+{
+    const dog = {
+        name: "dog",
+        age: 3
+    }
+    console.log(TAG.CONST, "dog =>", dog);  // const dog => { name: 'dog', age: 3 }
+    // dog = {}    // ts 2588 常量不能继续赋值
+
+    dog.name = "PP";
+    dog.age = 1;
+    console.log(TAG.CONST, "dog =>", dog);  // const dog => { name: 'PP', age: 1 }
+}
+
+// temporal dead zone
+{
+    let condition = true;
+    
+    // console.log(typeof value);
+
+    if (condition) {
+        // console.log(typeof value);  // ts 2448 声明之前使用了块级变量
+
+        let value = "xxx";
+    }
+}
+
+{
+    for (var i = 0; i < 10; i++) {
+
+    }
+    // 由于变量提升，i 仍可访问
+    console.log(TAG.VAR, i);
+
+    for (let j = 0; j < 10; j++) {
+
+    }
+    // can not find name 'j'
+    // console.log(TAG.LET, j);
+}
