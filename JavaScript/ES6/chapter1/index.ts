@@ -7,7 +7,8 @@ enum TAG {
     VAR = "var",
     LET = "let",
     DUPLICATE = "dup",
-    CONST = "const"
+    CONST = "const",
+    FUNC = "func"
 }
 
 /**
@@ -135,4 +136,69 @@ enum TAG {
     }
     // can not find name 'j'
     // console.log(TAG.LET, j);
+}
+
+// 循环中的函数
+{
+    var funcs = [];
+    for (var i = 0; i < 10; i++) {
+        funcs.push(function () {
+            console.log(TAG.FUNC, i);
+        })
+    }
+
+    funcs.forEach((item) => {
+        // item(); // 期望输出 0 - 9，输出十次 10
+    });
+
+    // 在 let 和 const 出现之前，要这么处理
+    var funcs1 = [];
+    for (var j = 0; j < 10; j++) {
+        funcs1.push((function(value) {
+            // 调用函数表达式，强制生成计数器的副本
+            return function() {
+                console.log(TAG.FUNC, value);
+            }
+        }(j)));
+    }
+
+    funcs1.forEach((item) => {
+        // item();
+    })
+
+}
+
+// 循环中的 let 函数
+{
+    let func = [];
+
+    for (let i = 0; i < 9; i++) {
+        func.push(function() {
+            console.log(TAG.LET, TAG.FUNC, i);
+        })
+    }
+
+    func.forEach(function(func) {
+        // func();   // 0,1,2
+    })
+}
+
+// for in
+{
+    var func = [],
+        obj = {
+            a: true,
+            b: true,
+            c: true
+        }
+    
+    for (let key in obj) {
+        func.push(function() {
+            console.log(TAG.FUNC, key);
+        })
+    }
+
+    func.forEach(function(func) {
+        func(); // a,b,c
+    })
 }
