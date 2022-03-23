@@ -202,3 +202,40 @@ enum TAG {
         func(); // a,b,c
     })
 }
+
+// for const
+{
+    var funcs = [],
+    obj = {
+        a: true,
+        b: true,
+        c: true
+    }
+
+    // for (const i = 0; i < 10; i++) {
+    //     funcs.push(function() {
+    //         console.log(TAG.CONST, i);
+    //     })
+    // }
+
+    for (const key in obj) {
+        funcs.push(function() {
+            console.log(TAG.CONST, key);
+        })
+    }
+
+    func.forEach(function(item) {
+        item();
+    })
+     
+}
+
+// global area (Node.js 环境下为 globalThis)
+{
+    // under the Node.js enviroment
+    // var RegExp = "Hello";   // ts 是有类型限制的，所以不会让你这么定义的
+    // console.log(window.RegExp === RegExp);   // false
+
+    let ncz = "Hi!";
+    console.log(ncz in globalThis);     // false
+}
