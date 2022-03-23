@@ -38,8 +38,12 @@ updated on 2020/2/1 by Gorit
 
 ### 三、ES6
 参考书籍《深入理解ES6》
-1. chapter —— 块级作用域
+1. chapter1 —— var、let、const 以及作用域
+2. chapter2 —— string and reg
+3. chapter3 —— function
 ### 更新记录  
+2022/3/24 ES5 —— chapter1 内容更新完毕
+
 2022/3/22 更新 ES6 内容，chapter1
 
 2022/1/22 更新 HTML + CSS + JS 项目案例 —— 打字游戏  
