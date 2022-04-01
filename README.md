@@ -42,7 +42,9 @@ updated on 2020/2/1 by Gorit
 2. chapter2 —— string and reg
 3. chapter3 —— function
 ### 更新记录  
-2022/3/24 ES5 —— chapter1 内容更新完毕
+2022/4/2 ES6 —— chapter2 更新 ing（节选）
+
+2022/3/24 ES6 —— chapter1 内容更新完毕
 
 2022/3/22 更新 ES6 内容，chapter1
 
