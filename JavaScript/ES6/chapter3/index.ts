@@ -54,7 +54,7 @@ const TAG = {
     }
 
     // timeout 作为默认参数时
-    makeTest("/foo", undefined, function(body) {
+    makeTest("/foo", undefined, function (body) {
         doSomething(body);
     });
 
@@ -62,7 +62,7 @@ const TAG = {
     makeTest("/foo");
 
     // 不使用 timeout 作为默认参数时
-    makeTest("/foo", null, function(body) {
+    makeTest("/foo", null, function (body) {
         doSomething(body);
     });
 
@@ -103,7 +103,7 @@ const TAG = {
     // 默认参数使 arguments 对象保持与命名参数分离
 
     function mixArgsInEs6(first, second = "b") {
-        console.log(TAG.ES6,arguments.length);
+        console.log(TAG.ES6, arguments.length);
         console.log(TAG.ES6, first === arguments[0]);   // true
         console.log(TAG.ES6, second === arguments[1]);  // false
         first = "c";
@@ -112,9 +112,78 @@ const TAG = {
         console.log(TAG.ES6, second === arguments[1]);  // false
     }
 
-    
-    mixArgsInEs6("a");  // arguments[1] = undefined
+    // mixArgsInEs6("a");  // arguments[1] = undefined
 
+}
+
+{
+    /**
+     * 默认参数表达式
+     * 1. 非原始值传参
+     *  */
+
+    // Get default value by function
+    function getValue() {
+        return 5;
+    }
+
+    // 初次声明函数不会调用 getValue() 方法，该方法会在调用 add() 且不传第二个参数才会被调用
+    function add (first, second = getValue()) {
+        return first + second;
+    }
+
+    // console.log(add(1, 1));  // 2
+    // console.log(add(1));    // 6
+
+
+    // ============= another example
+    let val = 1;
+    function getVal () {
+        return val++;
+    }
+
+    // 只要调用了 addVal() 函数，就有可能求 second 默认值，任何时候都可以改变 “默认值”
+    function addVal(first, second = getVal()) {
+        return first + second;
+    }
+
+    // console.log(addVal(1, 1));  // 2
+    // console.log(addVal(1)); // 2
+    // console.log(addVal(1)); // 3
+
+    // PS：在形参中中 getVal() 没有加括号，则传递的是函数的引用，而不是函数调用的结果
+
+    // ================== 还可以这么做，默参数在函数调用时求职，所以可以用先定义的参数作为后定义参数的默认值
+    function addSame(first, second = first) {
+        return first + second;
+    }
+
+    // console.log(addSame(1, 1)); // 2
+    // console.log(addSame(1));    // 2
+
+    // ================== 将 first 的值传入一个函数来求 second
+    function getSecondVal(value) {
+        return value + 5;
+    }
+
+    function addSecondVal(first, second = getSecondVal(first)) {
+        return first + second;
+    }
+
+    // console.log(addSecondVal(1, 1));    // 2
+    // console.log(addSecondVal(1)); // 7
+
+    // ts(2713) second 比 firt 后定义，不能作为 first 的默认值，这又涉及到了临时死区的概念
+    // function addErr (first = second, second) {   // => addErr(undefined, xxx);
+    //     return first + second;
+    // }
+
+    /**
+     * note：
+     * 所有引用临时死区中的绑定行为都会抛出异常
+     * 函数有各自的作用域 与 临时死区
+     * 函数的作用域都是各自独立的，因此 函数的默认值 不可访问 函数内部声明的变量
+     */
 }
 
 {
