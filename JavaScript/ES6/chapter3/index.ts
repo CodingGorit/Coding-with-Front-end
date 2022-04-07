@@ -70,6 +70,54 @@ const TAG = {
 }
 
 {
+    // 默认参数对 arguments 对象的影响，es5 中使用默认参数值时，arguments 对象的行为会和以往不同
+
+    function mixArgs(first, second) {
+        console.log(TAG.ES5, first === arguments[0]);   // true
+        console.log(TAG.ES5, second === arguments[1]);  // true
+        first = "c";
+        second = "d";
+        console.log(TAG.ES5, first === arguments[0]);   // true
+        console.log(TAG.ES5, second === arguments[1]);  // true
+    }
+
+    // mixArgs("a", "b");  // true true true true
+
+    // 为啥会出现种情况呢？在非严格模式下，命名参数变化会同步更新到 arguments 对象中，
+
+    function mixArgs1(first, second) {
+        'use strict';
+
+        console.log(TAG.ES5, first === arguments[0]);   // true
+        console.log(TAG.ES5, second === arguments[1]);  // true
+        first = "c";
+        second = "d";
+        console.log(TAG.ES5, first === arguments[0]);   // true
+        console.log(TAG.ES5, second === arguments[1]);  // true
+    }
+
+    // mixArgs1("a", "b"); // true true false false
+
+    // es6  如果一个函数使用了默认参数值，则无论是否显示的定义了严格模式，arguments 对象的行为都将与 ES5 严格模式保持一致
+
+    // 默认参数使 arguments 对象保持与命名参数分离
+
+    function mixArgsInEs6(first, second = "b") {
+        console.log(TAG.ES6,arguments.length);
+        console.log(TAG.ES6, first === arguments[0]);   // true
+        console.log(TAG.ES6, second === arguments[1]);  // false
+        first = "c";
+        second = "d";
+        console.log(TAG.ES6, first === arguments[0]);   // true
+        console.log(TAG.ES6, second === arguments[1]);  // false
+    }
+
+    
+    mixArgsInEs6("a");  // arguments[1] = undefined
+
+}
+
+{
     // TypeScript 中，通过 '?' 即可指定默认参数，!类型断言表示参数一定存在
     const bigger = (params1, param2) => {
         console.log(param2);
