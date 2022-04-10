@@ -187,6 +187,67 @@ const TAG = {
 }
 
 {
+    /**
+     * 处理无名参数（ES5 中无名参数）
+     * JS 中通过 arguments 对象来检查函数的所有参数，从而不必定义每一个要用到的参数
+     * 下面的示例检查了 arguments 对象 
+     * @param object 被复制属性的原对象  
+     * @param other 其他为被赋值属性的名称
+     */
+    function pick(object) {
+        let result = Object.create(null);
+
+        // 从第二个参数开始
+        for (let i = 1, len = arguments.length; i < len; i++) {
+            result[arguments[i]] = object[arguments[i]];
+        }
+
+        // 返回 object 的副本
+        return result;
+    }
+
+    let book = {
+        title: 'Understanding ES6',
+        author: 'GG',
+        year: 2016
+    };
+
+    // @ts-ignore es5 no params
+    let bookData = pick(book, 'author', 'year');
+
+    console.log(TAG.ES5,bookData.author);
+    console.log(TAG.ES5, bookData.year);
+
+    // pick 传递了三个参数，但是函数实际上只定义了一个参数，为什么可以这么做呢？
+    /**
+     * 1. 第一个命名参数已经被占用
+     * 2. 当要查找需拷贝对象的属性名称时，不得不从索引 1 而不是索引 0 开始遍历 arguments 对象
+     */
+}
+
+{
+    /**
+     * ES6 中引入的不定参数，通过传入 ... 来表示是一个不定参数
+     * 1. 该参数为一个数组，包含自它传入的所有参数
+     * 2. 通过数组名即可逐一访问里面的参数
+     * 3. 使用不定参数重写上面的 pick() 函数
+     */
+    function pick_overide_by_es6(object, ...keys) {
+        let result = Object.create(null);
+
+        for (let i = 0, len = keys.length; i < len; i++) {
+            result[keys[i]] = object[keys[i]];
+        }
+
+        return result;
+    }
+
+    /**
+     * 不定参数 keys 包含的是 object 传入的所有的参数（而 arguments 对象包含的是所有传入的参数，包括 object
+     */
+}
+
+{
     // TypeScript 中，通过 '?' 即可指定默认参数，!类型断言表示参数一定存在
     const bigger = (params1, param2) => {
         console.log(param2);
