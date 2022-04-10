@@ -248,6 +248,25 @@ const TAG = {
 }
 
 {
+    // 不定参数的使用限制
+
+    // ① 不定参数后不饿能有其他命名参数
+    // function pick_waring1(object, ...keys, aaa) {
+    //     // ...
+    // }
+
+
+    // ②不能用于对象的 setter 中
+    let obj_waring2 = {
+
+        // 不可以在 setter 中使用 ...
+        // set name (...keys) {
+            // ...
+        // }
+    }
+}
+
+{
     // TypeScript 中，通过 '?' 即可指定默认参数，!类型断言表示参数一定存在
     const bigger = (params1, param2) => {
         console.log(param2);
