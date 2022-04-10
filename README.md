@@ -40,8 +40,10 @@ updated on 2020/2/1 by Gorit
 参考书籍《深入理解ES6》
 1. chapter1 —— var、let、const 以及作用域
 2. chapter2 —— string and reg
-3. chapter3 —— function
+3. chapter3 —— function、params
 ### 更新记录  
+2022/4/11 ES6 —— chapter2 master merge from es6
+
 2022/4/2 ES6 —— chapter2 更新 ing（节选）
 
 2022/3/24 ES6 —— chapter1 内容更新完毕
