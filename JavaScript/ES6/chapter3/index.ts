@@ -128,7 +128,7 @@ const TAG = {
     }
 
     // 初次声明函数不会调用 getValue() 方法，该方法会在调用 add() 且不传第二个参数才会被调用
-    function add (first, second = getValue()) {
+    function add(first, second = getValue()) {
         return first + second;
     }
 
@@ -138,7 +138,7 @@ const TAG = {
 
     // ============= another example
     let val = 1;
-    function getVal () {
+    function getVal() {
         return val++;
     }
 
@@ -215,8 +215,8 @@ const TAG = {
     // @ts-ignore es5 no params
     let bookData = pick(book, 'author', 'year');
 
-    console.log(TAG.ES5,bookData.author);
-    console.log(TAG.ES5, bookData.year);
+    // console.log(TAG.ES5,bookData.author);
+    // console.log(TAG.ES5, bookData.year);
 
     // pick 传递了三个参数，但是函数实际上只定义了一个参数，为什么可以这么做呢？
     /**
@@ -259,11 +259,27 @@ const TAG = {
     // ②不能用于对象的 setter 中
     let obj_waring2 = {
 
-        // 不可以在 setter 中使用 ...
+        // 不可以在 setter 中使用 ... （因为 setter 中只能有一个参数）
         // set name (...keys) {
-            // ...
+        // ...
         // }
     }
+}
+
+{
+    // 不定参数对 arguments 的影响
+    function checkArgs(...args) {
+        console.log(TAG.ES6, args.length);
+        console.log(TAG.ES6, arguments.length);
+        console.log(TAG.ES6, args[0], arguments[0]);
+        console.log(TAG.ES6, args[1], arguments[1]);
+    }
+
+    checkArgs("a", "b");
+
+    /**
+     * 无论是否使用不定参数，arguments 总是包含所有传入函数的参数
+     */
 }
 
 {
