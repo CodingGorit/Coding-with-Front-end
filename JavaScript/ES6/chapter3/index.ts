@@ -283,6 +283,139 @@ const TAG = {
 }
 
 {
+    // 增强的 Function，常用来动态创建新的函数，构造函数接受的必须是字符串形式的参数，及函数参数及函数体
+    let add = new Function("first", "second", "return first + second");
+
+    // console.log(add(1, 2)); // 2
+
+    // ES6 的做法同样适合 Function => 支持默认参数
+    let add1 = new Function("first", "second = first", "return first + second");
+
+    // 支持不定参数，在最后一个参数加 ... 即可
+    let add2 = new Function("...args", "return args[0]");
+
+}
+
+{
+    // 展开运算符
+
+    // Math.max(...args: number[]);
+    let values = [25, 50, 75, 100];
+
+    // 求最大值可以用循环遍历求，也可以用 apply()，但是 apply() 需要手动绑定 this，但是使用“展开运算符” 就没有这样的问题
+    // console.log(TAG.ES5, Math.max.apply(values));
+
+    // ES6  JS 引擎读取这段程序后会将参数数组分割为独立的参数依次传入 
+    // console.log(TAG.ES6, Math.max(...values));
+
+    // 防止出现负数
+    // console.log(TAG.ES6, Math.max(...values, 0));
+
+    // 大部分能用 apply() 的地方，其实也可以用“展开运算符”
+
+}
+
+{
+    // ES6 中给每个函数新增了一个 name 属性
+    function doSomeThing() {
+        //  
+    }
+
+    let doSomeThings = function() {
+        //
+    }
+
+    // console.log(TAG.ES6, doSomeThing.name); // 'doSomeThing'
+
+    // console.log(TAG.ES6, doSomeThings.name);    // 'doSomeThings'
+
+    // name 属性特殊情况 
+    let doSomething1 = function doSomethingElse() {
+        // 空函数
+    }
+
+    let person = {
+        get firstName() {
+            return "Helo";
+        }
+
+        // @ts-ignore
+        // sayName: function() {
+        //     console.log(this.name);
+        // }
+    }
+
+    // console.log(doSomething1.name); // doSomethingElse
+    // console.log(person.sayName.name);   // sayName
+    // @ts-ignore
+    // console.log(person.firstName.name); // "get firstName"
+
+    // 有 setter 的话，前缀是 set
+
+    /**
+     * 通过 bind() 创建的函数，名称带有 "bound" 的前缀
+     * 通过 Function 构造函数创建的，其名称前缀带有 "anonymous"
+     */
+
+    // console.log(doSomeThing.bind(doSomeThing).name);    // bound doSomeThing
+    // console.log((new Function()).name); // "anonymous"
+
+
+    // ps：  函数 name 属性的只不一定引用同名变量，它知识协助调试用的额外信息，所以不能使用 name 属性的值来获取对于函数的引用
+}
+
+{
+    // 明确函数的多重用途, ES5 中函数有多重作用，可以结合 new 使用，函数内的 this 指向一个新对象，函数最终返回新对象
+    function Person(name) {
+        this.name = name;
+    }
+
+    let person = new Person("Nick");
+    let notPerson = Person("Nick"); // 没有通过 new 调用 Person()，最终返回 undefined（在非严格模式下会在全局对象设置 name 属性）
+
+    // console.log(TAG.ES5, person);   // es5 Person { name: 'Nick' }
+    // console.log(TAG.ES5, notPerson);    // es5 undefined
+    
+    /**
+     * 但是在 ES6 中，函数混乱的双重身份有了变化
+     * ES6 中函数有两个不同的内部方法：[[Call]]、[[Construct]]
+     * 区别：
+     * 1. 通过 new  关键字调用函数时，执行的时 [[Construct]] 函数，它负责创建一个通常被称作实例的新对象。然后再执行函数体，将 this 绑定到实例上
+     * 2. 否则执行 [[Call]] 函数，从而直接执行代码中的函数体
+     * 
+     * 同时具备 [[Construct]] 方法的函数被统称为构造函数
+     * PS：不是所有函数都有 [[Construct]] 方法，所以不是所有函数都可以通过 new 调用，比如 箭头函数就没有 [[Construct]]
+     */
+}
+
+{
+    // ES5 中判断函数被调用的方法【instance】
+    function Person1(name) {
+        if (this instanceof Person1) { // new 调用
+            this.name = name;
+        } else {
+            throw new Error("必须通过 new 调用");
+        }
+    }
+
+    let person1 = new Person1("Noak");
+    let notPerson1 = Person1.call(person1, "Mick");
+
+    console.log(TAG.ES5, person1);  // es5 Person1 { name: 'Mick' }
+    console.log(TAG.ES5, notPerson1);   // es5 undefined
+
+    //  前面说过，[[Construct]] 方法会创建一个新实例，并将 this 绑定到这个新实例上，这样做有时也不可靠，还有种方式可以不依赖 new，将 this 绑定到实例上
+
+    /**
+     * 见 notPerson1, Person1.call() 时，将变量 person1 作为第一个参数，相当于在 Perons1 函数里将 this 设为了 person1 实例。但是函数本身无法区分是通过 Person.call() （或 Person.apply()） 还是 new 关键字调用得到的 Person 实例
+     */
+}
+
+{
+    // 元属性 new.target
+}
+
+{
     // TypeScript 中，通过 '?' 即可指定默认参数，!类型断言表示参数一定存在
     const bigger = (params1, param2) => {
         console.log(param2);
