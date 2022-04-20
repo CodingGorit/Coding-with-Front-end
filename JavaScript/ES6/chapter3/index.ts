@@ -412,7 +412,38 @@ const TAG = {
 }
 
 {
-    // 元属性 new.target
+    // 元属性 new.target [es6 新属性]
+    /**
+     *  调用函数 [[Construct]] 方法， new.target 被赋值为 new 操作符的目标，通常是新创建对象实例，若调用 [[Call]] 方法，则 new.target 的值是 undefined
+     */
+    function Person2 (name) {
+        if (typeof new.target !== "undefined") {
+            this.name = name;
+        } else {
+            throw new Error("必须通过 new 调用");
+        }
+    }
+
+    // 在放弃使用 typeof instanceof Person 改为 new.target 检测，也可以使用 new.target 是否被某个特定函数调用
+    function Person3 (name) {
+        if (new.target === Person3) {
+            this.name = name;
+        } else {
+            throw new Error("必须通过 new 调用 Person3");
+        }
+    }
+
+    function anotherOne(name) {
+        Person2.call(this, name);
+    }
+    // let p = new Person2("nick");
+    // let ao = new anotherOne("a");   // error
+
+    // 函数外不能使用 new.target，属于错误语法, 在添加了 new.target 后， ES6 解决了函数调用的一些模棱两可的问题，以及另一个问题，在代码块中声明函数
+}
+
+{
+    // 块级函数
 }
 
 {
