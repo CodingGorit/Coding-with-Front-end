@@ -48,8 +48,8 @@ const TAG = {
 }
 
 {
-    // 声明函数时，可以为任意参数指定默认值，在已指定默认的参数后可以继续声明无默认值参数。由于是在 TS 环境下，为避免报错，才加的 callback?
-    function makeTest(url, timeout = 2000, callback?) {
+    // 声明函数时，可以为任意参数指定默认值，在已指定默认的参数后可以继续声明无默认值参数
+    function makeTest(url, timeout = 2000, callback) {
 
     }
 
@@ -321,7 +321,7 @@ const TAG = {
         //  
     }
 
-    let doSomeThings = function() {
+    let doSomeThings = function () {
         //
     }
 
@@ -375,7 +375,7 @@ const TAG = {
 
     // console.log(TAG.ES5, person);   // es5 Person { name: 'Nick' }
     // console.log(TAG.ES5, notPerson);    // es5 undefined
-    
+
     /**
      * 但是在 ES6 中，函数混乱的双重身份有了变化
      * ES6 中函数有两个不同的内部方法：[[Call]]、[[Construct]]
@@ -416,7 +416,7 @@ const TAG = {
     /**
      *  调用函数 [[Construct]] 方法， new.target 被赋值为 new 操作符的目标，通常是新创建对象实例，若调用 [[Call]] 方法，则 new.target 的值是 undefined
      */
-    function Person2 (name) {
+    function Person2(name) {
         if (typeof new.target !== "undefined") {
             this.name = name;
         } else {
@@ -425,7 +425,7 @@ const TAG = {
     }
 
     // 在放弃使用 typeof instanceof Person 改为 new.target 检测，也可以使用 new.target 是否被某个特定函数调用
-    function Person3 (name) {
+    function Person3(name) {
         if (new.target === Person3) {
             this.name = name;
         } else {
@@ -444,7 +444,97 @@ const TAG = {
 
 {
     // 块级函数
+
+    if (true) {
+        console.log(TAG.ES6, typeof doSomeThing);
+
+        doSomeThing();
+    }
+
+    // doSomething() 我们是在另一个代码块中定义的，但是 ES6 将其提升至全局作用域，在各个游览器中统一了标准
 }
+
+{
+    // 箭头函数
+    /**
+     * 与传统函数的区别
+     * 1. 没有 this，super，arguments 和 new.target 的绑定，前面讲到的属性将由最近一层非箭头函数决定
+     * 2. 不能通过 new 关键字调用，箭头函数没有 [[Construct]]  方法，所以不能被用作构造函数
+     * 3. 没有原型，没有通过 new 关键字调用箭头函数，同时没有构造原型的需求，所以不存在 prototype 属性
+     * 4. 不可更改 this 的绑定，函数内部 this 不可改变
+     * 5. 不支持 arguments 对象，箭头函数没有 arguments 绑定，所以必须通过命名参数 和 不定参数访问函数参数
+     * 6. 不支持重复命名参数：无论严格模式 和 非严格模式，箭头函数都不支持重复命名参数；传统函数在严格模式下，不能由重复命名参数
+     * 
+     * 箭头函数消除了 this，减少了许多不必要的麻烦
+     */
+
+    // 箭头函数也有 name 属性，和其他函数一致\
+
+    // eg
+    const reflect =  value => value;
+    const reflectFunc = function(value) {
+        return value;
+    }
+
+    const sum = (num1, num2) => num1 + num2;
+    const sumFunc = function(num1, num2) {
+        return num1 + num2;
+    }
+
+    const getName = () => "Nick";
+    const getNameFunc = function () {
+        return "Nick";
+    }
+
+    const sum1 = (num1, num2) => {
+        return num1 + num2;
+    }
+    // same as sumFunc
+
+
+    const something = () => {};
+    const somethingFunc = function() {}
+
+    // return object in es6
+    const doNothing = id => ({id: id, name: "xx"})
+    const doNothongFunc = function(id) {
+        return {
+            id: id,
+            name: "T"
+        }
+    }
+
+}
+
+{
+    // 创建立即执行函数表达式【定义一个匿名函数，并立即调用，自始自终不保存对该函数的引用】
+
+    // 创建一个与其他程序隔离的作用域
+
+    let pp = function (name) {
+
+        return {
+            getName: function() {
+                return name;
+            }
+        }
+    }("mikas");
+
+    // 这里立即函数创建了一个包含 getName() 方法的新对象，将参 name 作为该对象的一个私有成员返回给函数调用者
+
+    let pp1 = ((name) => {
+
+        return {
+            getName: function() {
+                return name;
+            }
+        }
+    })("mikas");
+    // 箭头函数包含小括号，即可实现相同功能
+    // console.log(pp.getName());
+}
+
+
 
 {
     // TypeScript 中，通过 '?' 即可指定默认参数，!类型断言表示参数一定存在
@@ -453,10 +543,12 @@ const TAG = {
     }
 }
 
-/**
- * common function
- * @param body 
- */
-function doSomething(body) {
-    console.log(typeof body);
+{
+    /**
+     * common function
+     * @param body 
+     */
+    function doSomething(body = "default") {
+        console.log(typeof body);
+    }
 }
