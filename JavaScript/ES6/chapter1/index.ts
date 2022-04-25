@@ -3,12 +3,12 @@
  * Date：2022年3月21日  
  * Refer：《深入理解ES6》 
  */
-enum TAG {
-    VAR = "var",
-    LET = "let",
-    DUPLICATE = "dup",
-    CONST = "const",
-    FUNC = "func"
+const TAGS = {
+    VAR: "var",
+    LET : "let",
+    DUPLICATE : "dup",
+    CONST : "const",
+    FUNC : "func"
 }
 
 /**
@@ -71,7 +71,7 @@ enum TAG {
         let cnt = 50;   // ok 会覆盖全局作用域中的 cnt
 
     }
-    console.log(TAG.DUPLICATE,"cnt is =>", cnt);    // 40
+    console.log(TAGS.DUPLICATE,"cnt is =>", cnt);    // 40
 }
 
 // const
@@ -103,12 +103,12 @@ enum TAG {
         name: "dog",
         age: 3
     }
-    console.log(TAG.CONST, "dog =>", dog);  // const dog => { name: 'dog', age: 3 }
+    console.log(TAGS.CONST, "dog =>", dog);  // const dog => { name: 'dog', age: 3 }
     // dog = {}    // ts 2588 常量不能继续赋值
 
     dog.name = "PP";
     dog.age = 1;
-    console.log(TAG.CONST, "dog =>", dog);  // const dog => { name: 'PP', age: 1 }
+    console.log(TAGS.CONST, "dog =>", dog);  // const dog => { name: 'PP', age: 1 }
 }
 
 // temporal dead zone
@@ -129,13 +129,13 @@ enum TAG {
 
     }
     // 由于变量提升，i 仍可访问
-    console.log(TAG.VAR, i);
+    console.log(TAGS.VAR, i);
 
     for (let j = 0; j < 10; j++) {
 
     }
     // can not find name 'j'
-    // console.log(TAG.LET, j);
+    // console.log(TAGS.LET, j);
 }
 
 // 循环中的函数
@@ -143,7 +143,7 @@ enum TAG {
     var funcs = [];
     for (var i = 0; i < 10; i++) {
         funcs.push(function () {
-            console.log(TAG.FUNC, i);
+            console.log(TAGS.FUNC, i);
         })
     }
 
@@ -157,7 +157,7 @@ enum TAG {
         funcs1.push((function(value) {
             // 调用函数表达式，强制生成计数器的副本
             return function() {
-                console.log(TAG.FUNC, value);
+                console.log(TAGS.FUNC, value);
             }
         }(j)));
     }
@@ -174,7 +174,7 @@ enum TAG {
 
     for (let i = 0; i < 9; i++) {
         func.push(function() {
-            console.log(TAG.LET, TAG.FUNC, i);
+            console.log(TAGS.LET, TAGS.FUNC, i);
         })
     }
 
@@ -194,7 +194,7 @@ enum TAG {
     
     for (let key in obj) {
         func.push(function() {
-            console.log(TAG.FUNC, key);
+            console.log(TAGS.FUNC, key);
         })
     }
 
@@ -214,13 +214,13 @@ enum TAG {
 
     // for (const i = 0; i < 10; i++) {
     //     funcs.push(function() {
-    //         console.log(TAG.CONST, i);
+    //         console.log(TAGS.CONST, i);
     //     })
     // }
 
     for (const key in obj) {
         funcs.push(function() {
-            console.log(TAG.CONST, key);
+            console.log(TAGS.CONST, key);
         })
     }
 
