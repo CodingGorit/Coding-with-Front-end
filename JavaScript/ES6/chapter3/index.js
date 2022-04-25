@@ -534,7 +534,131 @@ const TAG = {
     // console.log(pp.getName());
 }
 
+{
+    // 箭头函数没有 this 绑定
+    /**
+     * 函数内的 this 绑定很容易让人混淆 —— 函数内的 this 可以根据函数调用上下文而改变
+     */
 
+    let PageHandler = {
+        id: "12345",
+
+        init: function() {
+            document.addEventListener('click', function(event) {
+                this.doSth(event.type); // error, this 绑定的事件对象目标引用（document，而没有绑定 PageHandler），doSth 在 document 中不存在，在实际调用时会报错
+            }, false);
+        },
+
+        doSth: function(type) {
+            console.log("Handling ", type, " for " + this.id);
+        }
+    }
+
+    // 解决方法一： 使用 bind() 将 this 绑定到 PageHandler
+    let PageHandler1 = {
+        id: "12345",
+
+        init: function() {
+            document.addEventListener('click', (function(event) {
+                this.doSth(event.type); // error, this 绑定的事件对象目标引用（document，而没有绑定 PageHandler），doSth 在 document 中不存在，在实际调用时会报错
+            }).bind(this), false);
+        },
+
+        // 这里用到了 bind(this)，实际上是创建了一个新函数，它的 this 被绑定到了当前 this，也就是 PageHandler，为了避免创建新函数，可使用 箭头函数
+
+        doSth: function(type) {
+            console.log("Handling ", type, " for " + this.id);
+        }
+    }
+
+    let PageHandler2 = {
+        id: "12345",
+
+        init: function() {
+            document.addEventListener('click', event => this.doSth(event.type), false) // error, this 绑定的事件对象目标引用（document，而没有绑定 PageHandler），doSth 在 document 中不存在，在实际调用时会报错
+        },
+        // 内部的 this 与 init() 函数的 this 一致，结果也和 bind(this) 一致
+
+        doSth: function(type) {
+            console.log("Handling ", type, " for " + this.id);
+        }
+    }
+
+    // 解答：箭头函数缺少 prototype 属性，设计之初就是 “即用即弃”，所以不能用 new 调用箭头函数，前面讲过，箭头函数函数的 this 值取决于外部非箭头函数的 this值，不能通过 call() bind() apply() 改变 this 的值
+}
+
+{
+    // 箭头函数与数组
+
+    const arr = [2,4,1,3];
+    let res = arr.sort(function(a, b) {
+        return a - b;
+    })
+
+    let re1 = arr.sort((a, b) => a - b);
+
+    // 还接受 reduce()、 map() 等回调方法
+}
+
+{
+    // 箭头函数没有 arguments 绑定
+
+    /**
+     * 箭头函数没有自己的 arguments 对象，且未来无论函数在哪个上下文中执行，箭头函数始终可以访问外围函数的 arguments 对象
+     * 
+     */
+    function createArrowFunctionReturningFirstArg() {
+        return () => arguments[0];
+    }
+
+    let arrFunction = createArrowFunctionReturningFirstArg(5);
+    console.log(TAG.ES6, arrFunction)
+}
+
+{
+    // 箭头函数辨别方法
+
+    let comparator = (a,b) => a-b;
+
+    console.log(typeof comparator); // 'function'
+    console.log(comparator instanceof Function);// true
+
+    // 箭头函数调用 call() bind() apply() 时，this 值不会受到这些方法影响
+
+    let sum2 = (num1, num2) => num1 + num2;
+    console.log(sum2.call(null, 1, 2)); // 3
+    console.log(sum2.apply(null, [1,2]));   // 3
+
+    let bound = sum2.bind(null, 1, 2);
+    console.log(bound()); // 3
+}
+
+{
+    // ES6 尾调用优化，篇幅太长
+
+    // 一个函数被作为另一个函数的最后一条语句被调用
+    function doSth() {
+        return doSomeThing();
+    }
+
+    /**
+     * 满足被 JS 引擎优化的条件
+     * 1. 尾调用不访问当前栈帧的变量（函数不是一个闭包）
+     * 2. 在函数内部，尾调用时最后一条语句
+     * 3. 尾调用结果作为函数值返回 
+     */
+
+    function fac(n, p = 1) {
+        if (n <= 1) {
+            return 1 * p;
+        } else {
+            let res = n * p;
+            return fac(n - 1, res);
+        }
+    }
+
+    // 重写递归函数，使 JS 引擎减小消耗 
+}
 
 {
     // TypeScript 中，通过 '?' 即可指定默认参数，!类型断言表示参数一定存在
