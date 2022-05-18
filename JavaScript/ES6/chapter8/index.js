@@ -154,5 +154,28 @@ const TAG = {
 }
 
 {
-    // for ... of ... TODO
+    const name = "for-of"
+    console.log(TAG.ES6, `============== ${name} begin ====================`);
+    // for ... of ... 
+    // 可迭代对象具有 Symbol.iterator 属性，是一种与迭代器密切相关的对象
+
+    // 由于生成器会为 Symbol.iterator 属性赋值，因此所有通过生成器创建的迭代器都是可迭代对象
+    // 使用 for...of.. 可以只关注集合要处理的内容，for-of 循环每执行一次都会调用可迭代对象的 next() 方法
+    // 并将迭代器返回的结果对象的 value 属性存储在一个变量中,循环将持续执行这一过程直到返回对象的 done 属性的值为 true
+
+    let values = [1,2,3];
+    for (let num of values) {
+        console.log(TAG.ES6, `current num is => ${num}`);
+    }
+
+    // for-of 实际上是调用数组 values 的 Symbol.iterator 的 next() 方法来获取迭代器,这一过程是在 JavaScript 引擎背后完成的
+    // 随后迭代器的 next() 方法被多次调用,其返回的 value 赋值给 num,当结果对象 done 为 true 就会退出,因此 num 不会被赋值为 undefined
+
+    // 对于遍历简单的数组 或者 集合中的值,使用 for-of 比传统的 for 少更多的条件,会更少出错
+    // warning!!! for-of 用于不可迭代的对象,null 或 undefined 将会导致程序抛出错误
+    console.log(TAG.ES6, `============== ${name} end ====================`);
+}
+
+{
+    // 访问默认迭代器
 }
