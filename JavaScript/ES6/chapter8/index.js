@@ -177,5 +177,190 @@ const TAG = {
 }
 
 {
+    const name = "默认迭代器"
+    console.log(TAG.ES6, `============== ${name} begin ====================`);
     // 访问默认迭代器
+    // 使用 Symbol.iterator
+    let values = [1,2,3];
+    let iterator = values[Symbol.iterator]();
+
+    console.log(iterator.next());
+    console.log(iterator.next());
+    console.log(iterator.next());
+    console.log(iterator.next());   // { value: undefined, done: true 
+
+    // Symbol.iterator 获取了数组 values 的默认迭代器，并用它遍历数组中的元素
+
+    // 由于具有 Sybmol.iterator 属性的对象都有默认迭代器，所有可以用它检测对象是否为可迭代对象
+
+    /**
+     * 检查指定对象是否有默认的函数类型迭代器，for-of 在执行之前也会做类似的检查
+     * @param {*} object 
+     * @returns 
+     */
+    function isIterable (object) {
+        return typeof object[Symbol.iterator] === 'function';
+    }
+
+    console.log(isIterable([1,2,3])); // true
+    console.log(isIterable("hello"));   // true
+    console.log(isIterable(new Map()));    // true
+    console.log(isIterable(new Set())); //true
+    console.log(isIterable(new WeakMap()));    // false
+    console.log(isIterable(new WeakSet())); //  false
+    console.log(TAG.ES6, `============== ${name} end ====================`);
+}
+
+{
+    // 使用 Symbol.iterator 创建可迭代对象
+    const name = "使用 Symbol.iterator 创建可迭代对象"
+    console.log(TAG.ES6, `============== ${name} begin ====================`);
+    
+    // 默认开发者定义的对象都是不可迭代对象，但是给 Symbol.iterator 属性添加一个生成器，可以将其转换为可迭代对象
+
+    let collection = {
+        items: [],
+        // 创建一个生成器，将其赋值给对象 Symbol.iterator 属性来创建默认的迭代器
+        *[Symbol.iterator]() {
+            // 生成器通过 for-of 迭代 this.items 并用 yield 返回每一个值
+            for (let item of this.items) {
+                yield item;
+            }
+        }
+    };
+    // collections 迭代器的返回值由 this.items 自动生成，而非手动遍历定义返回值
+
+    collection.items.push(1);
+    collection.items.push(2);
+    collection.items.push(3);
+
+    for (let x of collection) {
+        console.log(TAG.ES6, x);
+    }
+    console.log(TAG.ES6, `============== ${name} end ====================`);
+}
+
+{
+    // 使用内建迭代器
+    // ES6 中有三种内建集合对象：数组、Map集合、Set集合，三个内建对象内建了以下爱三种迭代器
+    // entries() 返回一个迭代器，其值为多个键值对
+    // values() 返回一个迭代器，其值为集合的值
+    // keys() 返回一个迭代器，其值为集合中所有的键名
+    const name = "内建迭代器"
+    console.log(TAG.ES6, `============== ${name} begin ====================`);
+    /**
+     * entries() 迭代器，每次调用返回一个数组
+     * 1. 集合为数组时，第一个参数是数组的索引，第二个才是数组的值
+     * 2. 集合为 Set 时，则数组两个参数都是 Set 的值
+     * 3. 集合为 Map 时，第一个参数为Map 的键，第二个参数为值
+     */
+    let colors = ["red", "blue", "yellow"];
+    let tracking = new Set([1234,2345,3456]);
+    let data = new Map();
+    data.set("title", "study ECMAScript 6");
+    data.set("date", "5/20/2022");
+
+    for (let color of colors.entries()) {
+        console.log(TAG.ES6, "array => ", color);
+    }
+
+    for (let entry of tracking.entries()) {
+        console.log(TAG.ES6, "set => ", entry);
+    }
+
+    for (let entry of data.entries()) {
+        console.log(TAG.ES6, "map => ", entry);
+    }
+
+    // ES6 array =>  [ 0, 'red' ]
+    // ES6 array =>  [ 1, 'blue' ]
+    // ES6 array =>  [ 2, 'yellow' ]
+    // ES6 set =>  [ 1234, 1234 ]
+    // ES6 set =>  [ 2345, 2345 ]
+    // ES6 set =>  [ 3456, 3456 ]
+    // ES6 map =>  [ 'title', 'study ECMAScript 6' ]
+    // ES6 map =>  [ 'date', '5/20/2022' ]
+
+    seprator();
+
+    // values 迭代器会返回所有的值
+    for (let color of colors.values()) {
+        console.log(TAG.ES6, "array => ", color);
+    }
+
+    for (let entry of tracking.values()) {
+        console.log(TAG.ES6, "set => ", entry);
+    }
+
+    for (let entry of data.values()) {
+        console.log(TAG.ES6, "map => ", entry);
+    }
+
+    // ES6 array =>  red
+    // ES6 array =>  blue
+    // ES6 array =>  yellow
+    // ES6 set =>  1234
+    // ES6 set =>  2345
+    // ES6 set =>  3456
+    // ES6 map =>  study ECMAScript 6
+    // ES6 map =>  5/20/2022
+
+    seprator();
+    // keys
+    for (let color of colors.keys()) {
+        console.log(TAG.ES6, "array => ", color);
+    }
+
+    for (let entry of tracking.keys()) {
+        console.log(TAG.ES6, "set => ", entry);
+    }
+
+    for (let entry of data.keys()) {
+        console.log(TAG.ES6, "map => ", entry);
+    }
+
+    // 数组打印索引
+    // ES6 array =>  0
+    // ES6 array =>  1
+    // ES6 array =>  2
+    // ES6 set =>  1234
+    // ES6 set =>  2345
+    // ES6 set =>  3456
+    // ES6 map =>  title
+    // ES6 map =>  date
+    
+    console.log(TAG.ES6, `============== ${name} end ====================`);
+}
+
+{
+    // 使用 不同集合的默认迭代器
+    const name = "不同集合的默认迭代器"
+    console.log(TAG.ES6, `============== ${name} begin ====================`);
+    
+    let colors = ["red", "blue", "yellow"];
+    let tracking = new Set([1234,2345,3456]);
+    let data = new Map();
+    data.set("title", "study ECMAScript 6");
+    data.set("date", "5/20/2022");
+
+    // 等同 colors.values()
+    for (let color of colors) {
+        console.log(TAG.ES6, "array => ", color);
+    }
+
+    // 等同 tracking.values()
+    for (let entry of tracking) {
+        console.log(TAG.ES6, "set => ", entry);
+    }
+
+    // 等同于 data.entries()
+    for (let entry of data) {
+        console.log(TAG.ES6, "map => ", entry);
+    }
+
+    console.log(TAG.ES6, `============== ${name} end ====================`);
+}
+
+function seprator() {
+    console.log("=========================================");
 }
