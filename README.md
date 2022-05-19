@@ -41,8 +41,14 @@ updated on 2020/2/1 by Gorit
 1. chapter1 —— var、let、const 以及作用域
 2. chapter2 —— string and reg
 3. chapter3 —— function、params
-4. chapter4 —— object
+4. chapter4 —— object  
+5. chapter5
+6. chapter6 —— Sybol TODO
+7. Set、Map —— Skip Temp
+8. Iterator —— ing
 ### 更新记录  
+2022/5/20 ES6 —— chapter8 iterator and generator, merge from es6
+
 2022/5/17 ES6 —— chapter4 object, merge from es6
 
 2022/4/11 ES6 —— chapter2 master merge from es6
