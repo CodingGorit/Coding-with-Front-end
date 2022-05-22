@@ -1,3 +1,8 @@
+# Refer
+《understanding ECMAScript6》
+《深入理解ES6》  
+
+> 个人学习 ES6 中的, 代码, 笔记等
 
 # chapter1 var、let、const
 
