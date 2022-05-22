@@ -45,8 +45,10 @@ updated on 2020/2/1 by Gorit
 5. chapter5
 6. chapter6 —— Sybol TODO
 7. Set、Map —— Skip Temp
-8. Iterator —— ing
+8. Iterator —— generator iterator advanced iterator
 ### 更新记录  
+2022/5/22 ES6 —— finish chaper8, next step may be Symbol or chapter9 (class in JavaScript)
+
 2022/5/20 ES6 —— chapter8 iterator and generator, merge from es6
 
 2022/5/17 ES6 —— chapter4 object, merge from es6
