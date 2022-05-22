@@ -36,7 +36,10 @@
 > 使用 fetch API 获取网络数据，使用 CSS 实现加载动画，实现模拟博客的数据加载功能  
 
 12. 打字游戏
-> JS 操作 DOM，编写打单词游戏
+> JS 操作 DOM，编写打单词游戏  
+
+14. 记忆卡片
+> 旋转动画
 
 20. 语音转文字
 > 使用 JS API SpeechRecognition 实现语音识别
@@ -46,18 +49,7 @@
 > 一共15个项目，每天一个 CSS 小练习
 
 ### 三、Vue2 项目实战
-1. 完成了在线项目去哪网   
-[vue 2.5 完成模仿去哪网界面](http://www.gorit.cn/project/#/)   
-
-学习代码已经上传至码云：需要的可以自行 clone  
-> git clone git@gitee.com:gorit/Travel.git   
-
-
-2. 完成了电商后台管理系统的开发   
-[Vue 2.6 开发电商后台管理系统](http://gorit.cn:3030)   
-
-需要者，自行克隆
-> git@gitee.com:CodingGorit/vue_shop.git
+@See master branch
 
 
 
