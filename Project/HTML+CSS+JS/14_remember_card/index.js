@@ -18,20 +18,22 @@ let currentActiveCard = 0;
 const cardsEl = [];
 
 // 创建变量存储 card 里面的数据
-const cardsData = [
-    {
-        question: "DOM 事件有哪些阶段",
-        answer: "三阶段 —— 捕获 —— 目标 —— 冒泡"
-    },
-    {
-        question: "js 有哪些数据类型",
-        answer: "Undefined Null Boolean Number String、Object、Symbol"
-    },
-    {
-        question: "JS 是什么类型的语言",
-        answer: "解释性语言"
-    }
-];
+const cardsData = getCardsData();
+
+// const cardsData = [
+//     {
+//         question: "DOM 事件有哪些阶段",
+//         answer: "三阶段 —— 捕获 —— 目标 —— 冒泡"
+//     },
+//     {
+//         question: "js 有哪些数据类型",
+//         answer: "Undefined Null Boolean Number String、Object、Symbol"
+//     },
+//     {
+//         question: "JS 是什么类型的语言",
+//         answer: "解释性语言"
+//     }
+// ];
 
 // 创建 cards 获取的数据
 function createCards() {
@@ -72,4 +74,75 @@ function updateCurrentText() {
     currentEl.innerText = `${currentActiveCard + 1}/${cardsEl.length}`
 }
 
+// 从本地存储获取数据
+function getCardsData() {
+    const cards = JSON.parse(localStorage.getItem("cards"));
+    return cards === null ? [] : cards;
+}
+
+// 进行本地存储
+function setCardsData(cards) {
+    localStorage.setItem("cards", JSON.stringify(cards));
+    window.location.reload();
+}
+
 createCards();
+
+// 事件监听
+
+nextBtn.addEventListener('click', () => {
+    cardsEl[currentActiveCard].className = 'card left';
+
+    currentActiveCard = currentActiveCard + 1;
+    if (currentActiveCard > cardsEl.length - 1) {
+        currentActiveCard = 0;
+    }
+    
+    updateCurrentText();
+    cardsEl[currentActiveCard].className = 'card active';
+});
+
+// 上一页
+prevBtn.addEventListener('click', () => {
+    cardsEl[currentActiveCard].className = 'card right';
+
+    currentActiveCard = currentActiveCard - 1;
+    if (currentActiveCard < 0) {
+        currentActiveCard = cardsData.length - 1;
+    }
+    
+    updateCurrentText();
+    cardsEl[currentActiveCard].className = 'card active';
+});
+
+// 显示 add container
+showBtn.addEventListener('click', () => addContainer.classList.add("show"));
+
+// 隐藏 add container
+hideBtn.addEventListener('click', () => addContainer.classList.remove('show'));
+
+// 添加卡片
+addCardBtn.addEventListener('click', () => {
+    const question = questionEl.value;
+    const answer = answerEl.value;
+
+    if (question.trim() && answer.trim()) {
+        const newCard = {question, answer};
+
+        createCard(newCard);
+        question.value = '';
+        answer.value = '';
+        addContainer.classList.remove("show");
+        cardsData.push(newCard);
+
+        setCardsData(cardsData);
+    }
+});
+
+// 一键清除
+clearBtn.addEventListener('click', () => {
+    localStorage.clear();
+    cardsContainer.innerHTML = '';
+    window.location.reload();
+});
+
