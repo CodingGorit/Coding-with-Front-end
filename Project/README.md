@@ -39,7 +39,7 @@
 > JS 操作 DOM，编写打单词游戏  
 
 14. 记忆卡片
-> 旋转动画
+> CSS 旋转动画，localStorage 实现本地化存储
 
 20. 语音转文字
 > 使用 JS API SpeechRecognition 实现语音识别
@@ -50,6 +50,10 @@
 
 ### 三、Vue2 项目实战
 @See master branch
+
+
+### 四、更新日志
+新增CSS 项目的在线预览gif —— 2022年5月24日
 
 
 
