@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>记忆卡片</title>
+    <link rel="stylesheet" href="./index.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+ 
+<body>
+    <button id="clear" class="clear btn">
+        <i class="fas fa-trash">一键清除</i>
+    </button>
+
+    <h1>记忆卡片
+        <button id="show" class="btn btn-small">
+            <i class="fa fa-plus">添加新卡片</i>
+        </button>
+    </h1>
+
+    <div class="cards" id="cards-container">
+        <!-- <div class="card active">
+            <div class="inner-card">
+                <div class="inner-card-front">
+                    <p>什么是JavaScript</p>
+                </div>
+                <div class="inner-card-back">
+                    <p>一门编译语言</p>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="inner-card">
+                <div class="inner-card-front">
+                    <p>ECMAScript 和 JavaScript 的关系</p>
+                </div>
+                <div class="inner-card-back">
+                    <p>JavaScript的标准是 ECMAScript</p>
+                </div>
+            </div>
+        </div> -->
+    </div>
+
+    <div class="navigation">
+        <button id="prev" class="nav-button">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+        <p id="current"></p>
+        <button id="next" class="nav-button">
+            <i class="fas fa-arrow-right"></i>
+        </button>
+    </div>
+
+    <div id="add-container" class="add-container">
+        <h1>添加新卡片
+            <button id="hide" class="btn btn-small btn-ghost">
+                <i class="fas fa-times"></i>
+            </button>
+        </h1>
+        <div class="form-group">
+            <label for="question">问题</label>
+            <textarea id="question" placeholder="请输入问题"></textarea>
+            <label for="answer">答案</label>
+            <textarea id="answer" placeholder="请输入答案"></textarea>
+            <div>
+                <button id="add-card" class="btn">
+                    <i class="fas fa-plus"></i>文本卡片
+                </button>
+            </div>
+        </div>
+    </div>
+    <script src="./index.js" ></script>
+</body>
+</html>
