@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>组件使用细节点</title>
+	</head>
+	<script src="../vue.js" type="text/javascript" charset="utf-8"></script>
+	<body>
+		<!-- 学习内容
+			1. 使用 is 解决标签上的小 bug
+			2. 子组件定义 data 必须是 函数
+			3. ref 的使用
+		 -->
+		
+		
+		<div id="root">
+			<!-- 第三部分 使用 ref 获取dom 元素-->
+			<div ref='hello' 
+				 @click="handleClick"
+				>
+				Hello World
+			</div>
+			
+			<!-- 第三部分 两个求和 -->
+			<counter ref='one' @change="handleChange"></counter>
+			<counter ref='two' @change="handleChange"></counter>
+			<div>{{total}}</div>
+			
+			
+			<table border="" cellspacing="" cellpadding="">
+				<!-- <tr><th>Header</th></tr> -->
+				<!-- 常规方法 -->
+			<!-- 	<tr><td>1</td></tr>
+				<tr><td>2</td></tr>
+				<tr><td>3</td></tr> -->
+				
+				<!--1  使用组件显示数据 ，但是使用 vue td 会跑到 tr 的前面-->
+			<!-- 	<row></row>
+				<row></row>
+				<row></row>
+				 -->
+				<!-- 解决方案: 这样处理 tr 就到 td 里面了，也符合 h5 的规范 -->
+				
+			<!-- 第二部分	<tbody>
+					<tr is='row'></tr>
+					<tr is='row'></tr>
+					<tr is='row'></tr>
+
+			 		<ul>
+						<li is='row'></li>
+					</ul>
+					
+					<select>
+						<option is='row' value =""></option>
+					</select> 
+				</tbody>  -->
+			</table>
+			
+		</div>
+	
+		<script type="text/javascript">
+			// 3 vue 中的引用 ref 获取 dom 节点，如果通过 ref 获取组件的内容得到的是引用
+			
+			//这里要实现两个 counter 求和的操作
+			Vue.component('counter', { // 创建一个计数器的组件
+				template:'<div @click="handleClickEvent">{{number}}</div>',  // @ 是 v-on 的简写
+				data:function () {
+					return {
+						number: 0
+					}
+				},
+				methods:{
+					handleClickEvent:function() {
+						this.number ++;
+						this.$emit('change'); 
+					}
+				}
+			})
+
+			var vm = new Vue({
+				el:"#root",
+				data:{
+					total:0
+				},
+				methods:{
+					handleChange:function() {
+						 this.total = this.$refs.one.number + this.$refs.two.number;
+					},
+					
+					handleClick: function() {
+						alert(this.$refs.hello.innerHTML)
+					}
+				}
+			})
+			
+			
+			// 全局组件要记得写在外面
+			Vue.component("row", {
+				//2.  data 不能直接渲染上去，我们要使用函数的方式来渲染
+				// data:{ 错误方式
+				// 	content:'this is a row'
+				// }
+				
+				// 使用 函数渲染是正确的
+				data:function() {
+					return {
+						content:'this is a row'
+					}
+				},
+				template:'<tr><td>{{content}}</td></tr>'
+			})
+		</script>
+	
+	</body>
+</html>

@@ -47,6 +47,8 @@ updated on 2020/2/1 by Gorit
 7. Set、Map —— Skip Temp
 8. Iterator —— generator iterator advanced iterator
 ### 更新记录  
+2022/5/25 add gif to display detail for projects of CSS in 15 days
+
 2022/5/22 ES6 —— finish chaper8, next step may be Symbol or chapter9 (class in JavaScript)
 
 2022/5/20 ES6 —— chapter8 iterator and generator, merge from es6

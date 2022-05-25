@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Vue 中的列表过渡</title>
+		<script src="../vue.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.v-enter, .v-leave-to {
+				opacity: 0;
+			}
+			
+			.v-enter-active, .v-leave-active {
+				transition: opacity 3s;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- 实现列表的循环显示 -->
+		<div id="root">
+			<transition-group>
+				<div v-for="item of list" :key="item.id">{{item.title}}</div>
+			</transition-group>
+			<button type="button" @click="handleBtnClick">Add</button>
+		</div>
+		
+		<script type="text/javascript">
+			var count = 0;
+			
+			var vm = new Vue({
+				el: '#root',
+				data:{
+					list: []
+				},
+				methods: {
+					
+					handleBtnClick: function() {
+						this.list.push({
+							id: count++,
+							title: 'hello World'
+						})
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

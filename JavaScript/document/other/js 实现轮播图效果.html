@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>js 原生轮播图</title>
+	</head>
+	<style type="text/css">
+		img {
+			width: 400px;
+			height: 300px;
+		}
+	</style>
+	<script type="text/javascript">
+		var currentPhoto = 0;
+		var pics = new Array();
+		
+		window.onload = function() {
+			for (var i=0; i < 6; i++) {
+				pics[i] = new Image();
+			}
+			pics[0].src = "img/1.png";
+			pics[1].src = "img/2.jpg";
+			pics[2].src = "img/3.jpg";
+			pics[3].src = "img/4.jpg";
+			pics[4].src = "img/5.jpg";
+			pics[5].src = "img/6.jpg";
+			
+			document.getElementById("next").onclick = nextPic;
+			document.getElementById("prev").onclick = prevPic;
+		}
+		
+		function changePhoto(photo) {
+			document.images[0].src = pics[photo].src;
+		}
+		
+		function nextPic() {
+			currentPhoto++;
+			if (currentPhoto < pics.length) {
+				changePhoto(currentPhoto);
+			} else {
+				//document.getElementById("next").disabled = "disabled";
+				 alert("已经是最后一页了");
+			}
+		}
+		
+		function prevPic() {
+			if (currentPhoto > 0) {
+				currentPhoto--;
+				changePhoto(currentPhoto)
+			} else {
+				//document.getElementById("prev").disabled = "disabled";
+				 alert("已经到了第一页了");
+			}
+		}
+	</script>
+	<body>
+		<div id="image">
+			<img src="img/1.png">	
+		</div>
+			<span><button id="prev" type="button" value="Previous">上一个</button></span>
+			<span><button id="next" type="button" value="Next">下一个</button></span>、
+	</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Hello World</title>
+	</head>
+	<script type="text/javascript" src="../vue.js"></script>
+	<body>
+		<div id="app">{{content}}</div>
+<!-- 		<div id="">
+			{{content}}
+		</div> -->
+		<script type="text/javascript">
+			// 1.在 div 标签中 通过 js 实现内容
+			// let dom =document.getElementById("app");
+			// dom.innerHTML = "<h1>hello world</h1>"
+			// 使用延时器改变 dom
+			// setTimeout( function(){
+			// 	dom.innerHTML = "<h1>bye world</h1>"
+			// },2000)
+
+
+			//2 通过 vue 实现，使用 vue，我们专注逻辑处理，而不必把心放在 dom 上，数据是什么，数据改变了，页面就跟着改变
+			var app = new Vue({   // 创建一个 vue 实例
+				el: '#app', // 实例管理的区域，是 vue 来接管 dom 为 #app 的元素
+				data: { // 定义一些数据
+					content:'Hello World'
+				}
+			})
+			
+			setTimeout(function(){
+				app.$data.content = 'bye world' //$data 代表 data 的别名，使用 $data 可以得到 content 的值
+			}, 2000)
+		</script>
+	</body>
+</html>

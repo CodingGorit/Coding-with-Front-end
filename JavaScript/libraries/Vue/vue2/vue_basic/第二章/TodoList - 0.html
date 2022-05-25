@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>TodoList</title>
+		<script type="text/javascript" src="../vue.js"></script>
+	</head>
+	<body>
+		
+		<!-- 完成添加元素的功能 -->
+		
+		<div id="app">
+				<input type="text" name="" id="" value="" v-model="inputValue"/> <!-- v-model 代表数据逇双向绑定 -->
+				<button type="button" v-on:click="handleBtnClick">提交</button> <!-- v-on:click ='' 定义一个绑定事件-->
+				<ul>
+<!-- 					<li>第一课的内容</li>
+					<li>第二课的内容</li> -->
+					<li v-for="item in list">{{item}}</li> <!-- vue 循环 list 里面的数据，然后放进 item 中-->
+				</ul>
+		</div>
+		<script type="text/javascript">
+			var app = new Vue({
+				el: '#app',
+				data: { //这里展示 vue 中具体的示例
+					// list: ['第一课的内容','第二课的内容','3333']
+					list: [],
+					inputValue: '' // 输入框的数据
+				},
+				methods:{
+					handleBtnClick:function() {
+						this.list.push(this.inputValue) // 直接往数组里面添加内容
+						//alert(this.inputValue) // 获取当前的数据
+						this.inputValue = ''  // 数据清空，双向绑定，每次输完数据会自动清空
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

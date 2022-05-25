@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>给组件绑定原生时间</title>
+		<script src="../vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<!-- 如果我们想在 组件中绑定事件，直接在下面绑定属于自定义的时间 -->
+			<child @click="selfEvent"></child>
+			
+			<!-- 第二种方式实现自定义事件触发 -->
+			<child @click.native="selfEvent1"></child>
+		</div>
+		<script type="text/javascript">
+			Vue.component('child',{
+				// 我们在组件中定义事件，才属于原生的实践绑定
+				template: "<div @click='handleClick'>Child</div>",
+				methods: {
+					handleClick: function() {
+						// alert('我背点击了');
+						this.$emit("click"); // 添加事件监听的方式
+					}
+				}
+			})
+			
+			var vm = new Vue({
+				el:"#app",
+				methods:{
+					//  自定义事件绑定
+					selfEvent: function() {
+						alert("自定义的事件触发了")
+					},
+					
+					selfEvent1: function() {
+						alert("selfEvent1 触发了")
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

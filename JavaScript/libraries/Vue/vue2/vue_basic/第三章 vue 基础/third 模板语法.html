@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>vue 的模板语法</title>
+	</head>
+	<script src="../vue.js" type="text/javascript" charset="utf-8"></script>
+	<body>
+		<div id="app">
+			<div>{{name + ' Lee'}}</div>
+			<div v-text="name + ' Lee'" ></div>
+			<div v-html="name + ' Lee'"></div>
+			<!-- v-xxx 其实都是 js 的表达式 -->
+		</div>
+		<!-- 插值表达式为第一种模板语法 -->
+		
+		<!-- v-text 将 div 中的 innerTEXT 的值变成 div 中 -->
+		
+		<!-- v-html  -->
+		
+		<!-- v-html 会随我们设置的样式而改变，而使用插值表达式 和 v-text 可以理解为等价的 -->
+		<script type="text/javascript">
+			var app = new Vue({
+				el:"#app",
+				data:{
+					name:"Dell"
+				},
+			})
+		</script>
+	</body>
+</html>

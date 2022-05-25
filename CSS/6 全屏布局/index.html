@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>全屏布局</title>
+		<style type="text/css">
+			html,body {
+				margin: 0;
+				overflow: hidden;
+			}
+			
+			header {
+				height: 100px;
+				
+				position: fixed; /* 固定 */	
+				top: 0;
+				left: 0;
+				right: 0;
+				
+				background-color: lightgreen;
+			}
+			
+			/* 中间自适应效果实现 */
+			
+			.content {
+				overflow: auto;
+				position: fixed;
+				left: 0;
+				right: 0;
+				top: 100px;
+				bottom: 100px;
+				background-color: #00FFFF;
+			}
+			
+			.content .left {
+				width: 300px;
+				height: 100%;		
+				left: 0;
+				top: 100px;
+				bottom: 100px;
+				position: fixed;
+				background-color: lightcoral;
+			}
+			
+			.content .right {
+				height: 100%;
+				
+				margin-left: 300px;
+				background-color: greenyellow;
+			}
+			
+			footer {
+				height: 100px;
+				position: fixed;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				
+				background-color: sandybrown;
+			}
+		</style>
+	</head>
+	<body>
+		<header></header>
+			<div class="content">
+				<div class="left"></div>
+				<div class="right"></div>
+			</div>
+			<footer></footer>
+	</body>
+</html>

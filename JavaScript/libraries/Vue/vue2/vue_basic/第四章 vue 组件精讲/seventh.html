@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>动态组件与 v-once指令</title>
+		<script src="../vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="root">
+			
+			<!--2.  动态组件 : 根据 is 组件中数据的变化自动加载不同的组件 -->
+			<!-- <component :is="type"></component> -->
+			
+			
+			<!-- 简单实现点击切换的效果 -->
+			<child-one v-if="type === 'child-one'"></child-one>
+			<child-two v-else></child-two>
+			<button type="button" @click="handleClick">change</button>
+		</div>
+		<script type="text/javascript">
+			// 使用 v-once 可以极大的提高运行效率
+			Vue.component('child-one',{
+				template:'<div v-once>child-one</div>'
+			})
+			
+			Vue.component('child-two',{
+				template:'<div v-once>child-two</div>'
+			})
+			
+			let vm = new Vue({
+				el:'#root',
+				data:{
+					type:'child-one'
+				},
+				methods:{
+					handleClick: function() {
+						this.type = this.type === 'child-one' ? 'child-two' : 'child-one';
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

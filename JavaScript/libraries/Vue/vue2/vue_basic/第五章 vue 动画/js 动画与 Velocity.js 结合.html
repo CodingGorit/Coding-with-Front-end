@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>js 动画与 Velocity.js 结合</title>
+		<script src="../vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../velocity.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+
+		<div id="root">
+			<!-- 前面是入场动画，后面是出场动画 -->
+			<transition 
+				name="fade"
+				@before-enter="handleBeforeEnter"
+				@enter="handleEnter"
+				@after-enter="handleAfterEnter"
+				
+				@before-leave=""
+				@leave=""
+				@after-leave=""
+				>
+				<!-- 在这里面使用 v-show 和 v-if 都可以的 -->
+				<div v-if="show">hello world</div>
+			</transition>
+			<button type="button" @click="handleClick">切换</button>
+		</div>
+		
+		<script type="text/javascript">
+			var vm = new Vue({
+				el: "#root",
+				data: {
+					show:true
+				},methods:{
+					/*
+						入场动画
+					*/
+					
+					// handleClick : function() {
+					// 	this.show = !this.show
+					// },
+					
+					// handleBeforeEnter: function(el) {
+					// 	// console.log("handleBeforeEnter")
+					// 	el.style.color = 'red';
+						
+					// },
+					
+					// // 运行动画在这里写
+					// handleEnter: function(el, done) {
+					// 	setTimeout(() => {
+					// 		el.style.color = 'green';
+					// 	}, 2000)	
+										
+					// 	setTimeout(() => {
+					// 		done()
+					// 	},4000)
+					// },
+					
+					// handleAfterEnter: function(el) {
+					// 	el.style.color = "#000";
+					// }
+					
+					
+					handleClick : function() {
+						this.show = !this.show
+					},
+					
+					handleBeforeEnter: function(el) {
+						el.style.opacity = 0;
+					},
+					
+					// 运行动画在这里写
+					handleEnter: function(el, done) {
+						Velocity(	
+									el,
+									{opacity:1},
+									{duration: 1000,
+									complate:done()
+									})
+						
+					},
+					
+					handleAfterEnter: function(el) {
+						alert("动画结束")
+					}
+				}
+			})
+		</script>
+	
+	</body>
+</html>

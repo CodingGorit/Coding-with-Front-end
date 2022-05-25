@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+
+        function welcome(){
+            var myopen = prompt("欢迎来到慕课网","https://www.dogedoge.com/");
+            if(myopen != null){   
+                window.open("https://www.dogedoge.com/","_top",'width=600px;height=400px');
+            } else{
+                alert("xxx");
+            }
+        }
+
+    
+    </script>
+</head>
+<body>
+    <input type="button" value="点击我，打开新窗口"  onclick = "welcome()"/>
+</body>
+</html>

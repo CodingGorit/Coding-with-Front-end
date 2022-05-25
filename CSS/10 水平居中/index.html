@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- 优点，兼容性， css2 
+        缺点，text-align 具有继承性-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>水平布局</title>
+    <style>
+        .parent{
+            width: 100%;
+            height: 200px;
+            text-align: center;
+            background: #e2e2e2;
+        }
+        .child{
+            width: 200px;
+            height: 200px;
+            background: #f3f;
+            /* display属性：
+                1. block: 块级元素
+                2. inline：内联元素（对 text-align 属性有效）
+                    width 和 height 属性是无效的
+                3. inline-block：行内元素（块级 + 内联元素）
+                    width 和 height 属性是有效的
+
+             */
+            display:inline-block;
+        }
+    </style>
+</head>
+<body>
+    <!-- 父亲元素 -->
+    <div class="parent">
+        <!-- 子元素 -->
+       <div class="child">
+            Gorit 2019
+        </div>
+    </div>
+</body>
+</html>

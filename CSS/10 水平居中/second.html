@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- 优点，对子级元素设置
+        缺点，子级脱离文档流（设置浮动值、绝对定位，固定定位） 会导致 margin 失效-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>水平布局</title>
+    <style>
+        .parent{
+            width: 100%;
+            height: 200px;
+            background: #e2e2e2;
+        }
+        .child{
+            width: 200px;
+            height: 200px;
+            background: #f3f;
+            display: table;  
+            /* display 还可以使用 block */
+            margin: 0 auto;
+            /* margin属性：外边距
+                一个值：上下左右
+                两个值：第一个表示 上线，第二个表示左右
+                auto：根据游览器自动适配
+                三个值：第一个表示上，第二个表示左右，第三个表示下
+                四个值：上下左右
+
+             */
+        }
+    </style>
+</head>
+<body>
+    <!-- 父亲元素 -->
+    <div class="parent">
+        <!-- 子元素 -->
+       <div class="child">
+            Gorit 2019
+        </div>
+    </div>
+</body>
+</html>

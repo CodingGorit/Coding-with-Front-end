@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>vue 中时使用过渡和动画</title>
+		<script src="../vue.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="../animate.css"/>
+		<style type="text/css">
+			.fade-leave-to,
+			.fade-enter {
+				opacity: 0;
+			}
+			
+			.fade-enter-active,
+			.fade-leave-active {
+				transition: opacity 3s; 
+			}
+		</style>
+	</head>
+	<body>
+		<!-- 实现一个渐变的效果 -->
+		<div id="root">
+			<transition 
+						:duration="{enter:5000 , leave: 5000}"
+						type="transition"
+						name="fade" 
+						appear="animated swing"
+						enter-active-class="animated swing fade-enter-active" 
+						leave-active-class="animated shake fade-enter-active" 
+						appear-class="animated swing"
+				>
+				<!-- 在这里面使用 v-show 和 v-if 都可以的 -->
+				<div v-show="show">hello world</div>
+			</transition>
+			
+			<button type="button" @click="handleClick">切换</button>
+		</div>
+		
+		<script type="text/javascript">
+			var vm = new Vue({
+				el: "#root",
+				data: {
+					show:true
+				},methods:{
+					handleClick : function() {
+						this.show = !this.show
+					}
+				}
+			})
+		</script>
+	</body>
+</html>
