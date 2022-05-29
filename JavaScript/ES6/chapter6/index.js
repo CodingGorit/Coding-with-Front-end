@@ -89,7 +89,99 @@ const TAG = {
 }
 
 {
-    // 使用 Symbol
+    // Symbol 共享体系
+    const name = "Symbol 共享体系"
+    console.log(TAG.ES6, `============== ${name} begin ====================`);
+    
+    // 创建一个共享的 Symbol，可以用 Symbol.for() 方法，只接收一个参数，也就是要创建的 Symbol 的字符串标识符，这个参数也可以作为 Symbol 的描述    
+
+    /**
+     * Symbol.for() 方法首先在全局 Symbol 注册表中搜索键为 “uid”的 Symbol 是否存在，如果存在，直接返回已有的，不存在会先创建一个 Symbol，然后再返回
+     * 如果后面创建一个一样的，返回的是相同的 Symbol
+     */
+    let uid = Symbol.for("uid");
+    let uid1 = Symbol.for("uid");
+    let object = {};
+
+    object[uid] = "123";
+    console.log(TAG.ES6, object[uid]);
+    console.log(TAG.ES6, uid);
+
+    console.log(TAG.ES6, uid === uid1); // true
+
+    // 还有个相关的方法 Symbol.keyFor() 会在 Symbol 全局表中检索与 Symbol有关的键
+    let uuid = Symbol.for("uuid");
+    console.log(TAG.ES6, Symbol.keyFor(uuid));
+
+    let uuid1 = Symbol.for("uuid");
+    console.log(TAG.ES6, Symbol.keyFor(uuid1));
+
+    let uuid2 = Symbol("uuid"); // 全局注册表中 没有 uuid2 这样的键，所以最终返回 undefined
+    console.log(TAG.ES6, Symbol.keyFor(uuid2));
+
+    // ES6 uuid
+    // ES6 uuid
+    // ES6 undefined
+    console.log(TAG.ES6, `============== ${name} end ====================`);
+
+    // Symbol 全局注册是一个类似全局作用域的共享环境，因此不能假设当前存在哪些键，使用第三方组件时，尽量使用 Symbol 键命名以减少命名冲突
+}
+
+{
+    // Symbol 与类型强制转换
+    const name = " Symbol 与类型强制转换"
+    console.log(TAG.ES6, `============== ${name} begin ====================`);
+    // JavaScript 可以自动类型转换，但是 Symbol 不支持类型转换
+
+    let uid = Symbol.for("uid");
+    desc = String(uid);
+    console.log(TAG.ES6, desc); // Symbol 默认行为 Symbol(uid)
+
+    // desc1 = uid + 1;    // error
+
+    // desc2 = uid + ''     // error
+    console.log(TAG.ES6, `============== ${name} end ====================`);
+}
+
+{
+    // Symbol 属性检索
+    const name = "Symbol 属性检索"
+    console.log(TAG.ES6, `============== ${name} begin ====================`);
+    let uid = Symbol.for("uid");
+    let object = {
+        [uid]: "1234"
+    };
+
+    let symbol = Object.getOwnPropertySymbols(object);
+    console.log(TAG.ES6, symbol.length); // 1
+    console.log(TAG.ES6, symbol[0]);    // Symbol(uid)
+    console.log(TAG.ES6, object[symbol[0]]);    // 1234
+    console.log(TAG.ES6, `============== ${name} end ====================`);
+}
+
+{
+    // 一些暴露的内部操作的方法
+    const name = "Symbol 内部操作"
+    console.log(TAG.ES6, `============== ${name} begin ====================`);
+    /**
+     * ES6 开放了以前 JavaScript 中常见的内部操作
+     * Symbol.hasInstance 一个执行 instanceof 时调用的内部方法，用于检测对象的继承信息
+     * Symbol.isConcatSpreadable 一个布尔值，用于表示传递一个集合时，作为 Array.prototype.concat() 方法的参数时，是否应当将集合内的元素规整到同一层级
+     * Symbol.iterator 一个返回迭代器的方法（见 chapter8）
+     * Symbol.match 一个在调用 String.prototype.match() 方法时调用的方法，用于比较字符串
+     * Symbol.replace 一个在调用 String.prototype.replace() 方法时调用的方法，用于替换字符串
+     * Symbol.search 一个在调用 String.prototype.search*() ..， 用于在字符串中定位子串
+     * Symbol.species 用于创建派生对象（chapter9）的构造函数
+     * Symbol.split String.prototype.split，用于分割字符串
+     * Symbol.toPrimitive 一个返回对象原始值的方法
+     * Symbol.toStringTag 一个在调用 Object.prototype.toString() 方法时使用的字符串，用于创建对象描述
+     * Symbol.unscopables 一个定义了一些不可被 with 语句引用的对象属性名称的对象集合
+     */
+    console.log(TAG.ES6, `============== ${name} end ====================`);
+}
+
+{
+    // Symbol.hasInstance
     const name = "Symbol"
     console.log(TAG.ES6, `============== ${name} begin ====================`);
     
@@ -97,7 +189,7 @@ const TAG = {
 }
 
 {
-    // 使用 Symbol
+    // 一些
     const name = "Symbol"
     console.log(TAG.ES6, `============== ${name} begin ====================`);
     
@@ -105,7 +197,16 @@ const TAG = {
 }
 
 {
-    // 使用 Symbol
+    // 一些
+    const name = "Symbol"
+    console.log(TAG.ES6, `============== ${name} begin ====================`);
+    
+    console.log(TAG.ES6, `============== ${name} end ====================`);
+}
+
+
+{
+    // 一些
     const name = "Symbol"
     console.log(TAG.ES6, `============== ${name} begin ====================`);
     
@@ -113,7 +214,15 @@ const TAG = {
 }
 
 {
-    // 使用 Symbol
+    // 一些
+    const name = "Symbol"
+    console.log(TAG.ES6, `============== ${name} begin ====================`);
+    
+    console.log(TAG.ES6, `============== ${name} end ====================`);
+}
+
+{
+    // 一些
     const name = "Symbol"
     console.log(TAG.ES6, `============== ${name} begin ====================`);
     
