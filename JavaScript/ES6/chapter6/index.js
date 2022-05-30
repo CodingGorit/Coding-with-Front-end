@@ -182,17 +182,94 @@ const TAG = {
 
 {
     // Symbol.hasInstance
-    const name = "Symbol"
+    const name = "Symbol.hasInstance"
     console.log(TAG.ES6, `============== ${name} begin ====================`);
-    
+    /**
+     * 每个函数都有 Symbol.hasInstance 方法，用于确定对象是否为函数的实例。
+     * 该方法在 Function.prototype 中定义，所有的函数都继承了 instanceof 属性的默认行为
+     * 为了确保 Symbol.hasInstance 不被意外重写，该方法被定义为不可写，不可配置，且不可枚举
+     * 
+     * Symbol.hasInstance 方法只接受一个参数，即要检查的值。如果传入的值是函数的实例，则返回 true
+     * 可以看下面的实例
+     */
+
+    let obj = [];
+
+    // 本质上，ES6 将 instanceof 操作符重新定义为此方法的简写语法
+    console.log(TAG.ES6, name, obj instanceof Array);
+
+    // 等价于
+
+    console.log(TAG.ES6, name, Array[Symbol.hasInstance](obj));
+
+    // 你可以通过定义一个无实例的函数，就可以将 Symbol.hasInstance 得返回值硬编码 false
+    function MyObject () {
+        // 空函数
+    }
+
+    Object.defineProperty(MyObject, Symbol.hasInstance, {
+        value: function(v) {
+            return false;
+        }
+    });
+
+    console.log(TAG.ES6, obj instanceof MyObject);  // false
+
+    // 这里告诉我们，只有通过 Object.defineProperty() 才能改写一个不可写属性，使其始终返回一个固定值
+
+    // 还可以基于任意条件，通过值检查来确定被检测是否为实例，举个例子，可以将 1~100 的数字定义为一个特殊数字类型的实例
+
+    function SpecialNumber () {
+        // 空函数
+    }
+
+    Object.defineProperty(SpecialNumber, Symbol.hasInstance, {
+        value: function(v) {
+            return (v instanceof Number) && (v >= 1 && v <= 100);
+        }
+    });
+
+    let two = new Number(2);
+    let zero = new Number(0);
+    console.log(TAG.ES6, two instanceof SpecialNumber); // true
+    console.log(TAG.ES6, zero instanceof SpecialNumber);  // false
+
     console.log(TAG.ES6, `============== ${name} end ====================`);
 }
 
 {
-    // 一些
-    const name = "Symbol"
+    // Symbol.isConcatSpreadable
+    const name = "Symbol.isConcatSpreadable"
     console.log(TAG.ES6, `============== ${name} begin ====================`);
-    
+    // JS 数组的 concat() 方法被设计用于拼接两个数组
+    let colors1 = ["red", "green"],
+        colors2 = colors1.concat(["blue", "black"]);
+    console.log(TAG.ES6, colors2.length);   // 4
+    console.log(TAG.ES6, colors2);
+
+    // concat 也可以接收非数组参数, 此是会将其添加到数组末尾
+    let colors3 = colors1.concat(["blue", "black"], "purple");
+    console.log(TAG.ES6, colors3);  // ES6 [ 'red', 'green', 'blue', 'black', 'purple' ]
+
+
+    // Symbol.isConcatSpreadable 属性是一个 布尔值,若值为 true,则表示对象有 length 属性 和 数字见,故它的数值型属性应该被独立添加到 concat() 调用的结果中,这个 Symbol 属性默认情况下不会出现在标准对象
+    // 是一个可选属性,用于增强作用于特定对象类型的 concat() 方法的功能,有效简化其默认特性
+    // 见下面这个示例 
+    let collection = {
+        0: "Hello",
+        1: 'world',
+        length: 2,
+        [Symbol.isConcatSpreadable]: true
+    };
+
+    let messages = ["Hi"].concat(collection);
+    console.log(TAG.ES6, messages.length);
+    console.log(TAG.ES6, messages);
+
+    // 这个示例中,创建了一个类数组对象 collection,它有一个 length 属性,还有两个数字数字键, Symbol.isConcatSpreadable 属性为 true
+    // 表明属性值应当作为独立元素添加进数组中
+
+    // 也可以在派生数组子类中将 Symbol.isConcatSpreadable 设置为 false,从而防止元素在调用 concat 时被分解
     console.log(TAG.ES6, `============== ${name} end ====================`);
 }
 
