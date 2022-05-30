@@ -43,10 +43,12 @@ updated on 2020/2/1 by Gorit
 3. chapter3 —— function、params
 4. chapter4 —— object  
 5. chapter5
-6. chapter6 —— Sybol TODO
+6. chapter6 —— Sybol
 7. Set、Map —— Skip Temp
 8. Iterator —— generator iterator advanced iterator
 ### 更新记录  
+2022/5/31 add Symbol Examples
+
 2022/5/25 add gif to display detail for projects of CSS in 15 days
 
 2022/5/22 ES6 —— finish chaper8, next step may be Symbol or chapter9 (class in JavaScript)
