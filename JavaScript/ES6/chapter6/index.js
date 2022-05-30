@@ -274,32 +274,88 @@ const TAG = {
 }
 
 {
-    // 一些
+    // 一些字符串的 Symbol 属性
+    const name = "一些字符串的 Symbol 属性"
+    console.log(TAG.ES6, `============== ${name} begin ====================`);
+    
+    /**
+     * Symbol.match  match(regex) 确认给定字符串是否匹配正则表达式 regex
+     * Symbol.replace  replace(regex, replacement) 将字符串匹配的正则表达式部分替换为 replacement
+     * Symbol.search  search(regex) 在字符串中定位匹配正则表达式 regex 的位置索引
+     * Symbol.split  split(regex) 按照正则表达式 regex 的元素将字符串分切,并将结果存入数组
+     */
+
+    console.log(TAG.ES6, `============== ${name} end ====================`);
+}
+
+
+{
+    // Symbol.toPrimitive
+    const name = "Symbol.toPrimitive"
+    console.log(TAG.ES6, `============== ${name} begin ====================`);
+    
+    /**
+     * 作用:更改比较暴露出的值(原始值)
+     * 
+     * 该方法被定义在每个标准类型原型上,并且规定了当对象转换为原始值应执行的操作.每当执行原始值转换时,总会调用 Symbol.toPrimitive
+     * 方法并传入一个值作为参数,这个值在规范中被称作类型提示(hint)
+     * 类型提示参数
+     * 1. "number" 返回值数字
+     * 2. "string" 返回值字符串
+     * 3. "default" 返回值无类型偏好值
+     */
+
+    // 数字模式优先级
+    // 1. 调用 valueOf() 若为原始值,则返回
+    // 2. 否则调用 toString() 方法,如果结果为原始值,则返回
+    // 3. 若无可选值,则抛出异常
+
+    // 字符串模式优先级
+    // 1. 调用 toString() 方法,如果结果为原始值,则返回
+    // 2. 否则调用 valueOf(), 若为原始值,则返回
+    // 3. 若无可选值,则抛出异常
+
+    // 大多数情况, 默认对象会将默认模式按照数字模式处理 (除了 Date对象),这种情况会按照字符串模式
+    // 如果自定义了 Symbol.toPrimitive, 可以覆盖这些默认强制转换特性
+
+    function Temperture(degrees) {
+        this.degrees = degrees;
+    }
+
+    // 覆写默认的转换属性,可以将函数的 Symbol.toPrimitive 赋值为一个新函数
+    Temperture.prototype[Symbol.toPrimitive] = function(hint) {
+        switch (hint) {
+            case "string":
+                return this.degrees + "\u00b0"; // degress symbol
+            case "number":
+                return this.degrees;
+            case "default":
+                return this.degrees + " degress";
+
+        }
+    };
+
+    let freezing = new Temperture(32);
+    console.log(TAG.ES6, freezing + "!");   
+    console.log(TAG.ES6, freezing / 2);
+    console.log(TAG.ES6, String(freezing));
+
+    // ES6 32 degress! 默认模式
+    // ES6 16   数字模式
+    // ES6 32°  字符串模式 Unicode 编号
+    console.log(TAG.ES6, `============== ${name} end ====================`);
+}
+
+{
+    // Symbol.toStringTag
     const name = "Symbol"
     console.log(TAG.ES6, `============== ${name} begin ====================`);
     
     console.log(TAG.ES6, `============== ${name} end ====================`);
 }
 
-
 {
-    // 一些
-    const name = "Symbol"
-    console.log(TAG.ES6, `============== ${name} begin ====================`);
-    
-    console.log(TAG.ES6, `============== ${name} end ====================`);
-}
-
-{
-    // 一些
-    const name = "Symbol"
-    console.log(TAG.ES6, `============== ${name} begin ====================`);
-    
-    console.log(TAG.ES6, `============== ${name} end ====================`);
-}
-
-{
-    // 一些
+    // Symbol.unscopables
     const name = "Symbol"
     console.log(TAG.ES6, `============== ${name} begin ====================`);
     
