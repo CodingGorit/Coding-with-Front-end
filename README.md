@@ -47,6 +47,8 @@ updated on 2020/2/1 by Gorit
 7. Set、Map —— Skip Temp
 8. Iterator —— generator iterator advanced iterator
 ### 更新记录  
+2022/5/31 add typescript branch, and edit decorator example
+
 2022/5/31 add Symbol Examples
 
 2022/5/25 add gif to display detail for projects of CSS in 15 days
