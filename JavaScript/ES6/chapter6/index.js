@@ -438,11 +438,9 @@ const TAG = {
         values: true
     });
 
-    // 不要乱用 Symbol.unscopables 属性，除非在代码中使用 with 并且正修改代码库已有的对象
-    console.log(TAG.ES6, `============== ${name} end ====================`);
-    
+    // 不要乱用 Symbol.unscopables 属性，除非在代码中使用 with 并且正  修改代码库已有的对象
+    console.log(TAG.ES6, `============== ${name} end ====================`);   
 }
-
 
 {
     /**
