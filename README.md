@@ -42,11 +42,13 @@ updated on 2020/2/1 by Gorit
 2. chapter2 —— string and reg
 3. chapter3 —— function、params
 4. chapter4 —— object  
-5. chapter5
+5. chapter5 —— 解构赋值
 6. chapter6 —— Sybol
-7. Set、Map —— Skip Temp
-8. Iterator —— generator iterator advanced iterator
+7. chapter7 —— Set、Map
+8. chapter8 —— Iterator —— generator iterator advanced iterator
 ### 更新记录  
+2022/6/8 add es6 of weak set examples
+
 2022/5/31 add typescript branch, and edit decorator example
 
 2022/5/31 add Symbol Examples
