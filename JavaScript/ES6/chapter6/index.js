@@ -350,14 +350,104 @@ const TAG = {
     // Symbol.toStringTag
     const name = "Symbol"
     console.log(TAG.ES6, `============== ${name} begin ====================`);
-    
+    /**
+     * 在一个页面存在 iframe 之类的内容时，就会出现两个全局环境
+     * 但是这两个环境无法进行对象共享
+     * 
+     * 比如判断数组 instanceof Array 在另一个领域页面会 拿到 false
+     */
+
+    // 针对类型识别的问题解决方案
+
+    function isArray (value) {
+        return Object.prototype.toString.call(value) === "[object Array]";
+    }
+
+    console.log(TAG.ES6, isArray([]));  // true
+
+    // 类似要区分全局 JSON
+    function supportNativeJSON() {
+        return typeof JSON !== "undefined" && Object.prototype.toString().call(JSON) === "[object JSON]";
+    }
+
+    // Object.prototype 能跨过 iframe 的边界识别数组，使用类似的特性就能区分自建 JSON
+
+
+    // 在 ES6 定义对象字符串标签，通过 Symbol.toStringTag，这个 Symbol 改变调用了 Object.prototype.toString() 返回的标识符。这个 Symbol 所定义的属性每个对象都存在
+    // 其定义了调用对象的 Object.prototype.toString.call() 方法时返回的值。对于数组，调用那个函数返回的值通常是 “Array”，它正是存储在对象的 Symbol.toStringTag属性中
+
+    function Person(name) {
+        this.name = name;
+    }
+
+    Person.prototype[Symbol.toStringTag] = "Person";    // 使用了该定义，此是不再继承 Object.prototype.toString()
+
+    Person.prototype.toString = function() {
+        return this.name;
+    }
+    let person = new Person("Nicks");
+    console.log(TAG.ES6, person);
+    console.log(TAG.ES6, person.toString());
+    console.log(TAG.ES6, Object.prototype.toString.call(person));
+
+    // ES6 Person { name: 'Nicks' }
+    // ES6 Nicks
+    // ES6 [object Person]
+
+    // 我们可以用此方式修改内建方式的值，但是不建议这么做 Person.prototype[Symbol.toStringTag] = "Person";
     console.log(TAG.ES6, `============== ${name} end ====================`);
 }
 
 {
     // Symbol.unscopables
-    const name = "Symbol"
+    const name = "Symbol.unscopables"
     console.log(TAG.ES6, `============== ${name} begin ====================`);
-    
-    console.log(TAG.ES6, `============== ${name} end ====================`);
+    // ES6 如何兼容使用 with 语句，未来不会使用这个，严格模式不允许使用 with
+    let values = [1,2,3],
+    colors = ["red", "green", "blue"],
+    color = "black";
+
+    with(colors) {
+        push(color);
+        push(...values);
+    }
+    console.log(TAG.ES6, colors);
+
+    // [ 'red', 'green', 'blue', 'black', 1, 2, 3 ]
+
+    /**
+     * 这个示例 with 调用了两次 push 方法，等价调用了两次 colors.push() ，因为 with 已经将 push 添加为局部绑定了
+     * color 和 values 都是引用外部 with 语句创建的变量
+     * 
+     * 但是在 ES6 中，数组添加了一个 values 方法
+     * 简单来说，with 引用的是数组自带的 value是方法，而不是 with 语句外部的变量 values
+     * 这样就脱离代码原本的目的，因此 ES6 也添加了 Symbol.unscopables 这个 Symbol 来解决问题
+     * 
+     * Symbol.unscopables 通常用于 Array.prototype，以 with语句中标示出不创建绑定的属性名
+     * Symbol.unscopables 是以对象的形式出现的，它的键是在 with 中要忽略的标识符
+     */
+
+    // 创建原型为 null 的对象
+    Array.prototype[Symbol.unscopables] = Object.assign(Object.create(null), {
+        copyWithin: true,
+        entries: true,
+        fill: true,
+        find: true,
+        findIndex: true,
+        keys: true,
+        values: true
+    });
+
+    // 不要乱用 Symbol.unscopables 属性，除非在代码中使用 with 并且正  修改代码库已有的对象
+    console.log(TAG.ES6, `============== ${name} end ====================`);   
+}
+
+{
+    /**
+     * 总结
+     * 1. Symbol 是 ES6 新的原始类型，必须通过 Symbol 才能引用的属性，但是比较难以意外复写改变
+     * 2. Symbol 可以添加描述，这样更好的区分每个 Symbol 的用户，全局作用域有个 Symbol 注册表
+     * 3. ES6 通过 Object.getOwnPropertySymbols() 检索 Symbol 属性，Object.defineProperties() Object.defineProperty() 仍可以改变 Symbol
+     * 4. well-known Symbol 定义了一些内置的 Symbol 比如 Symbol.hasInstance()
+     */
 }
