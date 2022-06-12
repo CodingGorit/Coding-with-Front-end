@@ -19,7 +19,7 @@ Skip
 finish
 
 # chapter7 Set and Map
-TODO 1
+Just Weak Set、Weak Map
 
 # chapter8 Iterator and Generator
 
