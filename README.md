@@ -47,6 +47,8 @@ updated on 2020/2/1 by Gorit
 7. chapter7 —— Set、Map
 8. chapter8 —— Iterator —— generator iterator advanced iterator
 ### 更新记录  
+2022/6/12 add GOF
+
 2022/6/8 add es6 of weak set examples
 
 2022/5/31 add typescript branch, and edit decorator example
