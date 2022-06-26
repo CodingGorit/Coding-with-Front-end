@@ -222,6 +222,77 @@ const TAG = "chapter12";
     console.log("toString" in proxy);   // true
 }
 
+{
+    const name = "使用 deleteProperty 陷阱防止删除属性";
+    console.log(TAG, `${name} ============== begin ==================`);
+    // delete 操作符可以从对象中移除属性，如果成功则返回 true，不成功则返回 false
+    // 在严格模式下，如果尝试删除一个不可配置的属性，则会导致程序抛出错误，非严格模式下只是返回 false
+    let target = {
+        name: "target",
+        value: 42
+    };
+
+    // 加上这个后，target.value 就拥有了不可配置属性，无法被删除
+    Object.defineProperty(target, "name", { configurable: false }) ;
+
+    console.log("value" in target);
+
+    let result1 = delete target.value;
+    console.log(result1);
+
+    console.log("value" in target); // false
+
+    // 注意：严格模式执行下面这行代码会抛出一个错误
+    let result2 = delete target.name;
+    console.log(result2);   // false
+
+    console.log("name" in target);  // true
+
+    // delete 可以删除 value，name 不可以（严格模式下会报错），在代理可以通过 deleteProperty 陷阱来改变该行为
+    console.log(TAG, "============== end =========== ====");
+}
+
+{
+    const name = "使用 deleteProperty 陷阱防止删除属性【验证】";
+    console.log(TAG, `${name} ============== begin ==================`);
+    let target = {
+        name: "target",
+        value: 12
+    };
+
+    let proxy = new Proxy(target, {
+        // 二者可以确保 value 属性不会被删除
+        deleteProperty(trapTarget, key) {
+
+            // 就算调用了删除 delete proxy.value 一样返回 false
+            if (key === "value") {
+                return false;
+            } else {
+                return Reflect.deleteProperty(trapTarget, key);
+            }
+        }
+    });
+
+    // 尝试删除 proxy.value
+    console.log("value" in proxy);  // true
+
+    let result1 = delete proxy.value;
+    console.log(result1);   // false    【删除失败了】
+
+    console.log("value" in proxy);  // true
+
+    // 尝试删除 proxy.name
+    console.log("name" in proxy);   // true
+
+    let result2 = delete proxy.name;
+    console.log(result2);   // true
+
+    console.log("name" in proxy);   // false
+    console.log(TAG, "============== end ==================");
+
+    // 适用场景，保护属性不被删除，而且严格模式下不会出错
+}
+
 // template
 {
     const name = "使用 set 验证属性陷阱";
