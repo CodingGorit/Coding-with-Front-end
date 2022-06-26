@@ -2,6 +2,7 @@
  * Author：Gorit  
  * Date：2022年6月20日
  * Refer：《深入理解ES6》 
+ * description：本章节学的是 代理 和 反射，创建代理，用反射来拦截操作
  */
 const TAG = "chapter12";
 
@@ -179,6 +180,47 @@ const TAG = "chapter12";
     console.log(TAG, "============== end ==================");
 }
 
+{
+    const name = "使用 has 陷阱隐藏已有属性";
+    console.log(TAG, `${name} ============== begin ==================`);
+    // 用 in 操作符可以检测给定对象中是否有某个属性，如果自有属性或原型属性匹配这个名称 或 Symbol 就返回 true
+
+    let target = {
+        value: 64
+    }
+
+    console.log("value" in target); // true 自由属性
+    console.log("toString" in target);  // true 继承自 Object 的原型属性
+
+    // 二者在对象上都存在，所以用 in 操作符检测二者都返回 true，在代理中使用 has 陷阱可以拦截这些 in 操作符并返回一个不同值
+    console.log(TAG, "============== end ==================");
+
+    let target_ = {
+        name: "target",
+        value: 42   // value 属性将会被隐藏
+    };
+
+    let proxy = new Proxy(target_, {
+        /**
+         * 
+         * @param {*} trapTarget 将要读取的属性对象
+         * @param {*} key 检查的属性键
+         * @returns 
+         */
+        has(trapTarget, key) {
+            if (key === "value") {
+                return false;
+            } else {
+                // Reflect.has() 接收这些参数并返回 in 操作符的默认相应，同时使用 has 陷阱和 Reflect.has() 可以改变一部分属性被 in 检测时的行为，并恢复另一些属性的默认行为
+                return Reflect.has(trapTarget, key);
+            }
+        }
+    });
+
+    console.log("value" in proxy);  // false
+    console.log("name" in proxy);   // true
+    console.log("toString" in proxy);   // true
+}
 
 // template
 {
