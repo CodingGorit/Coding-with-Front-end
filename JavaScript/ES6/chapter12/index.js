@@ -293,6 +293,48 @@ const TAG = "chapter12";
     // 适用场景，保护属性不被删除，而且严格模式下不会出错
 }
 
+{
+    const name = "原型代理陷阱";
+    // setPropertyOf、getPropertyOf 拦截 Object 对应的默认行为
+    console.log(TAG, `${name} ============== begin ==================`);
+
+    // setPropertyOf
+
+    /**
+     * 原型代理陷阱的运行机制
+     * 1. getPropertyOf 陷阱必须返回对象 或null，只要返回值必将导致运行时错误
+     * 2. 返回检查可以确保 Object.getPropertyOf() 返回的总是预期值
+     * 3. 在 setPropertyOf 陷阱中，如果操作失败则一定返回的是 false
+     * 4. 此时 Object.setPropertyOf() 会抛出错误
+     * 5. 若 ssetPropertyOf 返回了任何不是 false 的值，那么 Object.setPropertyOf() 便假设操作成功
+     */
+
+    let target = {};
+    let proxy = new Proxy(target, {
+        getPrototypeOf(trapTarget) {
+            return null;
+        },
+        setPrototypeOf(trapTarget, proto) {
+            return false;
+        }
+    });
+
+    let targetProto = Object.getPrototypeOf(target);
+    let proxyProto = Object.getPrototypeOf(proxy);
+
+
+    console.log(targetProto === Object.prototype);  // true
+    console.log(proxyProto === Object.prototype);   // false  null === ~
+
+    // 成功
+    Object.setPrototypeOf(target, {});
+
+    // 抛出错误
+    // Object.setPrototypeOf(proxy, {});
+
+    console.log(TAG, "============== end ==================");
+}
+
 // template
 {
     const name = "使用 set 验证属性陷阱";
