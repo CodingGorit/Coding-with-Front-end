@@ -335,6 +335,70 @@ const TAG = "chapter12";
     console.log(TAG, "============== end ==================");
 }
 
+{
+    const name = "原型代理执行成功案例";
+    console.log(TAG, `${name} ============== begin ==================`);
+    // 实现 getPrototypeOf 和 setProptotypeOf 陷阱的默认行为
+    let target = {};
+    let proxy = new Proxy(target, {
+        getPrototypeOf(trapTarget) {
+            return Reflect.getPrototypeOf(trapTarget);
+        },
+        setPrototypeOf(trapTarget, proto) {
+            return Reflect.setPrototypeOf(trapTarget, proto);
+        }
+    });
+
+    let targetProto = Object.getPrototypeOf(target);
+    let proxyProto = Object.getPrototypeOf(proxy);
+
+    console.log(targetProto === Object.prototype);  // true
+    console.log(proxyProto === Object.prototype);    // true
+
+
+    // 成功
+    Object.setPrototypeOf(target, {});
+    Object.setPrototypeOf(proxy, {});
+    console.log(TAG, "============== end ==================");
+
+    /**
+     * 区分 Reflect.getPrototypeOf Reflect.setPrototypeOf 与 Object 上同名方法的重要差异
+     * Object.getPrototypeOf() 和 Object.setPrototypeOf() 是高级操作，不是对象，会将参数强制转换为一个对象
+     * Reflect.getPrototypeOf() Reflect.setPrototypeOf() 是底层操作，如果传入的不是对象，会抛出错误
+     * 
+     * Reflect.setPrototypeOf() 与 Object.setPrototypeOf() 方法也不近相同
+     * 前者返回 bool 值表示是否操作成功，true 则代表成功
+     * 
+     * 后者操作失败就会抛出异常
+     */
+
+    // getPrototypeOf 转换
+    let result1 = Object.getPrototypeOf(1);  // 1 属于值类型，
+    console.log("getPrototypeOf 转换",result1 === Number.prototype);  // true
+    
+    // Reflect.getPrototypeOf(1);  // error 这个不会强制转换值得类型
+
+    // setPrototypeOf
+    let target1 = {};
+    let result2 = Object.setPrototypeOf(target1, {});
+    console.log("setPrototypeOf",target1 === result2);   // true
+
+    let target2 = {};
+    let result3 = Reflect.setPrototypeOf(target2, {});
+    console.log("Reflect.setPrototypeOf" ,target2 === result3);   // false
+    console.log(result3);    // true
+
+    // 代理陷阱主要是 Object 和 Reflect 得区别
+}
+
+{
+    const name = "对象可扩展性陷阱";
+    console.log(TAG, `${name} ============== begin ==================`);
+
+
+    console.log(TAG, "============== end ==================");
+}
+
 // template
 {
     const name = "使用 set 验证属性陷阱";
