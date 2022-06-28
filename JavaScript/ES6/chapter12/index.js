@@ -394,10 +394,62 @@ const TAG = "chapter12";
 {
     const name = "对象可扩展性陷阱";
     console.log(TAG, `${name} ============== begin ==================`);
+    // ES5 通过 Object.preventExtensions() 方法 和 Object.isExtensible() 方法修正了对象的扩展性
 
+    // ES6 可以通过代理中 preventExtensions 和 isExtensible 陷阱拦截这两个方法并调用底层对象。两个陷阱都接收唯一参数 trapTarget 对象，并调用上面的方法
+
+    // isExtensible 返回 bool 值，表示是否可扩展，preventExtensions 陷阱返回的也一定是布尔值
+
+    // Reflect.preventExtensions() 方法 和 Reflect。isExtensible() 方法实现了陷阱中的默认行为，二者都返回布尔值
+
+    let target = {};
+    let proxy = new Proxy(target, {
+        isExtensible(trapTarget) {
+            return Reflect.isExtensible(trapTarget);
+        },
+        preventExtensions(trapTarget) {
+            return Reflect.preventExtensions(trapTarget);
+            // return false; // 自测时，必须返回 true，否则就抛出异常
+        }
+    });
+
+    console.log(Object.isExtensible(target));   // true
+    console.log(Object.isExtensible(proxy));    // true
+
+    // 如果不想让其生效，在 proxy 中，preventExtensions 直接返回 false，这样操作就不会转发到底层目标了
+    Object.preventExtensions(proxy);
+
+    console.log(Object.isExtensible(target));   // false
+    console.log(Object.isExtensible(proxy));    // false
+    console.log(TAG, "============== end ==================");
+}
+
+
+{
+    const name = "不使用 new 来调用构造函数";
+    console.log(TAG, `${name} ============== begin ==================`);
+    function Numbers(...values) {
+
+        if (typeof new.target === "undefined") {
+            throw new TypeError("该函数必须通过 new 调用");
+        }
+
+        this.values = values;
+    }
+
+    let numberProxy = new Proxy(Numbers, {
+        // 通过 apply 调用 Reflect.construct 即可实现
+        apply: function(trapTarget, thisArg, arugmentsList) {
+            return Reflect.construct(trapTarget, arugmentsList);
+        }
+    });
+
+    let instance = numberProxy(2,3,4,5);
+    console.log(instance.values);
 
     console.log(TAG, "============== end ==================");
 }
+
 
 // template
 {
