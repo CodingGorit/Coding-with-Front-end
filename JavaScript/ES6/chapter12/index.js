@@ -424,6 +424,70 @@ const TAG = "chapter12";
     console.log(TAG, "============== end ==================");
 }
 
+{
+    const name = "使用 deleteProperty 防止删除陷阱";
+    console.log(TAG, `${name} ============== begin ==================`);
+    // delete 操作符可以从对象移除属性，如果删除成功则返回 true，否则返回 false，在严格模式，
+    // 如果你尝试删除一个不可配置（nonconfiggurable）属性，则会导致程序抛出错误，非严格模式下则是返回 false
+    
+    let target = {
+        name: "target",
+        value: 42
+    };
+
+    Object.defineProperty(target, "name", {configurable: false});
+
+    console.log("value" in target); // true
+
+    let result1 = delete target.value;
+    console.log(result1);   // true
+
+    console.log("value" in target); // false
+
+    // 严格模式下，以下会抛出一个错误
+
+    let result2 = delete target.name;
+    console.log(result2);   // false
+
+    console.log("name" in target);  // true
+
+    console.log(TAG, "============== end ==================");
+}
+
+{
+    // 使用 Reflect.deleteProperty 来修改该行为，防止属性被删除
+    let target = {
+        name: "target",
+        value: 42
+    };
+
+    let proxy = new Proxy(target, {
+        deleteProperty(trapTarget, key) {
+            if (key === "value") {
+                return false;
+            } else {
+                return Reflect.deleteProperty(trapTarget, key);
+            }
+        }
+    });
+
+    // 尝试删除 value
+    console.log("value" in target); // true
+
+    let result1 = delete proxy.value;   // true
+    console.log("delete proxy.value", result1);   // false
+
+    console.log("value" in proxy);  // true
+
+    // 尝试删除 proxy.name
+    
+    console.log("name" in proxy);   // true
+
+    let result2 = delete proxy.name;
+    console.log(result2);   // true
+
+    console.log("name" in proxy);   // false
+}
 
 {
     const name = "不使用 new 来调用构造函数";
@@ -450,13 +514,15 @@ const TAG = "chapter12";
     console.log(TAG, "============== end ==================");
 }
 
+// 剩下的基本上都是和原型相关的操作了
 
-// template
+// 总结
 {
-    const name = "使用 set 验证属性陷阱";
+    const name = "总结";
     console.log(TAG, `${name} ============== begin ==================`);
-
-
+    //  ES6 引入了反射 API 还引入了 Reflect 对象，使用代理陷阱 和 反射 API 可以过滤一些操作，它们默认执行内置行为，只在某些特定条件下，这些陷阱会被调用
+    //  ES6 可撤销代理，通过 revoke() 函数禁用特殊代理，revoke() 函数会种植代理上所有功能
+    //  实际用到的代理数量有限，用例较少，一般是 get、set、has 陷阱用的比较多一点
     console.log(TAG, "============== end ==================");
 }
 
