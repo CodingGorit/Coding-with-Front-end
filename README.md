@@ -46,7 +46,10 @@ updated on 2020/2/1 by Gorit
 6. chapter6 —— Sybol
 7. chapter7 —— Set、Map
 8. chapter8 —— Iterator —— generator iterator advanced iterator
+9. chapter12 —— proxy and Reflect API
 ### 更新记录  
+2022/7/4 add proxy and reflect of es6 and put an end to summary
+
 2022/6/12 add GOF
 
 2022/6/8 add es6 of weak set examples
