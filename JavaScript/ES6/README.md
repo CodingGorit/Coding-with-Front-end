@@ -33,6 +33,8 @@ TODO 2
 
 # chapter12 Proxy and Reflection API
 代理和反射 3
-
+- Proxy
+- Set
+- get
 # chapter13 模块
 export and import
