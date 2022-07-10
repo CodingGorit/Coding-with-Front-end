@@ -49,11 +49,12 @@
 > 一共15个项目，每天一个 CSS 小练习
 
 ### 三、Vue2 项目实战
-@See master branch
+- Vue2 basic
 
 
 ### 四、更新日志
-新增CSS 项目的在线预览gif —— 2022年5月24日
+- 将 JavaScript/library 下的 Vue 项目挪到 Project/Vue 下 —— 2022年7月10日
+- 新增CSS 项目的在线预览gif —— 2022年5月24日
 
 
 
