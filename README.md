@@ -48,6 +48,9 @@ updated on 2020/2/1 by Gorit
 8. chapter8 —— Iterator —— generator iterator advanced iterator
 9. chapter12 —— proxy and Reflect API
 ### 更新记录  
+
+2022/10/31 add flutter notes
+
 2022/7/4 add proxy and reflect of es6 and put an end to summary
 
 2022/6/12 add GOF
