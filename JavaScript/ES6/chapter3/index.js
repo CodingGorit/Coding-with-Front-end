@@ -84,7 +84,7 @@ const TAG = {
     // mixArgs("a", "b");  // true true true true
 
     // 为啥会出现种情况呢？在非严格模式下，命名参数变化会同步更新到 arguments 对象中，
-
+                   
     function mixArgs1(first, second) {
         'use strict';
 

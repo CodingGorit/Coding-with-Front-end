@@ -5,10 +5,10 @@
  */
 const TAGS = {
     VAR: "var",
-    LET : "let",
-    DUPLICATE : "dup",
-    CONST : "const",
-    FUNC : "func"
+    LET: "let",
+    DUPLICATE: "dup",
+    CONST: "const",
+    FUNC: "func"
 }
 
 /**
@@ -60,7 +60,7 @@ const TAGS = {
 // 禁止重复声明
 {
     // var value = 30;  // error
-    
+
     let value = 20;
 
     // ====================    
@@ -71,7 +71,7 @@ const TAGS = {
         let cnt = 50;   // ok 会覆盖全局作用域中的 cnt
 
     }
-    console.log(TAGS.DUPLICATE,"cnt is =>", cnt);    // 40
+    console.log(TAGS.DUPLICATE, "cnt is =>", cnt);    // 40
 }
 
 // const
@@ -114,7 +114,7 @@ const TAGS = {
 // temporal dead zone
 {
     let condition = true;
-    
+
     // console.log(typeof value);
 
     if (condition) {
@@ -154,9 +154,9 @@ const TAGS = {
     // 在 let 和 const 出现之前，要这么处理
     var funcs1 = [];
     for (var j = 0; j < 10; j++) {
-        funcs1.push((function(value) {
+        funcs1.push((function (value) {
             // 调用函数表达式，强制生成计数器的副本
-            return function() {
+            return function () {
                 console.log(TAGS.FUNC, value);
             }
         }(j)));
@@ -173,12 +173,12 @@ const TAGS = {
     let func = [];
 
     for (let i = 0; i < 9; i++) {
-        func.push(function() {
+        func.push(function () {
             console.log(TAGS.LET, TAGS.FUNC, i);
         })
     }
 
-    func.forEach(function(func) {
+    func.forEach(function (func) {
         // func();   // 0,1,2
     })
 }
@@ -191,14 +191,14 @@ const TAGS = {
             b: true,
             c: true
         }
-    
+
     for (let key in obj) {
-        func.push(function() {
+        func.push(function () {
             console.log(TAGS.FUNC, key);
         })
     }
 
-    func.forEach(function(func) {
+    func.forEach(function (func) {
         func(); // a,b,c
     })
 }
@@ -206,11 +206,11 @@ const TAGS = {
 // for const
 {
     var funcs = [],
-    obj = {
-        a: true,
-        b: true,
-        c: true
-    }
+        obj = {
+            a: true,
+            b: true,
+            c: true
+        }
 
     // for (const i = 0; i < 10; i++) {
     //     funcs.push(function() {
@@ -219,15 +219,15 @@ const TAGS = {
     // }
 
     for (const key in obj) {
-        funcs.push(function() {
+        funcs.push(function () {
             console.log(TAGS.CONST, key);
         })
     }
 
-    func.forEach(function(item) {
+    func.forEach(function (item) {
         item();
     })
-     
+
 }
 
 // global area (Node.js 环境下为 globalThis)
