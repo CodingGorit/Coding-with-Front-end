@@ -1,0 +1,107 @@
+<!--
+Filename: d:\project\Coding-with-Front-end\Project\JavaScript demo\select all checkbox.html
+Path: d:\project\Coding-with-Front-end\Project\JavaScript demo
+Created Date: Saturday, June 24th 2023, 8:40:19 pm
+Author: CodingGorit
+
+Copyright (c) 2023 fmin-courses TP Center
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            box-sizing: border-box;
+            width: 500px;
+            height: 800px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.23);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <table class="table table-striped table-bordered table-hover table-condensed">
+            <tr>
+                <th>多选<input type="checkbox" id="chooseAll" /></th>
+                <th>系统账号</th>
+            </tr>
+            <tr>
+                <td class="text-center">
+                    <input type="checkbox" class="checkList" />
+                </td>
+                <td><a href="${pageContext.request.contextPath}/userManage/userUpdate.action?id=${user.id}"
+                        class="btn btn-info btn-xs">修改 </a>&nbsp;&nbsp;
+                    <a href="javascript:void(0)" onclick="delUser('${user.account}','${user.id}')"
+                        class="btn btn-danger btn-xs"> 删除</a>
+                </td>
+            </tr>
+            <tr>
+                <td class="text-center">
+                    <input type="checkbox" class="checkList" />
+                </td>
+                <td><a href="${pageContext.request.contextPath}/userManage/userUpdate.action?id=${user.id}"
+                        class="btn btn-info btn-xs">修改 </a>&nbsp;&nbsp;
+                    <a href="javascript:void(0)" onclick="delUser('${user.account}','${user.id}')"
+                        class="btn btn-danger btn-xs"> 删除</a>
+                </td>
+            </tr>
+            <tr>
+                <td class="text-center">
+                    <input type="checkbox" class="checkList" />
+                </td>
+                <td><a href="${pageContext.request.contextPath}/userManage/userUpdate.action?id=${user.id}"
+                        class="btn btn-info btn-xs">修改 </a>&nbsp;&nbsp;
+                    <a href="javascript:void(0)" onclick="delUser('${user.account}','${user.id}')"
+                        class="btn btn-danger btn-xs"> 删除</a>
+                </td>
+            </tr>
+            <tr>
+                <td class="text-center">
+                    <input type="checkbox" class="checkList" />
+                </td>
+                <td><a href="${pageContext.request.contextPath}/userManage/userUpdate.action?id=${user.id}"
+                        class="btn btn-info btn-xs">修改 </a>&nbsp;&nbsp;
+                    <a href="javascript:void(0)" onclick="delUser('${user.account}','${user.id}')"
+                        class="btn btn-danger btn-xs"> 删除</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <script>
+        const chooseAll = document.getElementById("chooseAll");
+        const inputs = document.getElementsByTagName("input");
+        const checkListArr = [];
+        for (let i = 0; i < inputs.length; i++) {
+            const obj = inputs[i];
+            if (obj.className === "checkList") {
+                checkListArr.push(obj);
+            }
+        }
+
+        chooseAll.onclick = function() {
+            const flag = chooseAll.checked;
+            // console.log(flag)
+            if (flag) {
+                checkListArr.forEach(element => {
+                    element.checked = true;
+                });
+            } else {
+                checkListArr.forEach(element => {
+                    element.checked = false;
+                });
+            }
+        }
+    </script>
+</body>
+
+</html>
