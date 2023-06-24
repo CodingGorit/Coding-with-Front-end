@@ -1,7 +1,9 @@
 # Coding-with-Front-end
+
 Gorit 的前端学习记录 
 
 ### 一、CSS 项目预览  
+
 1. 垂直居中 
 2. 等分布局  
 3. 等高布局 
@@ -16,28 +18,40 @@ Gorit 的前端学习记录
 12. position 布局整理
 
 ### 二、JavaScript 项目预览  
+
 #### 2.1 document（游览器内置对象）
+
 1. built_in_objects （内置对象） 
 2. event （事件）  
 3. other  
 4. window object (window 对象)  
 
 #### 2.2 libraries（组件库）
+
 1. Vue
 2. React
 
 ### Project 部分 
+
 #### 3.1 HTML + CSS + JS
+
 > 50个原生编程案例应用
 
 #### 3.2 CSS projects in 15 days
+
 > 一天一个案例学 CSS
+
+#### 3.3 javascript demo
+
+- js 小案例
 
 
 updated on 2020/2/1 by Gorit  
 
 ### 三、ES6
+
 参考书籍《深入理解ES6》
+
 1. chapter1 —— var、let、const 以及作用域
 2. chapter2 —— string and reg
 3. chapter3 —— function、params
@@ -47,7 +61,9 @@ updated on 2020/2/1 by Gorit
 7. chapter7 —— Set、Map
 8. chapter8 —— Iterator —— generator iterator advanced iterator
 9. chapter12 —— proxy and Reflect API
-### 更新记录  
+### 更新记录
+
+2023/6/24 add javascript demo for checkBox
 
 2022/10/31 add flutter notes
 
