@@ -60,14 +60,26 @@
 
 > 使用 JS API SpeechRecognition 实现语音识别
 
-
 ### 二、CSS projects in 15 days
 
 > 一共15个项目，每天一个 CSS 小练习
 
 ### 三、Vue2 项目实战
 
-- Vue2 basic
+> 由于实战项目可能会比较占仓库体积,而且提交记录也不好追查,所以近提供项目链接, 需要自取
+
+#### 3.1 Vue2 项目
+
+- Vue2 基础学习 [见目录 Vue]
+- [Vue2.6 电商后台管理系统](https://gitee.com/CodingGorit/vue_shop)
+- [Vue2.6 版本去哪网仿写](https://gitee.com/CodingGorit/Travel)
+
+#### 3.2 Vue3 项目
+
+- [Vue3 个人博客 - (vue3 + js)](https://github.com/CodingGorit/vue3blog)
+- [知乎专栏仿写 (最新技术栈 vite + vue3 + ts 实现)](https://gitee.com/CodingGorit/zhihu-imitate)
+- [Vue3 + ts + taliwindcss 快速开发模板](https://github.com/CodingGorit/vue3-ts-tailwindcss)
+- [Vue3 版本 cloud-myblog 后台管理系统](https://gitee.com/CodingGorit/cloud-myblog-cms-vue3)
 
 ### 四、JavaScript demo
 
@@ -78,9 +90,3 @@
 - 将 JavaScript/library 下的 Vue 项目挪到 Project/Vue 下 —— 2022年7月10日
 - 新增CSS 项目的在线预览gif —— 2022年5月24日
 - 新增 js demo 案例 —— 2023年6月24日
-
-
-
-
-
-
