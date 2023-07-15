@@ -1,19 +1,19 @@
 # Coding-with-Front-end
 
-Gorit 的前端学习记录 
+Gorit 的前端学习记录
 
 ### 一、CSS 项目预览  
 
-1. 垂直居中 
+1. 垂直居中
 2. 等分布局  
-3. 等高布局 
-4. 多列布局 
-5. 居中布局 
-6. 全屏布局 
-7. 三列布局 
-8. 圣杯布局 
-9. 双飞翼布局 
-10. 水平居中布局 
+3. 等高布局
+4. 多列布局
+5. 居中布局
+6. 全屏布局
+7. 三列布局
+8. 圣杯布局
+9. 双飞翼布局
+10. 水平居中布局
 11. css 其他项目特别整理  
 12. position 布局整理
 
@@ -21,7 +21,7 @@ Gorit 的前端学习记录
 
 #### 2.1 document（游览器内置对象）
 
-1. built_in_objects （内置对象） 
+1. built_in_objects （内置对象）
 2. event （事件）  
 3. other  
 4. window object (window 对象)  
@@ -31,7 +31,7 @@ Gorit 的前端学习记录
 1. Vue
 2. React
 
-### Project 部分 
+### Project 部分
 
 #### 3.1 HTML + CSS + JS
 
@@ -44,7 +44,6 @@ Gorit 的前端学习记录
 #### 3.3 javascript demo
 
 - js 小案例
-
 
 updated on 2020/2/1 by Gorit  
 
@@ -61,7 +60,10 @@ updated on 2020/2/1 by Gorit
 7. chapter7 —— Set、Map
 8. chapter8 —— Iterator —— generator iterator advanced iterator
 9. chapter12 —— proxy and Reflect API
+
 ### 更新记录
+
+2023/7/15 rebuid for css demos's project structure
 
 2023/6/24 add javascript demo for checkBox
 
