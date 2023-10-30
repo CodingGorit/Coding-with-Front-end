@@ -63,6 +63,8 @@ updated on 2020/2/1 by Gorit
 
 ### 更新记录
 
+2023/10/30 add ts-study demo
+
 2023/7/15 rebuid for css demos's project structure, update vue2/vue3 projects
 
 2023/6/24 add javascript demo for checkBox
