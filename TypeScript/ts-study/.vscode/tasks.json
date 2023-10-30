@@ -1,0 +1,24 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "typescript",
+			"tsconfig": "day4/tsconfig.json",
+			"option": "watch",
+			"problemMatcher": [
+				"$tsc-watch"
+			],
+			"group": "build",
+			"label": "tsc: 监视 - day4/tsconfig.json"
+		},
+		{
+			"type": "typescript",
+			"tsconfig": "day4/tsconfig.json",
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build",
+			"label": "tsc: 构建 - day4/tsconfig.json"
+		}
+	]
+}
