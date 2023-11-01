@@ -2,7 +2,7 @@
 
 Gorit 的前端学习记录
 
-### 一、CSS 项目预览  
+### 一、CSS 项目预览
 
 1. 垂直居中
 2. 等分布局  
@@ -17,37 +17,41 @@ Gorit 的前端学习记录
 11. css 其他项目特别整理  
 12. position 布局整理
 
-### 二、JavaScript 项目预览  
+### 二、Flutter
 
-#### 2.1 document（游览器内置对象）
+Flutter 快速入门
+
+### 三、GOG 设计模式
+
+1. 发布订阅 —— 模式
+2. 单例模式
+
+### 四、interview 面试，笔试
+
+概念题
+面试题
+
+- 001 防抖 与 节流函数实现
+- 002 call，apply bind 实现
+- 003 数组去重
+- 004 手写 JS Array.flat 函数
+
+### 五、JavaScript 项目预览  
+
+#### 5.1 document（游览器内置对象）
 
 1. built_in_objects （内置对象）
 2. event （事件）  
 3. other  
 4. window object (window 对象)  
 
-#### 2.2 libraries（组件库）
+#### 5.2 前端框架
 
 1. Vue
 2. React
 
-### Project 部分
 
-#### 3.1 HTML + CSS + JS
-
-> 50个原生编程案例应用
-
-#### 3.2 CSS projects in 15 days
-
-> 一天一个案例学 CSS
-
-#### 3.3 javascript demo
-
-- js 小案例
-
-updated on 2020/2/1 by Gorit  
-
-### 三、ES6
+#### 5.3 ES6
 
 参考书籍《深入理解ES6》
 
@@ -61,7 +65,31 @@ updated on 2020/2/1 by Gorit
 8. chapter8 —— Iterator —— generator iterator advanced iterator
 9. chapter12 —— proxy and Reflect API
 
+### 六、Project 部分
+
+#### 6.1 HTML + CSS + JS
+
+> 50个原生编程案例应用
+
+#### 6.2 CSS projects in 15 days
+
+> 一天一个案例学 CSS
+
+#### 6.3 javascript demo
+
+- js 小案例
+
+updated on 2020/2/1 by Gorit  
+
+### 七、TypeWScript
+
+1. 装饰器 demo
+2. ts-study 学习
+
+
 ### 更新记录
+
+2023/11/01 update README, add interview support
 
 2023/10/30 add ts-study demo
 
