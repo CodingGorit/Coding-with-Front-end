@@ -11,17 +11,18 @@
  */
 
 
-function flatten_stack(array: any[]) {
+function flatten_stack(array: any[], depth = Infinity) {
     const stack = [...array];
     const res: number[] = [];
     while (stack.length) {
         // console.log(stack);
         const next = stack.pop();
-        if (Array.isArray(next)) {
+        if (Array.isArray(next) && depth > 0) {
             stack.push(...next);
         } else {
             res.unshift(next);
         }
+        depth--;
     }
     return res;
 }

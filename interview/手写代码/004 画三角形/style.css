@@ -1,0 +1,71 @@
+/*
+ * Created Date: Monday, November 6th 2023, 8:22:56 pm
+ * Author: CodingGorit
+ * Contact: javafullstack2021@163.com
+ * -----
+ * Last Modified: Mon Nov 06 2023
+ * Modified By: CodingGorit
+ * -----
+ * Copyright © 2019 —— 2023 fmin-courses TP Center All Rights Reserved
+ * ------------------------------------
+ * Hello World
+ */
+
+
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ccc;
+}
+
+.container {
+    margin-top: 100px;
+    width: 500px;
+    height: 500px;
+    background-color: antiquewhite;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* flex-wrap: wrap; */
+    gap: 20px;
+}
+
+.up {
+    width: 0;
+    height: 0;
+    border-width: 0 48px 48px;
+    border-style: solid;
+    border-color: transparent transparent pink;
+}
+
+.down {
+    width: 0;
+    height: 0;
+    border-width: 48px 48px 0;
+    border-style: solid;
+    border-color: pink transparent transparent;
+}
+
+.left {
+    width: 0;
+    height: 0;
+    border-width: 48px 48px 48px 0;
+    border-style: solid;
+    border-color: transparent pink transparent;
+}
+
+.right {
+    width: 0;
+    height: 0;
+    border-width: 48px 0 48px 48px;
+    border-style: solid;
+    border-color: transparent pink transparent;
+}
