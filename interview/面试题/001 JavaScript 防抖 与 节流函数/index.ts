@@ -2,7 +2,7 @@
  * Created Date: Tuesday, October 31st 2023, 4:46:04 pm
  * Author: CodingGorit
  * -----
- * Last Modified: Tue Oct 31 2023
+ * Last Modified: Tue Nov 07 2023
  * Modified By: CodingGorit
  * -----
  * Copyright © 2019 —— 2023 fmin-courses TP Center All Rights Reserved
@@ -17,11 +17,13 @@
 
 
 function throttle_timestamp(fn: Function, delay = 500) {
-    let lastTime = 0;
-    return function (...args) {
+    let lastTime = Date.now();
+    return function () {
         let newTime = Date.now();
-        if (newTime - lastTime > delay) {
-            fn.apply(this, args);
+        let context = this;
+        let args = arguments;
+        if (newTime - lastTime >= delay) {
+            fn.apply(context, args);
             lastTime = Date.now();
         }
     }
