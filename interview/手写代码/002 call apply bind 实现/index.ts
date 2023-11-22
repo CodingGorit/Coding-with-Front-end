@@ -2,7 +2,7 @@
  * Created Date: Wednesday, November 1st 2023, 12:13:23 am
  * Author: CodingGorit
  * -----
- * Last Modified: Wed Nov 01 2023
+ * Last Modified: Wed Nov 22 2023
  * Modified By: CodingGorit
  * -----
  * Copyright © 2019 —— 2023 fmin-courses TP Center All Rights Reserved
@@ -33,4 +33,14 @@ function myApply(fn: Function, obj: any, args: any[]) {
 
 
 // ============== bind =================
-
+//@ts-ignore
+Function.prototype.myBind = function(context) {
+    // 判断是否是undefined和null
+    if (typeof context === "undefined" || context === null) {
+        context = window;
+    }
+    self = this;
+    return function() {
+        return self.apply(context);
+    }
+};
