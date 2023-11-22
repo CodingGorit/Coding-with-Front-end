@@ -1,0 +1,48 @@
+<!--
+Created Date: Wednesday, November 22nd 2023, 4:10:57 pm
+Author: CodingGorit
+Contact: javafullstack2021@163.com
+-----
+Last Modified: Wed Nov 22 2023
+Modified By: CodingGorit
+-----
+Copyright © 2019 —— 2023 fmin-courses TP Center All Rights Reserved
+------------------------------------
+Hello World
+-->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Observer</title>
+</head>
+<body>
+    <h1>Vue 原理解析 - 让每一个属性可被观测(Observer 类的实现)</h1>
+    <script type="module">
+        import Observer from './index.js';
+        let obj = new Observer({
+            name: 'CodingGorit',
+            age: 18,
+            demo: {
+                a: 'aaa',
+                b: 13
+            }
+        });
+
+        console.log(obj.value.name);
+        obj.value.age = 20;
+        console.log(obj.value.demo.a);
+        obj.value.demo.b = 12;
+
+        console.log("======");
+
+        // let arr = new Observer(['a', {name: 'CodingGorit', demo: {a: 1}}]);
+        // arr[1].value.name= 'cccc';
+
+    </script>
+</body>
+</html>
