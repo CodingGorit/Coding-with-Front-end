@@ -13,6 +13,8 @@
 // ============== 节流 ================
 /**
  * 节流: n 秒内只运行一次，若在 n 秒内重复触发，只有一次生效
+ * 作用：限制执行频率，有节奏智行
+ * 关注过程
  */
 
 
@@ -32,19 +34,19 @@ function throttle_timestamp(fn: Function, delay = 500) {
 function throttle_timeout(fn: Function, delay = 500) {
     let timer: number | null = null;
     return function (...args) {
-        if (!timer) {
-            timer = setTimeout(() => {
-                fn.apply(this, args);
-                timer = null;
-            }, delay);
-        }
+        if (timer) return;
+        timer = setTimeout(() => {
+            fn.apply(this, args);
+            clearTimeout(timer);
+            timer = null;
+        }, delay);
     }
 }
 
 function throttle(fn: Function, delay = 500) {
     let timer: number | null = null;
     let startTime = Date.now();
-    return function() {
+    return function () {
         let curTime = Date.now();
         let remaining = delay - (curTime - startTime);
         const context = this;
@@ -62,11 +64,13 @@ function throttle(fn: Function, delay = 500) {
 // ============== 防抖 ================
 /**
  * 防抖: n 秒后在执行该事件，若在 n 秒内被重复触发，则重新计时
+ * 作用：限制智行次数，多次密集的触发只执行一次
+ * 关注结果
  */
 
 function debounce_timeout(fn: Function, delay: number) {
     let timeout;
-    return function() {
+    return function () {
         let context = this;
         let args = arguments;
         if (timeout) {
