@@ -2,7 +2,7 @@
  * Created Date: Tuesday, October 31st 2023, 4:46:04 pm
  * Author: CodingGorit
  * -----
- * Last Modified: Tue Nov 07 2023
+ * Last Modified: Thu Nov 23 2023
  * Modified By: CodingGorit
  * -----
  * Copyright © 2019 —— 2023 fmin-courses TP Center All Rights Reserved
@@ -64,14 +64,22 @@ function throttle(fn: Function, delay = 500) {
  * 防抖: n 秒后在执行该事件，若在 n 秒内被重复触发，则重新计时
  */
 
-function debounce(fn: Function, delay: number) {
+function debounce_timeout(fn: Function, delay: number) {
     let timeout;
     return function() {
         let context = this;
         let args = arguments;
-        clearTimeout(timeout);
-        timeout = setTimeout(function() {
+        if (timeout) {
+            clearTimeout(timeout);
+        }
+        timeout = setTimeout(() => {
             fn.apply(context, args);
+            clearTimeout(timeout);
+            timeout = null;
         }, delay);
     }
+}
+
+function debounce_timestamp(fn: Function, delay = 200) {
+
 }
