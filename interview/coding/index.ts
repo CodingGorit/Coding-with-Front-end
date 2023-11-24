@@ -3,7 +3,7 @@
  * Author: CodingGorit
  * Contact: javafullstack2021@163.com
  * -----
- * Last Modified: Mon Nov 20 2023
+ * Last Modified: Fri Nov 24 2023
  * Modified By: CodingGorit
  * -----
  * Copyright © 2019 —— 2023 fmin-courses TP Center All Rights Reserved
@@ -127,3 +127,5 @@ function myApply(fn: Function, obj: any, args: any[]) {
  delete obj.temp;
  return result;
 }
+
+// reduce
