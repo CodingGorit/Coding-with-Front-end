@@ -2,7 +2,7 @@
  * Created Date: Tuesday, October 31st 2023, 4:46:04 pm
  * Author: CodingGorit
  * -----
- * Last Modified: Thu Nov 23 2023
+ * Last Modified: Fri Nov 24 2023
  * Modified By: CodingGorit
  * -----
  * Copyright © 2019 —— 2023 fmin-courses TP Center All Rights Reserved
@@ -32,13 +32,13 @@ function throttle_timestamp(fn: Function, delay = 500) {
 }
 
 function throttle_timeout(fn: Function, delay = 500) {
-    let timer: number | null = null;
+    let timer: number = 0;
     return function (...args) {
         if (timer) return;
         timer = setTimeout(() => {
             fn.apply(this, args);
             clearTimeout(timer);
-            timer = null;
+            timer = 0;
         }, delay);
     }
 }
