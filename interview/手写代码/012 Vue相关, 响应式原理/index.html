@@ -1,0 +1,51 @@
+<!--
+Created Date: Wednesday, November 29th 2023, 12:42:24 am
+Author: CodingGorit
+Contact: javafullstack2021@163.com
+-----
+Last Modified: Wed Nov 29 2023
+Modified By: CodingGorit
+-----
+Copyright © 2019 —— 2023 fmin-courses TP Center All Rights Reserved
+------------------------------------
+Hello World
+-->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        // Object.defineProperty 需要遍历每一个 key, 也可以有数组
+        let data = {
+            msg: "Hello",
+            count: 0,
+            arr: [1,2,3],
+        }
+
+        // 模拟 Vue3 实例, 一个 proxy 可以实现整个对象的监听 与 劫持
+        const vm = new Proxy(data, {
+            // 执行代理行为的函数
+            // 访问 vm 成员时会执行
+            get (target, key) {
+                console.log("getm key:",key, target[key]);
+                return target[key];
+            },
+            set (target, key, value) {
+                console.log("set key:",key, value);
+                // 修改值
+                target[key] = value;
+                // 返回 true，表示设置成功
+                return true;
+            }
+        });
+    </script>
+</body>
+</html>
