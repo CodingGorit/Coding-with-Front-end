@@ -3,7 +3,7 @@
  * Author: CodingGorit
  * Contact: javafullstack2021@163.com
  * -----
- * Last Modified: Thu Nov 23 2023
+ * Last Modified: Wed Nov 29 2023
  * Modified By: CodingGorit
  * -----
  * Copyright © 2019 —— 2023 fmin-courses TP Center All Rights Reserved
@@ -49,7 +49,8 @@ let obj = {
     }
 }
 
-// 5 箭头函数不能使用构造函数
+// 5 箭头函数不能使用构造函数?
+// 箭头函数是通过 new 关键字生成实例,生成对象实例的过程给实例绑定 this 的过程,而箭头函数没有自己的 this
 
 // 6. Vue 生命周期 和 Method 
 // Vue 组件本身是一个 JS 对象

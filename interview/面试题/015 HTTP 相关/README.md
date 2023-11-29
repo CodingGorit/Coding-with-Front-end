@@ -1,4 +1,6 @@
-# TCP 的三次握手 和 四次挥手
+# Http 相关问题
+
+## 一: TCP 的三次握手 和 四次挥手
 
 握手：连接的过程
 
@@ -6,7 +8,7 @@
 2. 再传输内容（如发送一个 GET 请求）
 3. 网络连接是 TCP 协议，传输内容是 HTTP 协议
 
-## 三次握手
+### 三次握手
 
 - Client 发包，Server 接收
     - Server： Client 要找我
@@ -15,7 +17,7 @@
 - Client 发包， Server 接收
     - Server： Client 要准备发送了
 
-## 四次挥手 —— 关闭链接
+### 四次挥手 —— 关闭链接
 
 - Client 发包，Server 接收
     - Server： Client 已请求结束
@@ -31,3 +33,5 @@
 ![Alt text](TCP.png)
 
 ![Alt text](image.png)
+
+## 二: 
