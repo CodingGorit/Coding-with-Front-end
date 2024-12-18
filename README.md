@@ -2,7 +2,7 @@
 
 Gorit 的前端学习记录
 
-### 一、CSS 项目预览  
+## 一、CSS 项目预览  
 
 1. 垂直居中
 2. 等分布局  
@@ -17,37 +17,37 @@ Gorit 的前端学习记录
 11. css 其他项目特别整理  
 12. position 布局整理
 
-### 二、JavaScript 项目预览  
+## 二、JavaScript 项目预览  
 
-#### 2.1 document（游览器内置对象）
+### 2.1 document（游览器内置对象）
 
 1. built_in_objects （内置对象）
 2. event （事件）  
 3. other  
 4. window object (window 对象)  
 
-#### 2.2 libraries（组件库）
+### 2.2 libraries（组件库）
 
 1. Vue
 2. React
 
-### Project 部分
+## 三、Project 部分
 
-#### 3.1 HTML + CSS + JS
+### 3.1 HTML + CSS + JS
 
 > 50个原生编程案例应用
 
-#### 3.2 CSS projects in 15 days
+### 3.2 CSS projects in 15 days
 
 > 一天一个案例学 CSS
 
-#### 3.3 javascript demo
+### 3.3 javascript demo
 
 - js 小案例
 
 updated on 2020/2/1 by Gorit  
 
-### 三、ES6
+## 四、ES6
 
 参考书籍《深入理解ES6》
 
@@ -61,14 +61,20 @@ updated on 2020/2/1 by Gorit
 8. chapter8 —— Iterator —— generator iterator advanced iterator
 9. chapter12 —— proxy and Reflect API
 
-### 更新记录
+## 五、interview
+
+
+
+## 更新记录
+
+2024/12/18 add eventEmmiter example for interview
 
 2023/10/30 add ts-study demo
 
 2023/7/15 rebuid for css demos's project structure, update vue2/vue3 projects
 
 2023/6/24 add javascript demo for checkBox
-
+ 
 2022/10/31 add flutter notes
 
 2022/7/4 add proxy and reflect of es6 and put an end to summary

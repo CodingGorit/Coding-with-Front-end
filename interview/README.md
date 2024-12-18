@@ -9,3 +9,4 @@
 2. call,apply,bind
 3. 数组去重
 4. 手写 js flat 函数
+5. 手写 eventEmmiter
