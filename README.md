@@ -63,9 +63,17 @@ updated on 2020/2/1 by Gorit
 
 ## 五、interview
 
+1. 防抖 与 节流实现
+2. call、apply、bind 实现
+3. 数组去重
+4. 手写 js flat
+5. 实现 eventEmmiter
+6. 实现 promise
 
 
 ## 更新记录
+
+2024/12/19 add promise example for interview
 
 2024/12/18 add eventEmmiter example for interview
 
