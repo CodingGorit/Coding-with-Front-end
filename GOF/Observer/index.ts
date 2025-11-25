@@ -48,9 +48,9 @@ MissLiu.sendMsg("haha");
 // to avoid duplicating the event handling implementation
 import EventEmitter from '../pub-sub/index';
 
-// Observer is now an alias for EventEmitter to maintain backward compatibility
-// The EventEmitter class provides the same on(), emit(), off(), and once() methods
-const Observer = EventEmitter;
+// Observer extends EventEmitter to maintain proper class inheritance
+// and enable instanceof checks while reusing the event handling implementation
+class Observer extends EventEmitter {}
 
 const bookStore = new Observer();
 
