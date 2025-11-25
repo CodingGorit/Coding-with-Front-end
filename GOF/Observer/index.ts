@@ -3,6 +3,10 @@
  * https://www.bilibili.com/video/BV1qa411K7pu?is_story_h5=false&p=1&share_from=ugc&share_medium=android&share_plat=android&share_session_id=3bc1336c-0550-4e78-80e7-ccbe5e90ccb8&share_source=COPY&share_tag=s_i&timestamp=1661317719&unique_k=RqZRQ8I&vd_source=e9ef2749e9cd09056c2a449753f87ee8
  */
 
+// Import and reuse the EventEmitter class from pub-sub module
+// to avoid duplicating the event handling implementation
+import EventEmitter from '../pub-sub/index';
+
 /**
  * 发布事件时，发给所有观察者
  */
@@ -43,10 +47,6 @@ let WangWu = new Student("王五");
 
 MissLiu.addObserver(ZhangSan).addObserver(LiSi).addObserver(WangWu);
 MissLiu.sendMsg("haha");
-
-// Import and reuse the EventEmitter class from pub-sub module
-// to avoid duplicating the event handling implementation
-import EventEmitter from '../pub-sub/index';
 
 // Observer extends EventEmitter to maintain proper class inheritance
 // and enable instanceof checks while reusing the event handling implementation
