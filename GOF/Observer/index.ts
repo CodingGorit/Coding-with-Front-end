@@ -44,55 +44,13 @@ let WangWu = new Student("王五");
 MissLiu.addObserver(ZhangSan).addObserver(LiSi).addObserver(WangWu);
 MissLiu.sendMsg("haha");
 
+// Import and reuse the EventEmitter class from pub-sub module
+// to avoid duplicating the event handling implementation
+import EventEmitter from '../pub-sub/index';
 
-interface Listener {
-    (...args: any[]): void;
-    fn?: Listener
-}
-
-class Observer {
-
-    protected events = {};
-
-    on (eventName: string, callback: Listener) {
-        if (!this.events[eventName]) {
-            this.events[eventName] = [callback];
-        } else {
-            this.events[eventName].push(callback);
-        }
-    }
-
-    // 拿到 callback 列表，并执行对应的函数
-    emit (eventName: string) {
-        if (!eventName) {
-            return false;
-        }
-        const subscribers = this.events[eventName] || [];
-        subscribers.forEach(sub => sub());
-        return true;
-    }
-
-    off (eventName: string, subscriber: Listener) {
-        if (!eventName) {
-            return;
-        }
-        const subscribers = this.events[eventName] || [];
-        if (subscribers) {
-            const index = subscribers.findIndex(el => el === subscriber);
-            index > -1 && subscribers.splice(index, 1);
-        }
-    }
-
-    once (eventName: string, callback: Listener) {
-        const on = (...args) => {
-            callback(...args);
-            this.off(eventName, on);
-        }
-        callback.fn = on;
-        this.on(eventName, on);
-        return this;
-    }
-}
+// Observer is now an alias for EventEmitter to maintain backward compatibility
+// The EventEmitter class provides the same on(), emit(), off(), and once() methods
+const Observer = EventEmitter;
 
 const bookStore = new Observer();
 
