@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript 实现防抖功能</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #8EC5FC;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .root {
+            border: 1px solid red;
+            height: 300px;
+            width: 500px;
+            transform: translateY(50%);
+        }
+
+        #add {
+            background-color: cornflowerblue;
+            width: 100%;
+            margin-top: 10px;
+            height: 40px;
+            border: 2px solid black;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="root">
+            <h3>
+                目的：减少用户多次点击造成的大量网络请求发送
+            </h3>
+            <h3>
+                理解：重复请求，重新计时，重新开始
+            </h3>
+            <h3>
+                场景：防止你的手重复点击某个按钮或者啥
+            </h3>
+            <button id="add" type="menu">点击</button><br>
+            <div class="result">数字:<span id="num"></span></div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        let _btn = document.getElementById("add");
+        let _n = document.getElementById("num");
+        let cnt = 0;
+        let _t;
+        const increase = () => {
+            _n.innerHTML = ++cnt
+        };
+        _btn.onclick = function() {
+            _btn.style.backgroundColor = "red";
+            clearTimeout(_t);
+            _t = setTimeout(() => {
+                _n.innerHTML = ++cnt;
+                _btn.style.backgroundColor = "cornflowerblue";
+            }, 1500);
+        }
+
+        // 防抖
+        function debounce(fn, delay) {
+            let timer = null;
+            return function() {
+                if (timer) {
+                    clearTimeout(timer);
+                }
+                timer = setTimeout(fn, delay);
+            }
+        }
+    </script>
+</body>
+</html>

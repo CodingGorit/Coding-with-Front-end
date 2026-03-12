@@ -38,12 +38,34 @@ Flutter 快速入门
 
 ### 五、JavaScript 项目预览  
 
-#### 5.1 document（游览器内置对象）
+#### 5.1 JavaScript 100 个案例
 
-1. built_in_objects （内置对象）
-2. event （事件）  
-3. other  
-4. window object (window 对象)  
+> 收集了 35+ 个 JavaScript 实践示例，涵盖核心概念和实现。
+
+##### 核心示例 (001-008)
+- 防抖函数 / 节流函数实现
+- call / apply / bind 自定义实现
+- 展开运算符 / 回调函数
+- 绘制三角形
+
+##### 事件处理 (009-017)
+- 点击事件 / 鼠标经过/移出 / 聚焦失焦
+- 文本框改变 / 页面加载/卸载
+
+##### 内置对象 (018-021)
+- setTimeout / setInterval / clearTimeout
+- Navigator 对象
+
+##### Window 对象 (022-025)
+- 打开新窗口 / 历史记录
+- prompt / confirm 对话框
+
+##### 实战项目 (026-032)
+- 换肤功能 / 计时器 / 计算器
+- 轮播图 / 渐变色效果 / 当前时间
+
+##### 函数技巧 (033-035)
+- 数组排序比较函数 / 阶乘递归 / arguments.callee
 
 #### 5.2 前端框架
 
@@ -88,6 +110,9 @@ updated on 2020/2/1 by Gorit
 
 
 ### 更新记录
+
+2026/3/12 整合 JavaScript 目录，将 document、demo 合并到 100-js-demo，更新为 JavaScript 100 个案例
+
 2026/3/12 update interview, add html+css+js demo
 
 2023/11/01 update README, add interview support

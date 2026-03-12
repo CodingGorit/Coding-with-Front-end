@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>callback</title>
+</head>
+<body>
+    <div style="height: 200px; width: 200px; background-color: bisque; color: black;">
+        <button id="btn" type="button">button</button>
+        <span id="content">
+            aa
+        </span>
+    </div>
+    <script type="text/javascript">
+        const btn = document.getElementById("btn");
+        const content = document.getElementById("content");
+
+        const changeText = (text) => {
+            content.textContent =  text;
+            console.log("change text content is =>", text);
+        }
+        btn.addEventListener("click",() => {
+            aa("aaa");
+            // changeText("bb");
+        });
+ 
+        const aa = (txt, fn) => {
+            console.log(txt);
+            if (typeof fn === "function") {
+                fn(txt);
+            }
+        }
+    </script>
+</body>
+</html>
