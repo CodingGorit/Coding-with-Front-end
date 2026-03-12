@@ -3,13 +3,15 @@
  * Author: CodingGorit
  * Contact: javafullstack2021@163.com
  * -----
- * Last Modified: Wed Nov 15 2023
+ * Last Modified: Wed Nov 29 2023
  * Modified By: CodingGorit
  * -----
  * Copyright © 2019 —— 2023 fmin-courses TP Center All Rights Reserved
  * ------------------------------------
  * Javascript will save your soul!
  */
+
+// 楼主面试: 乌鸫科技-阿里巴巴-天猫超市时 遇到的手写代码题
 
 // @ts-ignore
 Array.prototype.selfReduce = function (callback, initValue) {
