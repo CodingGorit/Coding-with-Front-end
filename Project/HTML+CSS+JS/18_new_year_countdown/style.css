@@ -1,0 +1,107 @@
+/*
+ * Created Date: Monday, November 6th 2023, 3:15:44 pm
+ * Author: CodingGorit
+ * Contact: javafullstack2021@163.com
+ * -----
+ * Last Modified: Tue Nov 07 2023
+ * Modified By: CodingGorit
+ * -----
+ * Copyright © 2019 —— 2023 fmin-courses TP Center All Rights Reserved
+ * ------------------------------------
+ * Hello World
+ */
+
+
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    /* 背景图 */
+    background-image: url("https://img.alicdn.com/imgextra/i1/O1CN01XB");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    height: 100vh;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    overflow: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+body * {
+    z-index: 1;
+}
+
+h1 {
+    font-size: 60px;
+    margin: -80px 0 40px;
+}
+
+.year {
+    font-size: 200px;
+    z-index: 1;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0.2;
+}
+
+.countdown {
+    /* display: flex; */
+    display: none;
+    transform: scale(2);
+}
+
+.time {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 15px;
+}
+
+.time h2 {
+    margin: 0 0 5px;
+}
+
+.loading {
+    width: 100px;
+    height: 100px;
+    z-index: 2;
+}
+
+@media (max-width: 500px) {
+    h1 {
+        font-size: 45px;
+    }
+
+    .time {
+        margin: 5px;
+    }
+
+    .time h2 {
+        font-size: 12px;
+        margin: 0;
+    }
+
+    .time small {
+        font-size: 10px;
+    }
+}
