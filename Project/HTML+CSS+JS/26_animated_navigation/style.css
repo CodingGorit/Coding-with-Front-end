@@ -1,0 +1,120 @@
+/*
+ * Created Date: Wednesday, November 8th 2023, 3:38:43 pm
+ * Author: CodingGorit
+ * Contact: javafullstack2021@163.com
+ * -----
+ * Last Modified: Wed Nov 08 2023
+ * Modified By: CodingGorit
+ * -----
+ * Copyright © 2019 —— 2023 fmin-courses TP Center All Rights Reserved
+ * ------------------------------------
+ * Hello World
+ */
+
+
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #eafbff;
+    background-image: linear-gradient(
+        to bottom,
+        #eafaff 0%,
+        #eafaff 50%, 
+        #5290f9 50%,
+        #5290f9 100%
+    );
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+}
+
+nav {
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    width: 80px;
+    transition: width 0.6s linear;
+}
+
+nav.active {
+    width: 400px;
+}
+
+nav ul {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    width: 0;
+    transition: width 0.6s linear;
+}
+
+nav.active ul {
+    width: 100%;
+}
+
+nav ul li {
+    transform: rotateY(0);
+    opacity: 0;
+    transition: opacity 0.6s linear, transform 0.6s linear;
+}
+
+nav.active ul li {
+    transform: rotateY(360);
+    opacity: 1;
+}
+
+nav ul a {
+    position: relative;
+    color: #000;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.icon {
+    background-color: #fff;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    position: relative;
+    height: 30px;
+    width: 30px;
+    /* background-color: #333; */
+}
+
+.icon:focus {
+    outline: none;
+}
+
+.icon .line {
+    background-color: #5290f9;
+    height: 2px;
+    width: 20px;
+    position: absolute;
+    top: 10px;
+    left: 5px;
+    transform-origin: center center;
+    transition: transform 0.6s linear;
+}
+
+.icon .line2 {
+    top: auto;
+    bottom: 10px;
+}
+
+nav.active .icon .line1 {
+    transform: rotate(-765deg) translateY(5.5px);
+}
+
+nav.active .icon .line2 {
+    transform: rotate(765deg) translateY(-5.5px);
+}

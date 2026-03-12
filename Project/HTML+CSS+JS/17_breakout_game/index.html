@@ -1,0 +1,45 @@
+<!--
+Created Date: Friday, November 3rd 2023, 2:28:38 pm
+Author: CodingGorit
+Contact: javafullstack2021@163.com
+-----
+Last Modified: Fri Nov 03 2023
+Modified By: CodingGorit
+-----
+Copyright © 2019 —— 2023 fmin-courses TP Center All Rights Reserved
+------------------------------------
+Hello World
+-->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css" />
+    <title>2D小游戏 - 打砖块</title>
+</head>
+
+<body>
+    <h1>2D小游戏 - 打砖块</h1>
+    <button id="rules-btn" class="btn rules-btn">阅读规则</button>
+    <!-- 侧边栏抽屉 -->
+    <div id="rules" class="rules">
+        <h2>游戏指南</h2>
+        <p>使用左右键移动挡板，尽可能接住掉落的球体;球体被接住后，会弹到
+            上方，打碎上面的砖块.</p>
+        <p>如果没有接到掉落的球体，那么您的分数会清零，所有砖块将会还原
+        </p>
+        <button id="close-btn" class="btn">关闭 </button>
+    </div>
+
+    <canvas id="canvas" width="800" height="600">
+
+    </canvas>
+    <script src="script.js"></script>
+</body>
+
+</html>
