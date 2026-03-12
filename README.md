@@ -81,14 +81,14 @@ Flutter 快速入门
 
 updated on 2020/2/1 by Gorit  
 
-### 七、TypeWScript
+### 七、TypeScript
 
 1. 装饰器 demo
 2. ts-study 学习
 
 
 ### 更新记录
-2026/3/12 update interview
+2026/3/12 update interview, add html+css+js demo
 
 2023/11/01 update README, add interview support
 
